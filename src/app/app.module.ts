@@ -8,6 +8,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AsideComponent } from './aside/aside.component';
+import { DocumentsComponent } from './documents/documents.component';
+import { JsComponent } from './js/js.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AsideComponent } from './aside/aside.component';
     RegistrationComponent,
     HomeAdminComponent,
     NavbarComponent,
-    AsideComponent
+    AsideComponent,
+    DocumentsComponent,
+    JsComponent
   ],
   imports: [
     BrowserModule,
