@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AsideComponent } from './aside/aside.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { JsComponent } from './js/js.component';
+import { ConfigDocComponent } from './config-doc/config-doc.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { JsComponent } from './js/js.component';
     NavbarComponent,
     AsideComponent,
     DocumentsComponent,
-    JsComponent
+    JsComponent,
+    ConfigDocComponent
   ],
   imports: [
     BrowserModule,

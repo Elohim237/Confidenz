@@ -68,16 +68,16 @@
 
     <ul class="menu-inner py-1 gap-2">
       <!-- Dashboard -->
-      <li class="menu-item active">
-        <a href="index.html" class="menu-link gap-2">
-            <i class="fa fa-folder-o" aria-hidden="true"></i>
-          <div data-i18n="Analytics">Dashboard</div>
+      <li class="menu-item "  [ngClass]="{'active':currentUrl ==='/homeadmin'}">
+        <a href="homeadmin" class="menu-link gap-2">
+          <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+          <div data-i18n="Analytics">Upload Page</div>
         </a>
       </li>
 
       <!-- Layouts -->
-      <li class="menu-item">
-        <a href="index.html" class="menu-link gap-2">
+      <li class="menu-item " routerLinkActive="active" [ngClass]="{'active':currentUrl ==='/documents'}">
+        <a href="documents" class="menu-link gap-2" >
             <i class="fa fa-folder-o" aria-hidden="true"></i>
           <div data-i18n="Analytics">Documents</div>
         </a>

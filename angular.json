@@ -33,6 +33,7 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
                "node_modules/bootstrap-table/dist/bootstrap-table.min.js",
                "src/assets/js/dropdown.js",
+               "src/assets/js/bootstrap.js",
               "src/assets/js/jquery.js",
               "src/assets/js/popper.js",
               "src/assets/js/main.js",
