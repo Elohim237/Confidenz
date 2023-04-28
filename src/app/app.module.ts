@@ -11,6 +11,10 @@ import { AsideComponent } from './aside/aside.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { JsComponent } from './js/js.component';
 import { ConfigDocComponent } from './config-doc/config-doc.component';
+import { NotificationComponent } from './notification/notification.component';
+import { DetailDocumentComponent } from './detail-document/detail-document.component';
+import { ListeMembersComponent } from './liste-members/liste-members.component';
+import { ModalsComponent } from './modals/modals.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { ConfigDocComponent } from './config-doc/config-doc.component';
     AsideComponent,
     DocumentsComponent,
     JsComponent,
-    ConfigDocComponent
+    ConfigDocComponent,
+    NotificationComponent,
+    DetailDocumentComponent,
+    ListeMembersComponent,
+    ModalsComponent
   ],
   imports: [
     BrowserModule,
