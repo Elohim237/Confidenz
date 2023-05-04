@@ -1,0 +1,22 @@
+@media screen and (max-width:450px) {
+    .content-all{
+        width: 100%;
+        height: 100%;
+      }
+    .content-img{
+        background-color: #ffffff !important;
+     }
+    .content-img img{
+        width: 100%;
+       background-color: #ffffff;
+       opacity: 0%;
+    }
+    .content-form{
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        left: -32%;
+        /* bottom:40%; */
+    }
+
+}
