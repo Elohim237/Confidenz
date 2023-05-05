@@ -15,7 +15,10 @@ import { NotificationComponent } from './notification/notification.component';
 import { DetailDocumentComponent } from './detail-document/detail-document.component';
 import { ListeMembersComponent } from './liste-members/liste-members.component';
 import { ModalsComponent } from './modals/modals.component';
-
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
+import { ListeDocUserComponent } from './liste-doc-user/liste-doc-user.component';
+import { ViewDocComponent } from './view-doc/view-doc.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,13 +33,17 @@ import { ModalsComponent } from './modals/modals.component';
     NotificationComponent,
     DetailDocumentComponent,
     ListeMembersComponent,
-    ModalsComponent
+    ModalsComponent,
+    ListeDocUserComponent,
+    ViewDocComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
