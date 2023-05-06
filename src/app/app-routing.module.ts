@@ -8,6 +8,8 @@ import { ConfigDocComponent } from './config-doc/config-doc.component';
 import { DetailDocumentComponent } from './detail-document/detail-document.component';
 import { ListeMembersComponent } from './liste-members/liste-members.component';
 import { NotificationComponent } from './notification/notification.component';
+import { ListeDocUserComponent } from './liste-doc-user/liste-doc-user.component';
+import { ViewDocComponent } from './view-doc/view-doc.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path:'homeadmin/configdoc', component: ConfigDocComponent},
   {path:'documents/detail', component: DetailDocumentComponent},
   {path:'documents/detail/liste', component: ListeMembersComponent},
-  {path:'notification', component: NotificationComponent}
+  {path:'notification', component: NotificationComponent},
+  {path:'list-DocUser',component:ListeDocUserComponent},
+  {path:'view-doc',component:ViewDocComponent}
 ];
 
 @NgModule({

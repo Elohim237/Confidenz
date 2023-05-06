@@ -13,6 +13,10 @@
                         <span class="text-muted fw-light">Qu’allez vous faire aujourd’hui?</span>
                     </div>
                     <div class="row ">
+                      <div class="d-flex justify-content-end">
+                          <button class="btn btn-primary"  data-bs-toggle="modal"
+                          data-bs-target="#modalCreateUser">Create Employee</button>
+                      </div>
                           <div class="card p-5">
                             <div class="card-body">
                               <div class="row" >
@@ -27,27 +31,6 @@
                                         <button type="button" class="btn btn-primary" routerLink="configdoc" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Next Etape</button>
                                         <button type="button" class="btn btn-outline-secondary">Cancel</button>
                                     </div>
-                                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                                        <div class="offcanvas-header">
-                                          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-                                          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                        </div>
-                                        <div class="offcanvas-body">
-                                          <div>
-                                            Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-                                          </div>
-                                          <div class="dropdown mt-3">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                                              Dropdown button
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                              <li><a class="dropdown-item" href="#">Action</a></li>
-                                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                                              <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                          </div>
-                                        </div>
-                                      </div>
                                 </div>
                                <div class="col-6 d-flex justify-content-center">
                                     <img src="../../assets/upload.svg" alt="upload"/>
@@ -63,3 +46,4 @@
     </div>
     
 </div>
+<app-modals></app-modals>

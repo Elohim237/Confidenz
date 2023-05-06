@@ -40,9 +40,27 @@ export class AutServiceService {
  async register(registerform:any){
     console.log(registerform);
     console.log(this.baseUrl);
-    return this.request(this.baseUrl.url+ '/register', {
+    // return request(BASE_URL + '/register', {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     name: "Mr Claude SA",
+    //     email: "fotso1claude@gmail.com",
+    //     password: "fotso1claude",
+    //     password_confirmation: "fotso1claude"
+    //   })
+    // })
+    const options = {
+      withCredentials: true
+    };
+  //   return this.http.post(this.baseUrl.url+'/register',this.request(this.baseUrl.url+ '/register', {
+  //     method: "POST",
+  //     body: registerform
+  //   }),options)
+  // }
+  return this.request(this.baseUrl.url+'/register', {
       method: "POST",
-      body: registerform
-    })
-  }
+      body: registerform,
+      options:options
+      })
+    }
 }
