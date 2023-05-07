@@ -19,6 +19,7 @@ const routes: Routes = [
   {path:'homeadmin/configdoc', component: ConfigDocComponent},
   {path:'documents/detail', component: DetailDocumentComponent},
   {path:'documents/detail/liste', component: ListeMembersComponent},
+  {path:'liste', component: ListeMembersComponent},
   {path:'notification', component: NotificationComponent},
   {path:'list-DocUser',component:ListeDocUserComponent},
   {path:'view-doc',component:ViewDocComponent}
