@@ -9,21 +9,31 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 export class AutServiceService {
   baseUrl  = new BaseUrl();
   constructor(private http:HttpClient) { }
-  
-  getCookie(name:any) {
-    const value = `; ${document.cookie}`;
-    let parts:any;
-    parts = value.split(`; ${name}=`);
-    if (parts.length === 2) {
-      return parts.pop().split(';').shift();
-    }
+ 
+  getCookie(name:string): string {
+    let cookie = "";
+    fetch(this.baseUrl.url+'/sanctum/csrf-cookie', {
+      headers: {
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      }, 
+      credentials: 'include'
+    }).then(() => {
+      const value = `; ${document.cookie}`;
+      let parts:any;
+      parts = value.split(`; ${name}=`);
+      if (parts.length === 2) {
+        cookie = parts.pop().split(';').shift();
+      }
+    });
+    return cookie;
   }
 
  request(url:any, options:any) {
     //get cookie
-    let csrfToken:any;
+    let csrfToken:string;
     csrfToken = this.getCookie('XSRF-TOKEN');
-    // console.log(decodeURIComponent(csrfToken));
+    console.log(decodeURIComponent(csrfToken));
     // return null;
     return fetch(url, {
       headers: {
@@ -37,7 +47,7 @@ export class AutServiceService {
   }
 
 
- async register(registerform:any){
+ register(registerform:any){
     console.log(registerform);
     console.log(this.baseUrl);
     // return request(BASE_URL + '/register', {
@@ -59,8 +69,14 @@ export class AutServiceService {
   // }
   return this.request(this.baseUrl.url+'/register', {
       method: "POST",
-      body: registerform,
-      options:options
+      body: registerform
       })
+    }
+
+
+    login(loginform:any){
+      console.log(loginform);
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accept': 'application/json' });
+      return this.http.post(this.baseUrl.url+'/login',loginform,{headers})
     }
 }

@@ -13,28 +13,28 @@
                 <form [formGroup]="registrationForm" (ngSubmit)="register()">
                     <div class="mb-2">
                         <label class="form-label" style="font-size: 14PX;">Name of the Organization </label>
-                        <input class="form-control" type="text" style="border-radius: 6px;height: 43px;margin-bottom: 15px;" placeholder="elohim" name="email" required="" formControlName="name">
+                        <input class="form-control" type="text" style="border-radius: 6px;height: 43px;margin-bottom: 15px;" placeholder="elohim" name="email" required="" formControlName="name" value="Elohim">
                         <div *ngIf="registrationForm.get('name')?.invalid && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
                             <div *ngIf="registrationForm.get('name')?.errors?.['required']">Name is required</div>
                           </div>
                     </div>
                     <div  class="mb-2">
                         <label class="form-label" style="font-size: 14PX;">Email</label>
-                        <input class="form-control" type="email" style="border-radius: 6px;height: 43px;margin-bottom: 15px;" placeholder="elohim@gmail.com" name="email" required="" formControlName="email">
+                        <input class="form-control" type="email" style="border-radius: 6px;height: 43px;margin-bottom: 15px;" placeholder="elohim@gmail.com" name="email" required="" formControlName="email"  value="Elohim@gmail.com">
                         <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
                             <div *ngIf="registrationForm.get('email')?.errors?.['required']">Email is required</div>
                             <div *ngIf="registrationForm.get('email')?.errors?.['email']">Email is? invalid</div>
                           </div>
                     </div>
                     <div  class="mb-2">
-                        <div class="d-flex flex-row justify-content-between"><label class="form-label">Password</label></div><input class="form-control" type="password" formControlName="password">
+                        <div class="d-flex flex-row justify-content-between"><label class="form-label">Password</label></div><input class="form-control" type="password" formControlName="password"  value="Elohim">
                         <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
                             <div *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required</div>
                             <div *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</div>
                           </div>
                     </div>
                     <div  class="mb-2">
-                        <div class="d-flex flex-row justify-content-between"><label class="form-label">Retape Password</label></div><input class="form-control" type="password" formControlName="passwordConfirmation">
+                        <div class="d-flex flex-row justify-content-between"><label class="form-label">Retape Password</label></div><input class="form-control" type="password" formControlName="passwordConfirmation"  value="Elohim">
                         <!-- <div *ngIf="registrationForm.get('passwordConfirmation')?.errors?.['required']">Confirm Password is required</div> -->
                         <div *ngIf="registrationForm.get('passwordConfirmation')?.invalid && (registrationForm.get('passwordConfirmation')?.touched || registrationForm?.dirty)">
                             <div *ngIf="registrationForm.get('passwordConfirmation')?.hasError('required')">Confirm Password is required</div>
