@@ -19,6 +19,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import { ListeDocUserComponent } from './liste-doc-user/liste-doc-user.component';
 import { ViewDocComponent } from './view-doc/view-doc.component';
+import { BarProgressComponent } from './bar-progress/bar-progress.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ViewDocComponent } from './view-doc/view-doc.component';
     ListeMembersComponent,
     ModalsComponent,
     ListeDocUserComponent,
-    ViewDocComponent
+    ViewDocComponent,
+    BarProgressComponent
   ],
   imports: [
     BrowserModule,

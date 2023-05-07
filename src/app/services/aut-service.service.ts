@@ -7,7 +7,9 @@ axios.defaults.withCredentials=true;
 @Injectable({
   providedIn: 'root'
 })
+
 export class AutServiceService {
+  
   baseUrl  = new BaseUrl();
   constructor(private http:HttpClient) { }
  
@@ -51,23 +53,23 @@ export class AutServiceService {
  async register(registerform:any){
     console.log(registerform);
     console.log(this.baseUrl);
-  // return this.request(this.baseUrl.url+'/register', {
-  //     method: "POST",
-  //     body: registerform
-  //     })
-    await axios.get(this.baseUrl.url+"/sanctum/csrf-cookie", {
-      headers: {
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      }
-    }).then(() => { const value = `; ${document.cookie}`;
-    let cookie = "";
-    let parts:any;
-    parts = value.split(`; ${name}=`);
-    if (parts.length === 2) {
-      cookie = parts.pop().split(';').shift();
-     }})
-    await axios.post(this.baseUrl.url+'/register',registerform)
+    axios.defaults.withCredentials=true;
+    // await axios.get(this.baseUrl.url+"/sanctum/csrf-cookie", {
+    //   headers: {
+    //     'content-type': 'application/json',
+    //     'accept': 'application/json'
+    //   }
+    // }).then(() => { const value = `; ${document.cookie}`;
+    // let cookie = "";
+    // let parts:any;
+    // parts = value.split(`; ${name}=`);
+    // if (parts.length === 2) {
+    //   cookie = parts.pop().split(';').shift();
+    //  }})
+    await axios.get(this.baseUrl.url+'/sanctum/csrf-cookie').then(response=>{
+      console.log("Token",response.config.headers)
+          axios.post(this.baseUrl.url+'/register',registerform)
+    })
 
   }
 
