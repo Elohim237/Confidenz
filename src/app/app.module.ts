@@ -20,6 +20,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { ListeDocUserComponent } from './liste-doc-user/liste-doc-user.component';
 import { ViewDocComponent } from './view-doc/view-doc.component';
 import { BarProgressComponent } from './bar-progress/bar-progress.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { BarProgressComponent } from './bar-progress/bar-progress.component';
     ModalsComponent,
     ListeDocUserComponent,
     ViewDocComponent,
-    BarProgressComponent
+    BarProgressComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,

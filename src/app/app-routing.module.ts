@@ -10,6 +10,7 @@ import { ListeMembersComponent } from './liste-members/liste-members.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ListeDocUserComponent } from './liste-doc-user/liste-doc-user.component';
 import { ViewDocComponent } from './view-doc/view-doc.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path:'liste', component: ListeMembersComponent},
   {path:'notification', component: NotificationComponent},
   {path:'list-DocUser',component:ListeDocUserComponent},
-  {path:'view-doc',component:ViewDocComponent}
+  {path:'view-doc',component:ViewDocComponent},
+  {path:'forget-password',component:ForgetPasswordComponent},
 ];
 
 @NgModule({

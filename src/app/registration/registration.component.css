@@ -38,3 +38,13 @@ input.ng-invalid.ng-touched {
     height:100%;
     object-fit: cover;
   }
+  .password{
+    position: relative;
+  }
+  .password span{
+    cursor: pointer;
+    position: absolute;
+    top:12px;
+    float: right;
+    left: 90%;
+  }

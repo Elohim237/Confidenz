@@ -9,6 +9,7 @@ import { AutServiceService } from '../services/aut-service.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  showPassword: boolean = false;
   loginForm: FormGroup;
   constructor(private formBuilder: FormBuilder,private autservice: AutServiceService) {
     this.loginForm = this.formBuilder.group({

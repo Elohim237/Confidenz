@@ -18,7 +18,16 @@
         left: -32%;
         /* bottom:40%; */
     }
-
+    .password{
+      position: relative;
+    }
+    .password span{
+      cursor: pointer;
+      position: absolute;
+      top:12px;
+      float: right;
+      left: 90% !important;
+    }
 }
 input.ng-invalid.ng-touched {
     border: 1px solid red;
@@ -37,4 +46,14 @@ input.ng-invalid.ng-touched {
     width: 100%;
     height:100%;
     object-fit: cover;
+  }
+  .password{
+    position: relative;
+  }
+  .password span{
+    cursor: pointer;
+    position: absolute;
+    top:12px;
+    float: right;
+    left: 95%;
   }

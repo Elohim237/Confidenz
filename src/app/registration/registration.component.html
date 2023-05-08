@@ -34,14 +34,23 @@
                           </div>
                     </div>
                     <div  class="mb-2">
-                        <div class="d-flex flex-row justify-content-between"><label class="form-label">Password</label></div><input class="form-control" type="password" formControlName="password"  value="Elohim">
+                        <div class="d-flex flex-row justify-content-between"><label class="form-label">Password</label></div>
+                        <div class="password">
+                            <input class="form-control"  type="{{ showPassword ? 'text' : 'password' }}"  formControlName="password"  value="Elohim">
+                            <span (click)="showPassword =!showPassword" [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></span>
+                        </div>
                         <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
                             <div *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required</div>
                             <div *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</div>
                           </div>
                     </div>
                     <div  class="mb-2">
-                        <div class="d-flex flex-row justify-content-between"><label class="form-label">Retape Password</label></div><input class="form-control" type="password" formControlName="passwordConfirmation"  value="Elohim">
+                        <div class="d-flex flex-row justify-content-between"><label class="form-label">Retape Password</label></div>
+                        <div class="password">
+                            <input class="form-control" type="{{ showPassword ? 'text' : 'password' }}" formControlName="passwordConfirmation"  value="Elohim">
+                            <span (click)="showPassword =!showPassword" [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></span>
+                        </div>
+                        
                         <!-- <div *ngIf="registrationForm.get('passwordConfirmation')?.errors?.['required']">Confirm Password is required</div> -->
                         <div *ngIf="registrationForm.get('passwordConfirmation')?.invalid && (registrationForm.get('passwordConfirmation')?.touched || registrationForm?.dirty)">
                             <div *ngIf="registrationForm.get('passwordConfirmation')?.hasError('required')">Confirm Password is required</div>

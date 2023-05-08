@@ -34,10 +34,13 @@
                         </div>
                         <div class="d-flex flex-row justify-content-between">
                             <label class="form-label">Password</label>
-                            <a href="#" style="border-color: #7367f0;height: 12px;">Forget Password?</a>
+                            <a href="forget-password" style="border-color: #7367f0;height: 12px;">Forget Password?</a>
                            
                         </div>
-                        <input class="form-control" type="password"  formControlName="password">
+                        <div class="password">
+                            <input class="form-control" type="{{ showPassword ? 'text' : 'password' }}" formControlName="password">
+                            <span (click)="showPassword =!showPassword" [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></span>
+                        </div>
                         <div class="mb-3" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
                             <div *ngIf="loginForm.controls['password'].errors?.['required']">
                               Password is required.
@@ -47,9 +50,9 @@
                         <div class="d-flex justify-content-center"><button class="btn btn-primary justify-content-center" type="submit" style="width: 100%;background: #7367f0;margin-top: 32px;" ><span class="log" >Login</span></button></div>
                       </div>
                 </form>
-                <div class="d-flex justify-content-center" style="padding-top: 16px;">
+                <section class="d-flex justify-content-center" style="padding-top: 16px;">
                     <span style="padding-right: 15px;">New on our platform?</span><a href="register">Create an Organization</a>
-                </div>
+                </section>
             </div>
         </div>
     </div>

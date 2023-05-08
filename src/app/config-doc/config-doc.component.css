@@ -48,3 +48,28 @@
   padding-right: 0.4rem;
   font-size: 150%;
 }             
+/* .progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.step {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.step.active {
+  background-color: #007bff;
+} */
