@@ -5,9 +5,15 @@ import axios from 'axios';
 import { ɵparseCookieValue } from '@angular/common';
 
 axios.defaults.withCredentials=true;
+export interface CompagnieItems{
+  name:string;
+  email:string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 
 export class AutServiceService {
   
@@ -84,14 +90,21 @@ getCookie(name:string): string{
       // })
       await axios.get(this.baseUrl.url+'/sanctum/csrf-cookie').then(response=>{
         console.log("Token",response.config.headers)
-        axios.post(this.baseUrl.url+'/register',registerform)
+        axios.post(this.baseUrl.url+'/api/v1/register',registerform)
     })
   }
 
     
    async login(loginform:any){
+
       console.log(loginform);
       const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accept': 'application/json' });
-      await axios.post(this.baseUrl.url+'/login',loginform)
+      await axios.post(this.baseUrl.url+'/api/v1/compagny/login',loginform).then((response)=>{
+        localStorage.removeItem('userInfo');
+        const companyString= JSON.stringify(response.data.datas)
+        localStorage.setItem('userInfo',companyString);
+        console.log(localStorage.getItem('userInfo'));
+        
+      })
     }
 }

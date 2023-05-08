@@ -11,14 +11,14 @@ import { AutServiceService } from '../services/aut-service.service';
 export class LoginComponent {
   showPassword: boolean = false;
   loginForm: FormGroup;
-  constructor(private formBuilder: FormBuilder,private autservice: AutServiceService) {
+  constructor(private formBuilder: FormBuilder,private autservice: AutServiceService, private router : Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
     
   }
-  onSubmit() {
+  async onSubmit() {
     if (this.loginForm.invalid) {
       console.log("invalide");
       return;
@@ -27,8 +27,10 @@ export class LoginComponent {
       let result={ email: this.loginForm.value.email, password: this.loginForm.value.password}
       console.log("valide");
       console.log(result);
-      this.autservice.login(result);
-      
+      await this.autservice.login(result).then(()=>{
+        this.router.navigate(['homeadmin'])
+      });
+      // this.router.navigate(['homeadmin'])
     }
 
     // handle form submission
