@@ -21,6 +21,7 @@ import { ListeDocUserComponent } from './liste-doc-user/liste-doc-user.component
 import { ViewDocComponent } from './view-doc/view-doc.component';
 import { BarProgressComponent } from './bar-progress/bar-progress.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { LoginEmployeeComponent } from './login-employee/login-employee.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
     ListeDocUserComponent,
     ViewDocComponent,
     BarProgressComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    LoginEmployeeComponent
   ],
   imports: [
     BrowserModule,

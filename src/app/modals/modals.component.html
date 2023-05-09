@@ -129,9 +129,12 @@
             
             </ul>
             <div class="tab-content">
+              <form (submit)="uploadFile($event)">
               <div class="tab-pane fade show active" id="navs-top-home" role="tabpanel">
-                <input type="file" class="form-control"   />
+                <input type="file" class="form-control" (change)="createEmployeFile($event)"  />
+                <button type="submit" class="btn btn-primary">Upload</button>
               </div>
+            </form>
               <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
                 <div class="col mb-3">
                   <label for="nameWithTitle" class="form-label">Name</label>
