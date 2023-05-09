@@ -26,12 +26,13 @@ export class CreateEmployeeService {
     console.log(BearerToken);
     
     axios.post(this.baseUrl.url+'/api/v1/'+compagnies.compagny.id+'/upload/employees',file,{
+      withCredentials: true,
       headers: {
         'Authorization': BearerToken,
         'Content-Type': 'multipart/form-data'
       }
-    
-    }).then((response)=>{
+      
+    }).catch((response)=>{
       console.log(response);
       
     })

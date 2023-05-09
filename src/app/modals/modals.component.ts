@@ -21,9 +21,6 @@ export class ModalsComponent {
   }
   createEmployeFile(event:any){ 
     this.selectedFile = event.target.files[0];
-    // const file: File = event.target.files[0];
-    // this.upload=true;
-    // this.createEmployservice.createEmployeFile(this.compagnInfo,file);
   }
   uploadFile(event: any) {
     event.preventDefault();

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, importProvidersFrom } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormGroup , FormBuilder , Validators , FormControl} from '@angular/forms';
 import { ConnexionForm } from '../classes/connexion-form';
 import { AutServiceService } from '../services/aut-service.service';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +14,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   constructor(private formBuilder: FormBuilder,private autservice: AutServiceService, private router : Router) {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['',Validators.compose( [Validators.required, Validators.email])],
       password: ['', Validators.required],
     });
     
