@@ -22,6 +22,8 @@ import { ViewDocComponent } from './view-doc/view-doc.component';
 import { BarProgressComponent } from './bar-progress/bar-progress.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { LoginEmployeeComponent } from './login-employee/login-employee.component';
+import { ListeEmployeeComponent } from './liste-employee/liste-employee.component';
+
 
 @NgModule({
   declarations: [
@@ -42,13 +44,14 @@ import { LoginEmployeeComponent } from './login-employee/login-employee.componen
     ViewDocComponent,
     BarProgressComponent,
     ForgetPasswordComponent,
-    LoginEmployeeComponent
+    LoginEmployeeComponent,
+    ListeEmployeeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

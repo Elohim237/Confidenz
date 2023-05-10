@@ -29,12 +29,11 @@ export class LoginComponent {
       console.log("valide");
       console.log(result);
       await this.autservice.login(result).then(()=>{
-        this.router.navigate(['homeadmin'])
+        // this.router.navigate(['homeadmin'])
       });
       // this.router.navigate(['homeadmin'])
     }
 
-    // handle form submission
   }
 }
 
