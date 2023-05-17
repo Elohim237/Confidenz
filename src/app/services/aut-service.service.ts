@@ -60,7 +60,7 @@ getCookie(name:string): string{
 
       console.log(loginform);
       const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accept': 'application/json' });
-      await axios.post(Url.BASE_URL + '/api/v1/compagny/login',loginform).then((response)=>{
+      await axios.post(Url.COMPAGNY_URL + '/login',loginform).then((response)=>{
         localStorage.removeItem('userInfo');
         const companyString= JSON.stringify(response.data.datas)
         localStorage.setItem('userInfo',companyString);

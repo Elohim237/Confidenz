@@ -17,7 +17,7 @@ export class CreateEmployeeService {
     let BearerToken= 'Bearer '+compagnies.token
     console.log(BearerToken);
     
-    axios.post(Url.BASE_URL + '/api/v1/'+compagnies.compagny.id+'/upload/employees',file,{
+    axios.post(Url.COMPAGNY_URL + '/'+compagnies.compagny.id+'/upload/employees',file,{
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,
@@ -32,7 +32,7 @@ export class CreateEmployeeService {
 
   CreateEmployeByForm(compagnies:any,formData:any){
     let BearerToken= 'Bearer '+compagnies.token;
-    axios.post(Url.BASE_URL + '/api/v1/'+compagnies.compagny.id+'/employee/register',formData,{
+    axios.post(Url.COMPAGNY_URL + '/'+compagnies.compagny.id+'/employee/register',formData,{
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,

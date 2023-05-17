@@ -14,59 +14,46 @@
                                   Employé</h6>
                         </div>
                     </div>
+                    <div *ngIf=" deleted==true"  class="alert alert-primary alert-dismissible" role="alert">
+                      <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Operation Succed</h6>
+                      <p class="mb-0">Votre a été supprimé.</p>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      </button>
+                    </div>
                     <div class="row">
                           <div class="card p-5">
-                            <h2 class="card-header text-primary">Liste des Empoyé de </h2>
+                            <h2 class="card-header text-primary">Liste des Empoyé de  {{userInfo.compagny.name}}</h2>
                             <div class="card-body">
                                 voici la liste de vos employés 
                                 <div class="table-responsive text-nowrap mt-4">
-                                    <table class="table"
+                                    <table bootstrap-table class="table"
+                                    data-data="dataa" 
                                     data-toggle="table"
                                     data-pagination="true"
                                     data-search="true"
                                    >
                                       <thead style="background-color: #F3F2F7;">
                                         <tr>
-                                          <th>Id</th>
+                                          <th>Numero</th>
                                           <th>Nom</th>
                                           <th>Email</th>
+                                          <th>Actions</th>
                                         </tr>
                                       </thead>
-                                      <tbody class="table-border-bottom-0">
-                                        <tr>
-                                          <td>
-                                            <div class="d-flex align-items-center">
-                                              <strong>Elohim</strong>
-                                            </div>
+                                      <tbody class="table-border-bottom-0" > 
+                                        <tr   *ngFor="let employee of employees; let i=index">
+                                          <td class="d-flex align-items-center">
+                                            <strong>{{i+1}}</strong>
                                           </td>                    
-                                          <td><span>12000 Fcfa</span></td>
+                                          <td><span>{{employee.name}}</span></td>
                                           <td>
-                                            <span>15000 Fcfa</span>
+                                            <span>{{employee.email}}</span>
                                           </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                              <div class="d-flex align-items-center">
-                                                <strong>Elohim</strong>
-                                              </div>
-                                            </td>                    
-                                            <td><span>12000 Fcfa</span></td>
-                                            <td>
-                                              <span>15000 Fcfa</span>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td>
-                                              <div class="d-flex align-items-center">
-                                                <strong>Elohim</strong>
-                                              </div>
-                                            </td>                    
-                                            <td><span>12000 Fcfa</span></td>
-                                            <td>
-                                              <span>15000 Fcfa</span>
-                                            </td>
-                                          </tr>
-                                      </tbody>
+                                          <td>
+                                            <button  class="btn btn-outline-danger btn-icon" data-bs-toggle="modal"  [attr.data-bs-target]="'#modalSupprime'+employee.id" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                          </td>
+                                        </tr>                                       
+                                      </tbody> 
                                     </table>
                                 </div>
                             </div>
@@ -76,4 +63,33 @@
             </div>
         </div>
     </div>
-</div>                                      
+</div>
+
+<div *ngFor="let employee of employees; let i=index" class="modal fade" id="modalSupprime{{employee.id}}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCenterTitle">Delete Employé</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p> Voulez vous vraiment supprimer ? Cette action est irreversible</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button"  class="btn btn-danger"   (click)="deletedEmployee(userInfo,employee.id)">
+          <div *ngIf="actionDelete==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
+            <span class="visually-hidden">Loading...</span>
+      </div> Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+                                    
