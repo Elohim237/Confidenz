@@ -22,7 +22,7 @@
                                 voici la liste des documents uploadé sur la plateforme
                                 <div class="table-responsive text-nowrap mt-4">
                                     <table class="table"
-                                   
+                                   data-data="data"
                                     data-toggle="table"
                                     data-pagination="true"
                                     data-search="true"
@@ -35,16 +35,16 @@
                                         </tr>
                                       </thead>
                                       <tbody class="table-border-bottom-0">
-                                        <tr>
+                                        <tr *ngFor="let doc of docs">
                                           <td>
                                             <div class="d-flex align-items-center">
                                               <div class="image-content">
                                                 <img src="../../assets/xls.png">
                                               </div>
-                                              <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Elohim Project</strong>
+                                              <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{doc.name}}</strong>
                                             </div>
                                           </td>                    
-                                          <td><span class="badge bg-label-primary me-1">Active</span></td>
+                                          <td><span class="badge bg-label-primary me-1">{{doc.rights}}</span></td>
                                           <td>
                                             <div class="dropdown">
                                               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
@@ -56,58 +56,6 @@
                                                 <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true" style="
                                                   margin-right: 8px;"></i>  Edit</a>
                                                 <a class="dropdown-item" href="#" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalSupprime"><i class="fa fa-trash-o" aria-hidden="true" style="
-                                                  margin-right: 8px;"></i>  Delete</a>
-                                              </div>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <td>
-                                            <div class="d-flex align-items-center">
-                                              <div class="image-content">
-                                                <img src="../../assets/xls.png">
-                                              </div>
-                                              <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong>
-                                            </div>
-                                          </td>                    
-                                          <td><span class="badge bg-label-primary me-1">Activee</span></td>
-                                          <td>
-                                            <div class="dropdown">
-                                              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
-                                              <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#"><i class="fa fa-print " aria-hidden="true" style="
-                                                  margin-right: 8px;"></i>  Print</a>
-                                                <a class="dropdown-item" routerLink="detail"><i class="fa fa-eye" aria-hidden="true" style="
-                                                  margin-right: 8px;"></i>  Details</a>
-                                                <span class="dropdown-item" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalCenter"><i class="fa fa-pencil-square-o" aria-hidden="true" style="
-                                                  margin-right: 8px;" ></i>  Edit</span>
-                                                <span class="dropdown-item" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalSupprime" ><i class="fa fa-trash-o" aria-hidden="true" style="
-                                                  margin-right: 8px;"></i>  Delete</span>
-                                              </div>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <td>
-                                            <div class="d-flex align-items-center">
-                                              <div class="image-content">
-                                                <img src="../../assets/xls.png">
-                                              </div>
-                                              <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Bootstrap Project</strong>
-                                            </div>
-                                          </td>                    
-                                          <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                          <td>
-                                            <div class="dropdown">
-                                              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
-                                              <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#"><i class="fa fa-print " aria-hidden="true" style="
-                                                  margin-right: 8px;"></i>  Print</a>
-                                                <a class="dropdown-item" href="#"><i class="fa fa-eye" aria-hidden="true" style="
-                                                  margin-right: 8px;"></i>  Details</a>
-                                                <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true" style="
-                                                  margin-right: 8px;"></i>  Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="fa fa-trash-o" aria-hidden="true" style="
                                                   margin-right: 8px;"></i>  Delete</a>
                                               </div>
                                             </div>
