@@ -4,6 +4,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import axios from 'axios';
 import { ɵparseCookieValue } from '@angular/common';
 import { Router } from '@angular/router';
+import { error } from 'jquery';
 
 axios.defaults.withCredentials=true;
 
@@ -62,10 +63,10 @@ getCookie(name:string): string{
       const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accept': 'application/json' });
       await axios.post(Url.COMPAGNY_URL + '/login',loginform).then((response)=>{
         localStorage.removeItem('userInfo');
-        const companyString= JSON.stringify(response.data.datas)
+        const companyString= JSON.stringify(response.data)
         localStorage.setItem('userInfo',companyString);
-        console.log(localStorage.getItem('userInfo'));
-        this.router.navigate(['homeadmin'])
+        console.log("0",localStorage.getItem('userInfo'));
+        // this.router.navigate(['homeadmin'])
       })
     }
 }

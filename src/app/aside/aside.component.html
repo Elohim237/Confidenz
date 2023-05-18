@@ -82,7 +82,14 @@
           <div data-i18n="Analytics">Documents</div>
         </a>
       </li>
-      <li class="menu-item">
+
+      <li class="menu-item " routerLinkActive="active" [ngClass]="{'active':currentUrl ==='/list-employee'}">
+        <a href="list-employee" class="menu-link gap-2" >
+          <i class="fa fa-user-o" aria-hidden="true"></i>
+          <div data-i18n="Analytics">List Users</div>
+        </a>
+      </li>
+      <li class="menu-item" routerLinkActive="active" [ngClass]="{'active':currentUrl ==='/notification'}">
         <a href="notification" class="menu-link gap-2" >
             <i class="fa fa-bell-o" aria-hidden="true"></i> 
           <div data-i18n="Analytics">Notifications</div>

@@ -5,5 +5,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent {
+    storeData:any;
+    compagnInfo:any;
+    ngOnInit(){
+      this.storeData=localStorage.getItem("userInfo")
+      this.compagnInfo=JSON.parse(this.storeData);
+      
+    }
 
 }

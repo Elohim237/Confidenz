@@ -18,7 +18,7 @@ const routes: Routes = [
   {path:'register', component: RegistrationComponent},
   {path:'homeadmin', component: HomeAdminComponent},
   {path:'documents', component: DocumentsComponent},
-  {path:'homeadmin/configdoc', component: ConfigDocComponent},
+  {path:'configdoc', component: ConfigDocComponent},
   {path:'documents/detail', component: DetailDocumentComponent},
   {path:'documents/detail/liste', component: ListeMembersComponent},
   {path:'liste', component: ListeMembersComponent},

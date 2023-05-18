@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="butter d-flex gap-3 mt-4">
                                         <!-- <button type="button" class="btn btn-primary" routerLink="configdoc" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Next Etape</button> -->
-                                        <button type="button" class="btn btn-primary" routerLink="configdoc" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Next Etape</button>
+                                        <button type="button" class="btn btn-primary" (click)="nextEtape($event)">Next Etape</button>
                                         <button type="button" class="btn btn-outline-secondary">Cancel</button>
                                     </div>
                                 </div>
@@ -102,7 +102,27 @@
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade show active" id="navs-top-home" role="tabpanel">
+                <div *ngIf="contentErrorPrint==true"  class="alert alert-danger alert-dismissible" role="alert">
+                  <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Oups :(</h6>
+                  <p class="mb-0">{{errorPrint}}</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                  </button>
+                </div>
+                <div *ngIf="createFile==true"  class="alert alert-primary alert-dismissible" role="alert">
+                  <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Parfait :)</h6>
+                  <p class="mb-0">Vos employés a été crée.</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                  </button>
+                </div>
                   <form (submit)="uploadFile($event)">
+                    <div class="mt-2 mb-3" >
+                      <div *ngIf="loader==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                  </div>
+                      <span>
+                        Les valeurs des champs de l'entête doivent être: "Noms" et "Email"
+                      </span>
+                   </div>
                     <input type="file" class="form-control" (change)="createEmployeFile($event)"  />
                     <div class="mt-3">
                       <button  class="btn btn-primary" type="submit" style="width: 100%;"> 
@@ -110,7 +130,6 @@
                             <span class="visually-hidden">Loading...</span>
                       </div><span *ngIf="loader==false">{{enregistreur}}</span></button> 
                     </div>
-                    
                   </form>
               </div>
               <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">                      

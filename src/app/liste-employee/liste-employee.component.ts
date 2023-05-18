@@ -26,38 +26,34 @@ export class ListeEmployeeComponent implements OnInit{
   
   dataa:Array<any>=[];
   ngOnInit(){
-    this.tableOptions={
-      data: this.employees
-    }
-     $(document).ready(() => {
-      $('.table').bootstrapTable({
-        data:this.employees,
-        
-      });
-    });
-    this.dataa.push(this.employees);
+
+    //this.dataa.push(this.employees);
     // this.data=this.employees;
     this.storeData=localStorage.getItem("userInfo")
     this.userInfo=JSON.parse(this.storeData);
     console.log(this.userInfo);
-    this.getlisteEmploye(this.userInfo);
     this.BearerToken= 'Bearer '+this.userInfo.token;
+
+    this.getlisteEmploye(this.userInfo);
+   
 }
 
 
 getlisteEmploye(compagnies:any){
-   
-    axios.post(Url.COMPAGNY_URL+ '/'+compagnies.compagny.id+'/employees',{
+   console.log("yo",compagnies)
+    axios.get(Url.COMPAGNY_URL+ '/'+compagnies.compagny.id+'/employees',{
             withCredentials: true,
             headers: {
               'Authorization': this.BearerToken
             }
   }).then((response)=>{
 
-    console.log(response.data.datas.employees);
+    console.log("reponse",response);
 
-    this.employees=response.data.datas.employees;
+    this.employees=response.data.employees;
 
+  }).catch((error)=>{
+    console.log(error)
   })
   
 }

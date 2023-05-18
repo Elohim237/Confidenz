@@ -23,8 +23,6 @@ import { BarProgressComponent } from './bar-progress/bar-progress.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { LoginEmployeeComponent } from './login-employee/login-employee.component';
 import { ListeEmployeeComponent } from './liste-employee/liste-employee.component';
-import { ItemTemplateComponent } from './item-template/item-template.component';
-
 
 @NgModule({
   declarations: [

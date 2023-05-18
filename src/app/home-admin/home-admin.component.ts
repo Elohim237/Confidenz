@@ -6,6 +6,7 @@ import axios from 'axios';
 axios.defaults.withCredentials=true;
 import { Url } from '../classes/base-url';
 import { compileDeclareNgModuleFromMetadata } from '@angular/compiler';
+import { ExcelConfigurationService } from '../services/excel-configuration.service';
 axios.defaults.withCredentials=true;
 @Component({
   selector: 'app-home-admin',
@@ -14,7 +15,7 @@ axios.defaults.withCredentials=true;
 })
 export class HomeAdminComponent implements OnInit {
  
-  constructor(private createEmployservice: CreateEmployeeService,private formBuilder : FormBuilder,private router : Router){
+  constructor(private createEmployservice: CreateEmployeeService,private formBuilder : FormBuilder,private router : Router,private excelService: ExcelConfigurationService ){
     this.CreateUser = this.formBuilder.group({
       name:['',Validators.required],
       email: ['',Validators.compose( [Validators.required, Validators.email])],
@@ -26,39 +27,76 @@ export class HomeAdminComponent implements OnInit {
   CreateUser:FormGroup;
   compagnInfo:any;
   selectedFile: File | undefined;
+  excelFile: File | undefined;
   nameFile:any;
   create=false;
   loader=false;
+  createFile=false;
   enregistreur="Enregistrer";
   contentError=false;
+  contentErrorPrint=false;
   isButtonDisabled: boolean = false;
   errors: Array<string>=[];
+  errorPrint:any;
   ngOnInit(){
     this.storeData=localStorage.getItem("userInfo")
     this.userInfo=JSON.parse(this.storeData);
     this.compagnInfo=JSON.parse(this.storeData);
 
-    console.log(this.userInfo);
+    console.log("userInfo",this.userInfo);
 
   }
+
   onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    this.upload=true;
-    console.log(file);
-    // Do something with the file (e.g. upload it to a server)
+    this.excelFile= event.target.files[0];
   }
+
+  nextEtape(event:any){
+    event.preventDefault();
+    if (this.excelFile){
+    // let formdata=new FormData()
+    // formdata.append("excel",this.excelFile);
+    this.excelService.setExcel(this.excelFile);
+    this.router.navigate(['/configdoc'])
+    //localStorage.setItem('Excel-Doc',formdata);
+    // Do something with the file (e.g. upload it to a server)
+    }
+  }
+
   createEmployeFile(event:any){ 
     this.selectedFile = event.target.files[0];
   }
-  uploadFile(event: any) {
+  async uploadFile(event: any) {
     event.preventDefault();
     if (this.selectedFile) {
       let formdata = new FormData()
      formdata.append("employees",this.selectedFile);
      console.log(formdata);
-      this.createEmployservice.createEmployeFile(this.compagnInfo,formdata);
-    }
+     this.loader=true;
+     let BearerToken= 'Bearer '+this.compagnInfo.token
+      
+    await axios.post(Url.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/upload/employees',formdata,{
+      withCredentials: true,
+      headers: {
+        'Authorization': BearerToken,
+        'Content-Type': 'multipart/form-data'
+      } 
+    }).then(()=>{
+      console.log("reussi")
+      this.loader=false;
+      this.createFile=true;
+    })
+    .catch((erreur)=>{
+      console.log(erreur)
+      if(erreur.response.status===401){
+        this.contentErrorPrint=true
+        this.errorPrint=erreur.response.data.error
+      }
+      this.loader=false;
+    })
   }
+    }
+
    onSubmitUser(){
     let result={ name: this.CreateUser.value.name, email: this.CreateUser.value.email}
     console.log("valide");

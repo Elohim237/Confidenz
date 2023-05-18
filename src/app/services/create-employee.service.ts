@@ -11,7 +11,7 @@ export class CreateEmployeeService {
   create=false;
   constructor() { }
   Url  = new Url();
-  createEmployeFile(compagnies:any,file:any){
+  async createEmployeFile(compagnies:any,file:any){
     console.log(compagnies);
     console.log(file);
     let BearerToken= 'Bearer '+compagnies.token
@@ -22,11 +22,7 @@ export class CreateEmployeeService {
       headers: {
         'Authorization': BearerToken,
         'Content-Type': 'multipart/form-data'
-      }
-      
-    }).catch((response)=>{
-      console.log(response);
-      
+      } 
     })
   }
 
