@@ -18,5 +18,9 @@ export class ExcelConfigurationService {
   setSuccedExcel(message:any){
     this.messageSucced=message;
   }
+   
+  getmessageSuccedExcel(){
+    return this.messageSucced
+  }
 
 }

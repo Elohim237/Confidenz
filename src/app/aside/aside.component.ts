@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
+import axios from 'axios';
+import { Url } from '../classes/base-url';
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
@@ -8,6 +10,8 @@ import {NavigationEnd, Router} from "@angular/router";
 
 export class AsideComponent implements OnInit{
   currentUrl !: string;
+  storeData:any;
+  compagnInfo:any;
   constructor(private router:Router){
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd){
@@ -18,6 +22,21 @@ export class AsideComponent implements OnInit{
     })
   }
   ngOnInit() {
-   
+    this.storeData=localStorage.getItem("userInfo")
+    this.compagnInfo=JSON.parse(this.storeData);
+  }
+  logOut(){
+    let BearerToken= 'Bearer '+this.compagnInfo.token
+    axios.post(Url.COMPAGNY_URL+'/logout',{
+      headers: {
+        'Authorization': BearerToken,
+      } 
+    }).then((response)=>{
+      console.log(response)
+      localStorage.removeItem("userInfo")
+    }).catch((error)=>{
+      console.log(error);
+    })
+
   }
 }

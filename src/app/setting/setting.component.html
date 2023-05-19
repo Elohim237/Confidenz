@@ -1,0 +1,159 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        <app-aside></app-aside>
+        <div class="layout-page">
+            <app-navbar></app-navbar>
+            <div class="content-wrapper">
+                <div class="container-xxl  container-p-y">
+                    <div class=" py-3  d-flex flex-column ">
+                        <div *ngIf="updatePassword==true"  class="alert alert-primary alert-dismissible mb-3" role="alert">
+                            <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Reussi :)</h6>
+                            <p class="mb-0">{{messagePasswordGood}}</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            </button>
+                          </div>
+                          <div *ngIf="errorPassword==true"  class="alert alert-danger alert-dismissible mb-3" role="alert">
+                            <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Mauvais :(</h6>
+                            <p class="mb-0">{{errorMessage}}</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            </button>
+                          </div>
+                        <div class="card mb-4">
+                            <h5 class="card-header">Profile Details</h5>
+                            <!-- Account -->
+                            <div class="card-body">
+                            <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                <img
+                                src="../../assets/img/avatars/avatar.png"
+                                alt="user-avatar"
+                                class="d-block rounded"
+                                height="100"
+                                width="100"
+                                id="uploadedAvatar"
+                                />
+                                <div class="button-wrapper">
+                                    <span style="font-size:20px; font-weight: 700;">{{userInfo.compagny.name}}</span>
+                                </div>
+                            </div>
+                            </div>
+                            <hr class="my-0" />
+                            <div class="card-body">
+                            <form id="formAccountSettings1" method="POST" onsubmit="return false">
+                                <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label for="firstName" class="form-label">Nom</label>
+                                    <input
+                                    class="form-control"
+                                    type="text"
+                                    id="firstName"
+                                    name="firstName"
+                                    value="Elohim"
+                                    autofocus
+                                    />
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="email" class="form-label">E-mail</label>
+                                    <input
+                                    class="form-control"
+                                    type="text"
+                                    id="email"
+                                    name="email"
+                                    value="Elohim@example.com"
+                                    placeholder="Elohim@example.com"
+                                    />
+                                </div>
+                                </div>
+                                <div class="mt-2">
+                                <button type="submit" class="btn btn-primary me-2">Modifier</button>
+                                <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                                </div>
+                            </form>
+                            </div>
+
+                           <hr>
+                            <div class="p-4">
+                                <form id="formAccountSettings1"  [formGroup]="passwordForm" (ngSubmit)="submitPassword()"  method="POST" onsubmit="return false">
+                                    <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <label for="firstName" class="form-label">Ancien Mot de Passe</label>
+                                        <input
+                                        class="form-control"
+                                        type="password"
+                                        id="oldPassword"
+                                        name="oldPassword"
+                                        autofocus
+                                        formControlName="OldPassword"
+                                        />
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label for="firstName" class="form-label">Nouveau Mot de Passe</label>
+                                        <input
+                                        class="form-control"
+                                        type="password"
+                                        id="newPassword"
+                                        name="newPassword"
+                                        autofocus
+                                        formControlName="NewPassword"
+                                        />
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label for="email" class="form-label">Comfirmer le Mot de passe</label>
+                                        <input
+                                        class="form-control"
+                                        type="password"
+                                        id="confirmPassword"
+                                        name="confirmpassword"
+                                        formControlName="RetapePassword"
+                                        />
+                                    </div>
+                                    </div>
+                                    <div class="mt-2">
+                                    <button type="submit" class="btn btn-primary me-2">
+                                        <span *ngIf="loader==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                          </span>
+                                          <span>Modifier</span></button>
+                                    <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                           
+                            <!-- /Account -->
+                        </div>
+                        <div class="card">
+                            <h5 class="card-header">Supprimer Compte</h5>
+                            <div class="card-body">
+                            <div class="mb-3 col-12 mb-0">
+                                <div class="alert alert-warning">
+                                <h6 class="alert-heading fw-bold mb-1">Etes vous sure de vouloir supprimer votre compte?</h6>
+                                <p class="mb-0">Une fois que vous avez supprimé votre compte, il n'y a pas de retour en arrière. S'il vous plaît soyez certain.</p>
+                                </div>
+                            </div>
+                            <form id="formAccountDeactivation" onsubmit="return false">
+                                <div class="form-check mb-3">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    name="accountActivation"
+                                    id="accountActivation" 
+                                    [(ngModel)]="isChecked" 
+                                    (change)="updateButtonState()"
+                                />
+                                <label class="form-check-label" for="accountActivation"
+                                    >Je confirme que je supprime mon compte</label
+                                >
+                                </div>
+                                <button type="submit" class="btn btn-danger deactivate-account" [disabled]="!buttonEnabled" (click)="deletedAccount()">
+                                    <span *ngIf="supprimeloader==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                      </span>
+                                      <span *ngIf="supprimeloader==false">Supprimer le compte </span></button>
+                            </form>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                        

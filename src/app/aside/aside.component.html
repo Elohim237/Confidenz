@@ -95,9 +95,15 @@
           <div data-i18n="Analytics">Notifications</div>
         </a>
       </li>
+      <li class="menu-item" routerLinkActive="active" [ngClass]="{'active':currentUrl ==='/settings'}">
+        <a href="notification" class="menu-link gap-2" >
+          <i class="fa fa-cogs" aria-hidden="true"></i>
+          <div data-i18n="Analytics">Settings</div>
+        </a>
+      </li>
       <li class="menu-item">
         <hr style=" padding-left: 1px ; width: 100%;">
-        <a href="index.html" class="menu-link gap-2" >
+        <a style="cursor: pointer;" class="menu-link gap-2" (click)="logOut()" >
             <i class="fa fa-power-off" aria-hidden="true"></i>
           <div data-i18n="Analytics">Logout</div>
         </a>

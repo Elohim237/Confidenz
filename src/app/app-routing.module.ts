@@ -12,6 +12,7 @@ import { ListeDocUserComponent } from './liste-doc-user/liste-doc-user.component
 import { ViewDocComponent } from './view-doc/view-doc.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ListeEmployeeComponent } from './liste-employee/liste-employee.component';
+import { SettingComponent } from './setting/setting.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path:'view-doc',component:ViewDocComponent},
   {path:'forget-password',component:ForgetPasswordComponent},
   {path:'list-employee',component:ListeEmployeeComponent},
+  {path:'settings',component:SettingComponent},
 ];
 
 @NgModule({

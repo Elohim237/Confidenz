@@ -15,6 +15,12 @@
                           </div>
                         </div>
                     </div>
+                    <div *ngIf="count==true"  class="alert alert-primary alert-dismissible mb-3" role="alert">
+                      <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Bravo :P</h6>
+                      <p class="mb-0">{{messageSucced}}</p>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      </button>
+                    </div>
                     <div class="row">
                           <div class="card p-5">
                             <h2 class="card-header text-primary">Liste des documents</h2>

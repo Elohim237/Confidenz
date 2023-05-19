@@ -4,6 +4,7 @@ import {FormGroup , FormBuilder , Validators , FormControl} from '@angular/forms
 import { ConnexionForm } from '../classes/connexion-form';
 import { AutServiceService } from '../services/aut-service.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChangePasswordCompagnyService } from '../services/change-password-compagny.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,12 +17,20 @@ export class LoginComponent {
   loader=false;
   error=false;
   errormessage!:string;
-  constructor(private formBuilder: FormBuilder,private autservice: AutServiceService, private router : Router) {
+  messageDeleteAccount!:string;
+  succedDeleted:Boolean=false;
+  constructor(private formBuilder: FormBuilder,private autservice: AutServiceService, private router : Router,private changePasswordservice:ChangePasswordCompagnyService) {
     this.loginForm = this.formBuilder.group({
       email: ['',Validators.compose( [Validators.required, Validators.email])],
       password: ['', Validators.required],
     });
     
+  }
+  ngOnInit(){
+    this.messageDeleteAccount= this.changePasswordservice.getMessage();
+    if(this.messageDeleteAccount != undefined){
+      this.succedDeleted=true;
+    }
   }
   async onSubmit() {
     if (this.loginForm.invalid) {
@@ -42,7 +51,7 @@ export class LoginComponent {
           this.log=false;
           this.loader=false;
           this.error=true;
-          this.errormessage= error.response.data.error
+          this.errormessage= error.response.data.message
         }
       });
       // this.router.navigate(['homeadmin'])

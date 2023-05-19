@@ -51,9 +51,11 @@ export class ConfigDocComponent implements OnInit {
       this.loader=false;
       this.stape="2/2"
       this.width="100%"
-      this.excelService.messageSucced(response.data.message)
-      // this.router.navigate(['/liste-employee'])
-      console.log(response)
+      this.excelService.setSuccedExcel(response.data.message)
+      setTimeout(() => {
+        this.router.navigate(['/documents'])
+      }, 1000);
+      console.log(response.data.message)
     }).catch((error:any)=>{
       console.log(error);
       this.errorMessage=error.response.data.error

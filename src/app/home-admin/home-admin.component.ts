@@ -54,12 +54,8 @@ export class HomeAdminComponent implements OnInit {
   nextEtape(event:any){
     event.preventDefault();
     if (this.excelFile){
-    // let formdata=new FormData()
-    // formdata.append("excel",this.excelFile);
     this.excelService.setExcel(this.excelFile);
     this.router.navigate(['/configdoc'])
-    //localStorage.setItem('Excel-Doc',formdata);
-    // Do something with the file (e.g. upload it to a server)
     }
   }
 
@@ -116,8 +112,6 @@ export class HomeAdminComponent implements OnInit {
          this.create=true;
          console.log(this.create)
          this.loader=false;
-         this.enregistreur="Terminé close modal"
-        //  this.isButtonDisabled = true;
       }
     }).catch((error)=>{
       if(error.response.status==401){
@@ -125,8 +119,6 @@ export class HomeAdminComponent implements OnInit {
         this.loader=false;
         this.contentError=true;
         console.log(error);
-        // this.errors.push(error.response.data)
-        
       }
       
     })

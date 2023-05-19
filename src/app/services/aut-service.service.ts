@@ -27,6 +27,7 @@ getCookie(name:string): string{
     cookie= parts.pop().split(';').shift();
   }
   return cookie;
+  
 }
  request(url:any, options:any) {
     //get cookie
@@ -50,10 +51,10 @@ getCookie(name:string): string{
     console.log(registerform);
     console.log(this.Url);
 
-      await axios.get(Url.COMPAGNY_URL + '/sanctum/csrf-cookie').then(response=>{
-        console.log("Token",response.config.headers)
-        axios.post(Url.BASE_URL + '/api/v1/register',registerform)
-    })
+        axios.post(Url.COMPAGNY_URL + '/register',registerform).then((response)=>{
+          console.log(response)
+        })
+    
   }
 
     

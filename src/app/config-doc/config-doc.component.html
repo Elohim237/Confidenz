@@ -56,10 +56,10 @@
                                   </div>
                                 </div>
                                 <div class="mb-3">
-                                  <button class="btn btn-log d-grid w-100" type="submit" >
-                                    <div *ngIf="loader==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
+                                  <button class="btn btn-log d-grid w-100 justify-content-center" type="submit" >
+                                    <span *ngIf="loader==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
                                       <span class="visually-hidden">Loading...</span>
-                                </div> <span *ngIf="loader==false">Valider</span></button>
+                                    </span> <span *ngIf="loader==false">Valider</span></button>
                                 </div>
                               </form>
                             </div>

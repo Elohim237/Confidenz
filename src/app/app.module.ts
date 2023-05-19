@@ -16,13 +16,14 @@ import { DetailDocumentComponent } from './detail-document/detail-document.compo
 import { ListeMembersComponent } from './liste-members/liste-members.component';
 import { ModalsComponent } from './modals/modals.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ListeDocUserComponent } from './liste-doc-user/liste-doc-user.component';
 import { ViewDocComponent } from './view-doc/view-doc.component';
 import { BarProgressComponent } from './bar-progress/bar-progress.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { LoginEmployeeComponent } from './login-employee/login-employee.component';
 import { ListeEmployeeComponent } from './liste-employee/liste-employee.component';
+import { SettingComponent } from './setting/setting.component';
 
 @NgModule({
   declarations: [
@@ -45,12 +46,14 @@ import { ListeEmployeeComponent } from './liste-employee/liste-employee.componen
     ForgetPasswordComponent,
     LoginEmployeeComponent,
     ListeEmployeeComponent,
+    SettingComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]
