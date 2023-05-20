@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 axios.defaults.withCredentials=true;
-import { Url } from '../classes/base-url';
+import { URL } from '../classes/base-url';
 import { compileDeclareNgModuleFromMetadata } from '@angular/compiler';
 axios.defaults.withCredentials=true;
 @Injectable({
@@ -10,14 +10,13 @@ axios.defaults.withCredentials=true;
 export class CreateEmployeeService {
   create=false;
   constructor() { }
-  Url  = new Url();
   async createEmployeFile(compagnies:any,file:any){
     console.log(compagnies);
     console.log(file);
     let BearerToken= 'Bearer '+compagnies.token
     console.log(BearerToken);
     
-    axios.post(Url.COMPAGNY_URL + '/'+compagnies.compagny.id+'/upload/employees',file,{
+    axios.post(URL.COMPAGNY_URL + '/'+compagnies.compagny.id+'/upload/employees',file,{
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,
@@ -28,7 +27,7 @@ export class CreateEmployeeService {
 
   CreateEmployeByForm(compagnies:any,formData:any){
     let BearerToken= 'Bearer '+compagnies.token;
-    axios.post(Url.COMPAGNY_URL + '/'+compagnies.compagny.id+'/employee/register',formData,{
+    axios.post(URL.COMPAGNY_URL + '/'+compagnies.compagny.id+'/employee/register',formData,{
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,

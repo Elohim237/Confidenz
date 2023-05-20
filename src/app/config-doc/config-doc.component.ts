@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExcelConfigurationService } from '../services/excel-configuration.service';
 import {FormGroup , FormBuilder , Validators , FormControl} from '@angular/forms';
 import axios from 'axios';
-import { Url } from '../classes/base-url';
+import { URL } from '../classes/base-url';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-config-doc',
@@ -41,7 +41,7 @@ export class ConfigDocComponent implements OnInit {
     formdata.append('rights',this.excelForm.value.Droit)
     this.loader=true;
 
-    axios.post(Url.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/upload/excel',formdata, {
+    axios.post(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/upload/excel',formdata, {
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,

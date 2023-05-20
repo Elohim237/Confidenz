@@ -3,7 +3,7 @@ import { ListeEmployeeService } from '../services/liste-employee.service';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import axios from 'axios';
-import { Url } from '../classes/base-url';
+import { URL } from '../classes/base-url';
 import * as $ from 'jquery';
 import 'bootstrap-table';
 @Component({
@@ -15,7 +15,6 @@ export class ListeEmployeeComponent implements OnInit{
   storeData:any;
   userInfo:any;
   compagnInfo:any;
-  Url  = new Url();
   employees:Array<any>=[];
   subscription!: Subscription; 
   tableOptions:any;
@@ -41,7 +40,7 @@ export class ListeEmployeeComponent implements OnInit{
 
 getlisteEmploye(compagnies:any){
    console.log("yo",compagnies)
-    axios.get(Url.COMPAGNY_URL+ '/'+compagnies.compagny.id+'/employees',{
+    axios.get(URL.COMPAGNY_URL+ '/'+compagnies.compagny.id+'/employees',{
             withCredentials: true,
             headers: {
               'Authorization': this.BearerToken
@@ -59,7 +58,7 @@ getlisteEmploye(compagnies:any){
 }
   deletedEmployee(compagnies:any,idEmployee:any){
     this.actionDelete=true;
-      axios.delete(Url.COMPAGNY_URL+'/'+compagnies.compagny.id+'/employees/'+idEmployee,{
+      axios.delete(URL.COMPAGNY_URL+'/'+compagnies.compagny.id+'/employees/'+idEmployee,{
         withCredentials: true,
         headers: {
           'Authorization': this.BearerToken
