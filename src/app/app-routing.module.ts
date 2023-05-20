@@ -20,7 +20,7 @@ const routes: Routes = [
   {path:'homeadmin', component: HomeAdminComponent},
   {path:'documents', component: DocumentsComponent},
   {path:'configdoc', component: ConfigDocComponent},
-  {path:'documents/detail', component: DetailDocumentComponent},
+  {path:'documents/detail/:id', component: DetailDocumentComponent},
   {path:'documents/detail/liste', component: ListeMembersComponent},
   {path:'liste', component: ListeMembersComponent},
   {path:'notification', component: NotificationComponent},

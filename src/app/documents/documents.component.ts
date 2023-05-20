@@ -39,7 +39,6 @@ export class DocumentsComponent {
           'Authorization': BearerToken,
         }
       }).then((response)=>{
-        if(response.data.files)
         this.docs=response.data.files;
         this.filteredData=response.data.files;
         console.log(this.docs)
@@ -69,5 +68,8 @@ export class DocumentsComponent {
         this.actionDelete=false;
         console.log(error)
       })
+    }
+    toPage(idDoc:any){
+
     }
 }
