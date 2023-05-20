@@ -69,7 +69,7 @@ export class HomeAdminComponent implements OnInit {
      formdata.append("employees",this.selectedFile);
      console.log(formdata);
      this.loader=true;
-     let BearerToken= 'Bearer '+this.compagnInfo.token
+     let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
       
     await axios.post(Url.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/upload/employees',formdata,{
       withCredentials: true,
@@ -97,7 +97,7 @@ export class HomeAdminComponent implements OnInit {
     let result={ name: this.CreateUser.value.name, email: this.CreateUser.value.email}
     console.log("valide");
     console.log(result);
-    let BearerToken= 'Bearer '+this.compagnInfo.token
+    let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
     this.loader=true;
     axios.post(Url.COMPAGNY_URL +'/'+this.compagnInfo.compagny.id+'/employees/register',result,{
       withCredentials: true,

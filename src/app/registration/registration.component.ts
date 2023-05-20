@@ -32,7 +32,7 @@ export class RegistrationComponent {
     let result={name:this.registrationForm.value.name, email: this.registrationForm.value.email, password: this.registrationForm.value.password, password_confirmation:this.registrationForm.value. passwordConfirmation}
      console.log(result);
     this.authservice.register(result).then(()=>{
-      this.router.navigate(['login'])
+      this.router.navigate(['/'])
     });
   }
 }
