@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormGroup , FormBuilder , Validators , FormControl} from '@angular/forms';
 import { AutServiceService } from '../services/aut-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -8,7 +9,7 @@ import { AutServiceService } from '../services/aut-service.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
-  constructor(private authservice : AutServiceService,private formBuilder: FormBuilder){}
+  constructor(private authservice : AutServiceService,private formBuilder: FormBuilder,private router:Router){}
   registrationForm!: FormGroup;
   showPassword: boolean = false;
   ngOnInit(): void {
@@ -29,8 +30,9 @@ export class RegistrationComponent {
   
   register(){
     let result={name:this.registrationForm.value.name, email: this.registrationForm.value.email, password: this.registrationForm.value.password, password_confirmation:this.registrationForm.value. passwordConfirmation}
-    // let result={name:this.registerform.value.name,email: this.registerform.value.email, password: this.registerform.value.password, password_confirmation:this.registerform.value.confirmpassword} 
      console.log(result);
-    this.authservice.register(result);
+    this.authservice.register(result).then(()=>{
+      this.router.navigate(['login'])
+    });
   }
 }

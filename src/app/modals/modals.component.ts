@@ -26,7 +26,6 @@ export class ModalsComponent {
   ngOnInit(){
     this.storeData=localStorage.getItem("userInfo")
     this.compagnInfo=JSON.parse(this.storeData);
-
     console.log(this.compagnInfo);
   }
   createEmployeFile(event:any){ 

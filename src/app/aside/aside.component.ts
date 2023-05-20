@@ -26,14 +26,17 @@ export class AsideComponent implements OnInit{
     this.compagnInfo=JSON.parse(this.storeData);
   }
   logOut(){
-    let BearerToken= 'Bearer '+this.compagnInfo.token
+    console.log("aside",this.compagnInfo)
+    let BearerToken= this.compagnInfo.authorization.type+' '+this.compagnInfo.authorization.token
+    console.log('le bearer',BearerToken)
     axios.post(Url.COMPAGNY_URL+'/logout',{
       headers: {
         'Authorization': BearerToken,
+        'content-type': 'application/json'
       } 
     }).then((response)=>{
       console.log(response)
-      localStorage.removeItem("userInfo")
+      // localStorage.removeItem("userInfo")
     }).catch((error)=>{
       console.log(error);
     })
