@@ -32,7 +32,6 @@ export class AsideComponent implements OnInit{
     axios.post(Url.COMPAGNY_URL+'/logout',{
       headers: {
         'Authorization': BearerToken,
-        'content-type': 'application/json'
       } 
     }).then((response)=>{
       console.log(response)
