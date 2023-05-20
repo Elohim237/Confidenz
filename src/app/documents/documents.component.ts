@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import axios from 'axios';
-import { Url } from '../classes/base-url';
+import { URL } from '../classes/base-url';
 import { ExcelConfigurationService } from '../services/excel-configuration.service';
 @Component({
   selector: 'app-documents',
@@ -34,7 +34,7 @@ export class DocumentsComponent {
 
     listDocCompagnies(){
       let BearerToken= 'Bearer'+ this.compagnInfo.authorization.token 
-      axios.get(Url.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files',{
+      axios.get(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files',{
         headers:{
           'Authorization': BearerToken,
         }

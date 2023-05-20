@@ -4,7 +4,7 @@ import {FormGroup , FormBuilder , Validators , FormControl} from '@angular/forms
 import { Router } from '@angular/router';
 import axios from 'axios';
 axios.defaults.withCredentials=true;
-import { Url } from '../classes/base-url';
+import { URL } from '../classes/base-url';
 import { compileDeclareNgModuleFromMetadata } from '@angular/compiler';
 import { ExcelConfigurationService } from '../services/excel-configuration.service';
 axios.defaults.withCredentials=true;
@@ -69,7 +69,7 @@ export class HomeAdminComponent implements OnInit {
      this.loader=true;
      let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
       
-    await axios.post(Url.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/upload/employees',formdata,{
+    await axios.post(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/upload/employees',formdata,{
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,
@@ -97,7 +97,7 @@ export class HomeAdminComponent implements OnInit {
     console.log(result);
     let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
     this.loader=true;
-    axios.post(Url.COMPAGNY_URL +'/'+this.compagnInfo.compagny.id+'/employees/register',result,{
+    axios.post(URL.COMPAGNY_URL +'/'+this.compagnInfo.compagny.id+'/employees/register',result,{
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,

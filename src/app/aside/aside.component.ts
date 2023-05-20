@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import axios from 'axios';
-import { Url } from '../classes/base-url';
+import { URL } from '../classes/base-url';
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
@@ -29,7 +29,7 @@ export class AsideComponent implements OnInit{
     console.log("aside",this.compagnInfo)
     let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
     console.log('le bearer',BearerToken)
-    axios.post(Url.COMPAGNY_URL+'/logout',{
+    axios.post(URL.COMPAGNY_URL+'/logout',{
       headers: {
         'Authorization': BearerToken,
       } 

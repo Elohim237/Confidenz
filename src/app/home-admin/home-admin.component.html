@@ -9,34 +9,34 @@
                         <div>
                             <h4 class="fw-bold "><span class="text-primary">Hi</span>, {{compagnInfo.compagny.name}}</h4>
                         </div>
-                     
-                        <span class="text-muted fw-light">Qu’allez vous faire aujourd’hui?</span>
+                        <span class="text-muted fw-light">De nouvelles informations à partager aujourd'hui ?</span>
                     </div>
 
                     <div *ngIf="upload==true "  class="alert alert-primary alert-dismissible" role="alert">
                         <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Parfait :)</h6>
-                        <p class="mb-0">Votre Document a bien été uploadé.</p>
+                        <p class="mb-0">Votre Document a bien été importé et les employés concernés notifiés.</p>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                         </button>
-                      </div>
+                    </div>
+                    
                     <div class="row ">
                       <div class="d-flex justify-content-end mb-3">
                           <button class="btn btn-primary"  data-bs-toggle="modal"
-                          data-bs-target="#modalCreateUser">Create Employee</button>
+                          data-bs-target="#modalCreateUser">Créer un employé</button>
                       </div>
                           <div class="card p-5">
                             <div class="card-body">
                               <div class="upload row" >
                                 <div class="col-6 d-flex flex-column justify-content-center ">
-                                    <h1 class="text-primary">UPLOADING</h1>
-                                   <p class=" texter mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere enim explicabo repellat illo mollitia provident architecto minus delectus voluptas numquam.</p>
+                                    <h1 class="text-primary">PARTAGER UN FICHIER</h1>
+                                   <p class=" texter mb-4">Ici vous pouvez importer le fichier Excel à partager avec les employés présents dans la colonne Noms de votre fichier. Il est à noter que toutes les entêtes doivent avoir le même nombre de sous-entête pour que l'organisation de votre fichier se fasse avec cohérence.</p>
                                     <div class="input-group">
                                         <input type="file" class="form-control"  (change)="onFileSelected($event)"  />
                                     </div>
                                     <div class="butter d-flex gap-3 mt-4">
-                                        <!-- <button type="button" class="btn btn-primary" routerLink="configdoc" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Next Etape</button> -->
-                                        <button type="button" class="btn btn-primary" (click)="nextEtape($event)">Next Etape</button>
-                                        <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                                        <!-- <button type="button" class="btn btn-primary" routerLink="configdoc" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Continuer</button> -->
+                                        <button type="button" class="btn btn-primary" (click)="nextEtape($event)">Continuer</button>
+                                        <button type="button" class="btn btn-outline-secondary">Annuler</button>
                                     </div>
                                 </div>
                                <div class="imager col-6 d-flex justify-content-center">
@@ -45,7 +45,7 @@
                               </div>
                             </div>
                           </div>
-                        </div>
+                    </div>
                  </div>
             </div>  
          </div>   
@@ -82,7 +82,7 @@
                   aria-controls="navs-top-home"
                   aria-selected="true"
                 >
-                  Upload File
+                  Importer un fichier Excel
                 </button>
               </li>
               <li class="nav-item">
@@ -95,7 +95,7 @@
                   aria-controls="navs-top-profile"
                   aria-selected="false"
                 >
-                Remplir formulaire
+                Remplir le formulaire
                 </button>
               </li>
             
@@ -110,7 +110,7 @@
                 </div>
                 <div *ngIf="createFile==true"  class="alert alert-primary alert-dismissible" role="alert">
                   <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Parfait :)</h6>
-                  <p class="mb-0">Vos employés a été crée.</p>
+                  <p class="mb-0">Vos employés ont été crée.</p>
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                   </button>
                 </div>

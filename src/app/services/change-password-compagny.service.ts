@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { Url } from '../classes/base-url';
+import { URL } from '../classes/base-url';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +11,7 @@ export class ChangePasswordCompagnyService {
  changePassword(compagny:any,formdata:any){
   console.log(compagny)
     let BearerToken= 'Bearer '+compagny.authorization.token;
-      axios.post(Url.COMPAGNY_URL+'/'+compagny.compagny.id+'/update-password', formdata,{
+      axios.post(URL.COMPAGNY_URL+'/'+compagny.compagny.id+'/update-password', formdata,{
         withCredentials: true,
         headers: {
           'Authorization': BearerToken,

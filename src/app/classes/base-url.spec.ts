@@ -1,7 +1,7 @@
-import { Url } from './base-url';
+import { URL } from './base-url';
 
-describe('Url', () => {
+describe('URL', () => {
   it('should create an instance', () => {
-    expect(new Url()).toBeTruthy();
+    expect(new URL()).toBeTruthy();
   });
 });
