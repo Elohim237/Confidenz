@@ -33,7 +33,7 @@ export class ConfigDocComponent implements OnInit {
     
   }
   submitExcel(){
-    let BearerToken= 'Bearer '+this.compagnInfo.token
+    let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
     let formdata=new FormData()
     formdata.append('excel',this.excelDoc.getExcel())
     formdata.append('name',this.excelForm.value.NomFichier)

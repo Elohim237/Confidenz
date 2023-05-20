@@ -28,17 +28,13 @@ export class DocumentsComponent {
     }
 
     listDocCompagnies(){
-      let BearerToken= 'Bearer '+this.compagnInfo.token
-      axios.get(Url.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files',{
-        withCredentials: true,
-        headers: {
-          'Authorization': BearerToken,
-          'Content-Type': 'application/json'
-        }
-      }).then((response)=>{
-        this.docs=response.data.files;
-        console.log(this.docs)
+      let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
+      axios.get(Url.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files').then((response)=>{
+        // this.docs=response.data.files;
+        // console.log(this.docs)
         console.log(response)
+      }).catch((error)=>{
+        console.log(error)
       })
     }
 }

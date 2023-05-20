@@ -32,7 +32,7 @@ export class ListeEmployeeComponent implements OnInit{
     this.storeData=localStorage.getItem("userInfo")
     this.userInfo=JSON.parse(this.storeData);
     console.log(this.userInfo);
-    this.BearerToken= 'Bearer '+this.userInfo.token;
+    this.BearerToken= 'Bearer '+this.userInfo.authorization.token;
 
     this.getlisteEmploye(this.userInfo);
    
