@@ -18,7 +18,10 @@ export class LoginComponent {
   error=false;
   errormessage!:string;
   messageDeleteAccount!:string;
+  messageSuccedCreation!:string;
   succedDeleted:Boolean=false;
+  succedCreationAccount:Boolean=false;
+
   constructor(private formBuilder: FormBuilder,private autservice: AutServiceService, private router : Router,private changePasswordservice:ChangePasswordCompagnyService) {
     this.loginForm = this.formBuilder.group({
       email: ['',Validators.compose( [Validators.required, Validators.email])],
@@ -28,8 +31,12 @@ export class LoginComponent {
   }
   ngOnInit(){
     this.messageDeleteAccount= this.changePasswordservice.getMessage();
+    this.messageSuccedCreation=this.autservice.getMessageCreation();
     if(this.messageDeleteAccount != undefined){
       this.succedDeleted=true;
+    }
+    if(this.messageSuccedCreation != undefined){
+        this.succedCreationAccount=true;
     }
   }
   async onSubmit() {

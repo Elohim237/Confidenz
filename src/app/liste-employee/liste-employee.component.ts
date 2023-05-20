@@ -6,11 +6,14 @@ import axios from 'axios';
 import { Url } from '../classes/base-url';
 import * as $ from 'jquery';
 import 'bootstrap-table';
+import { NgxPaginationModule } from 'ngx-pagination';
 @Component({
   selector: 'app-liste-employee',
   templateUrl: './liste-employee.component.html',
   styleUrls: ['./liste-employee.component.css']
 })
+
+
 export class ListeEmployeeComponent implements OnInit{
   storeData:any;
   userInfo:any;
@@ -22,20 +25,24 @@ export class ListeEmployeeComponent implements OnInit{
   deleted=false;
   BearerToken!:string;
   actionDelete=false;
+  searchText!: string;
+  filteredData: any[] = [];
+  currentPage = 1;
+  
   constructor(private listeEmployeService: ListeEmployeeService){}
   
-  dataa:Array<any>=[];
+  //dataa:Array<any>=[];
   ngOnInit(){
 
     //this.dataa.push(this.employees);
     // this.data=this.employees;
     this.storeData=localStorage.getItem("userInfo")
-    this.userInfo=JSON.parse(this.storeData);
+    this.compagnInfo=JSON.parse(this.storeData);
     console.log(this.userInfo);
     this.BearerToken= 'Bearer '+this.userInfo.authorization.token;
 
     this.getlisteEmploye(this.userInfo);
-   
+    
 }
 
 
@@ -51,6 +58,7 @@ getlisteEmploye(compagnies:any){
     console.log("reponse",response);
 
     this.employees=response.data.employees;
+    this.filteredData=response.data.employees;
 
   }).catch((error)=>{
     console.log(error)
@@ -70,5 +78,10 @@ getlisteEmploye(compagnies:any){
         this.deleted=true
       })
   }
-
+  updateFilteredData() {
+    // Appliquer le filtre sur les données en utilisant comme critere le name de l'employé
+    this.filteredData = this.employees.filter(item => item.name.toLowerCase().includes(this.searchText.toLowerCase()));
+   
+  }
+ 
 }

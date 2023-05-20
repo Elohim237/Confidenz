@@ -12,6 +12,7 @@ export class RegistrationComponent {
   constructor(private authservice : AutServiceService,private formBuilder: FormBuilder,private router:Router){}
   registrationForm!: FormGroup;
   showPassword: boolean = false;
+  succeedCreation!:string;
   ngOnInit(): void {
     this.registrationForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -31,8 +32,13 @@ export class RegistrationComponent {
   register(){
     let result={name:this.registrationForm.value.name, email: this.registrationForm.value.email, password: this.registrationForm.value.password, password_confirmation:this.registrationForm.value. passwordConfirmation}
      console.log(result);
-    this.authservice.register(result).then(()=>{
-      this.router.navigate(['/'])
-    });
+    this.authservice.register(result).then((response:any)=>{
+    console.log("response",response.data.message);
+    this.succeedCreation=response.data.message;
+    this.authservice.setMessageCreation(this.succeedCreation)
+    this.router.navigate(['/'])
+    }).catch((error)=>{
+      console.log(error)
+    })
   }
 }

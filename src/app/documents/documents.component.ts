@@ -14,6 +14,11 @@ export class DocumentsComponent {
     docs:any;
     messageSucced!:string;
     count=false;
+    currentPage = 1;
+    filteredData: any[] = [];
+    searchText!: string;
+    actionDelete=false;
+
     constructor(private excelService:ExcelConfigurationService){}
     ngOnInit(){
       this.storeData=localStorage.getItem("userInfo")
@@ -28,8 +33,6 @@ export class DocumentsComponent {
     }
 
     listDocCompagnies(){
-      
-      // let BearerToken= 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3YxL2NvbXBhZ25pZXMvcmVmcmVzaCIsImlhdCI6MTY4NDU2OTg4MCwiZXhwIjoxNjg0NTc1NzIzLCJuYmYiOjE2ODQ1NzIxMjMsImp0aSI6IlVqclhueTR2d1J2aEZPTWciLCJzdWIiOiIxIiwicHJ2IjoiY2RiODE3NWM0N2ZkMzM3NjQzYzI2ZWFkOTc2MDkwN2ZkM2Q5ZmVkMSJ9.PG5734PdG30j81yIC5gyXhbhri6d2RqImLQtkS8MQqg'
       let BearerToken= 'Bearer'+ this.compagnInfo.authorization.token 
       axios.get(Url.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files',{
         headers:{
@@ -38,9 +41,31 @@ export class DocumentsComponent {
       }).then((response)=>{
         if(response.data.files)
         this.docs=response.data.files;
+        this.filteredData=response.data.files;
         console.log(this.docs)
         console.log(response)
       }).catch((error)=>{
+        console.log(error)
+      })
+    }
+    updateFilteredData() {
+      // Appliquer le filtre sur les données en utilisant comme critere le nom du Docs
+      this.filteredData = this.docs.filter((item:any) => item.name.toLowerCase().includes(this.searchText.toLowerCase()));
+    }
+
+    deletedDoc(idDoc:any){
+      let BearerToken= 'Bearer'+ this.compagnInfo.authorization.token;
+      this.actionDelete=true;
+      axios.delete(Url.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files/'+idDoc+'/delete',{
+        headers: {
+          'Authorization': BearerToken
+        }
+      }).then((response)=>{
+        this.actionDelete=false;
+        console.log(response)
+        window.location.reload()
+      }).catch((error)=>{
+        this.actionDelete=false;
         console.log(error)
       })
     }
