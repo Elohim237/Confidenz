@@ -59,10 +59,7 @@ export class SettingComponent {
       }).catch((error)=>{
         this.loader=false;
         this.errorPassword=true;
-        if(error.response.status=401){
-          this.errorMessage=error.response.data.error.password+' et '+error.response.data.error.password_confirmation
-          console.log('Password error: ' + this.errorMessage)
-        }
+        this.errorMessage=error.response.data.message ?? error.response.data.error.password+'&'+error.response.data.error.password_confirmation
         console.log(error);
         
       })
@@ -75,7 +72,8 @@ export class SettingComponent {
         this.changePasswordService.setMessage( this.deleteAccountMessage)
         this.router.navigate(['/'])
       }).catch((error) => {
-        console.log('Delete error:' + error)
+        this.supprimeloader=false
+        console.log('Delete error:',error)
       })
     }    
   }

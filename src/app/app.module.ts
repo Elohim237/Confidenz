@@ -39,7 +39,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ConfigDocComponent,
     NotificationComponent,
     DetailDocumentComponent,
-    ListeMembersComponent,
     ModalsComponent,
     ListeDocUserComponent,
     ViewDocComponent,
@@ -48,6 +47,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LoginEmployeeComponent,
     ListeEmployeeComponent,
     SettingComponent,
+    ListeMembersComponent,
   ],
   imports: [
     BrowserModule,

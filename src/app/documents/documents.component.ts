@@ -56,7 +56,8 @@ export class DocumentsComponent {
     deletedDoc(idDoc:any){
       let BearerToken= 'Bearer'+ this.compagnInfo.authorization.token;
       this.actionDelete=true;
-      axios.delete(Url.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files/'+idDoc+'/delete',{
+      console.log('le idDoc',idDoc)
+      axios.delete(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files/'+idDoc+'/delete',{
         headers: {
           'Authorization': BearerToken
         }

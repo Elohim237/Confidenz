@@ -5,6 +5,8 @@ import { ConnexionForm } from '../classes/connexion-form';
 import { AutServiceService } from '../services/aut-service.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordCompagnyService } from '../services/change-password-compagny.service';
+import axios from 'axios';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
