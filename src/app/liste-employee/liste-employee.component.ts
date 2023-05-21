@@ -16,7 +16,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 export class ListeEmployeeComponent implements OnInit{
   storeData:any;
-  userInfo:any;
   compagnInfo:any;
   employees:Array<any>=[];
   subscription!: Subscription; 
@@ -37,10 +36,10 @@ export class ListeEmployeeComponent implements OnInit{
     // this.data=this.employees;
     this.storeData=localStorage.getItem("userInfo")
     this.compagnInfo=JSON.parse(this.storeData);
-    console.log(this.userInfo);
-    this.BearerToken= 'Bearer '+this.userInfo.authorization.token;
+    console.log(this.compagnInfo);
+    this.BearerToken= 'Bearer '+this.compagnInfo.authorization.token;
 
-    this.getlisteEmploye(this.userInfo);
+    this.getlisteEmploye(this.compagnInfo);
     
 }
 
@@ -55,18 +54,19 @@ getlisteEmploye(compagnies:any){
   }).then((response)=>{
 
     console.log("reponse",response);
-
     this.employees=response.data.employees;
     this.filteredData=response.data.employees;
+    localStorage.removeItem('employees');
+    localStorage.setItem('employees',JSON.stringify(this.employees));
 
   }).catch((error)=>{
     console.log(error)
   })
   
 }
-  deletedEmployee(compagnies:any,idEmployee:any){
+  deletedEmployee(idEmployee:any){
     this.actionDelete=true;
-      axios.delete(URL.COMPAGNY_URL+'/'+compagnies.compagny.id+'/employees/'+idEmployee,{
+      axios.delete(URL.COMPAGNY_URL+'/'+this.compagnInfo.compagny.id+'/employees/'+idEmployee,{
         withCredentials: true,
         headers: {
           'Authorization': this.BearerToken

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import axios from 'axios';
 import { URL } from '../classes/base-url';
 import { ExcelConfigurationService } from '../services/excel-configuration.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
@@ -19,7 +20,7 @@ export class DocumentsComponent {
     searchText!: string;
     actionDelete=false;
 
-    constructor(private excelService:ExcelConfigurationService){}
+    constructor(private excelService:ExcelConfigurationService,private router:Router){}
     ngOnInit(){
       this.storeData=localStorage.getItem("userInfo")
       this.compagnInfo=JSON.parse(this.storeData);
@@ -69,7 +70,9 @@ export class DocumentsComponent {
         console.log(error)
       })
     }
-    toPage(idDoc:any){
-
+    toPage(doc:any){
+      localStorage.removeItem('Doc');
+      localStorage.setItem('Doc',JSON.stringify(doc));
+      this.router.navigate(['/documents/detail',doc.id])
     }
 }

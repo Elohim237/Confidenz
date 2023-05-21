@@ -59,7 +59,7 @@
                                             <div class="dropdown">
                                               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
                                               <div class="dropdown-menu">
-                                                <a class="dropdown-item"  [routerLink]="['detail',doc.id]"><i class="fa fa-eye" aria-hidden="true" style="
+                                                <a class="dropdown-item" (click)="toPage(doc)" style="cursor:pointer"><i class="fa fa-eye" aria-hidden="true" style="
                                                   margin-right: 8px;" ></i>  Details</a>
                                                 <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true" style="
                                                   margin-right: 8px;"></i>  Edit</a>

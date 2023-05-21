@@ -22,7 +22,7 @@
                     </div>
                     <div class="row">
                           <div class="card p-5">
-                            <h2 class="card-header text-primary">Liste des Empoyé de  {{userInfo.compagny.name}}</h2>
+                            <h2 class="card-header text-primary">Liste des Empoyé de  {{compagnInfo.compagny.name}}</h2>
                             <div class="card-body">
                                 voici la liste de vos employés 
                                 <div class="table-responsive text-nowrap mt-4">
@@ -97,7 +97,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button"  class="btn btn-danger"   (click)="deletedEmployee(userInfo,employee.id)">
+        <button type="button"  class="btn btn-danger"   (click)="deletedEmployee(employee.id)">
           <div *ngIf="actionDelete==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
             <span class="visually-hidden">Loading...</span>
       </div> Delete</button>

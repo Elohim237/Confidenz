@@ -16,9 +16,9 @@
                               </div>
                         </div>
                     </div>
-                    <div class="row">
-                     <div class="col col-lg-4" style="width: 300px;">
-                        <div class="card mb-4 floater" style="width: 250px;" routerLink="liste">
+                    <div class="row" style="width: 100%">
+                     <div class="col col-lg-4" style="width: 300px;"  *ngFor="let doc of documents">
+                        <div class="card mb-4 floater" style="width: 250px;" routerLink="liste" (click)="viewElement(doc.children)">
                             <div class="card-body">
                                 <div class="image">
                                     <img src="../../assets/img/Document.png">
@@ -26,10 +26,10 @@
                               <p class="card-text text-primary mt-4" style="font-weight: 600;
                               font-size: 20px;
                               line-height: 21px;">
-                                Février
+                                {{doc.value}}
                               </p>
                               <div class="content-information d-flex justify-content-between">
-                                <span>Finance abdoul</span>
+                                <span>{{exceldoc.name}}</span>
                                 <div>
                                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </div>
@@ -37,26 +37,6 @@
                             </div>
                           </div>
                      </div>  
-                     <div class="col col-lg-4" style="width: 300px;">
-                        <div class="card mb-4" style="width: 250px;">
-                            <div class="card-body">
-                                <div class="image">
-                                    <img src="../../assets/img/Document.png">
-                                </div>
-                              <p class="card-text text-primary mt-4" style="font-weight: 600;
-                              font-size: 20px;
-                              line-height: 21px;">
-                                Février
-                              </p>
-                              <div class="content-information d-flex justify-content-between">
-                                <span>Finance abdoul</span>
-                                <div>
-                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                     </div> 
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
                     </div>
                     <div class="row">
                           <div class="card p-5">
-                            <h2 class="card-header text-primary">Liste des Primes</h2>
+                            <h2 class="card-header text-primary">Contenu Doc</h2>
                             <div class="card-body">
                                 voici la liste des documents uploadé sur la plateforme
                                 <div class="table-responsive text-nowrap mt-4">
@@ -22,46 +22,14 @@
                                     data-search="true"
                                    >
                                       <thead style="background-color: #F3F2F7;">
-                                        <tr>
-                                          <th>Name/Email</th>
-                                          <th>Prime</th>
-                                          <th>Dette</th>
+                                        <tr class="p-5">
+                                          <th *ngFor="let item of elements ">{{item.value}}</th>
                                         </tr>
                                       </thead>
                                       <tbody class="table-border-bottom-0">
-                                        <tr>
-                                          <td>
-                                            <div class="d-flex align-items-center">
-                                              <strong>Elohim</strong>
-                                            </div>
-                                          </td>                    
-                                          <td><span>12000 Fcfa</span></td>
-                                          <td>
-                                            <span>15000 Fcfa</span>
-                                          </td>
+                                        <tr *ngFor="let item of elements;let i=index ">
+                                          <td><span>{{item.value}}</span></td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                              <div class="d-flex align-items-center">
-                                                <strong>Elohim</strong>
-                                              </div>
-                                            </td>                    
-                                            <td><span>12000 Fcfa</span></td>
-                                            <td>
-                                              <span>15000 Fcfa</span>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td>
-                                              <div class="d-flex align-items-center">
-                                                <strong>Elohim</strong>
-                                              </div>
-                                            </td>                    
-                                            <td><span>12000 Fcfa</span></td>
-                                            <td>
-                                              <span>15000 Fcfa</span>
-                                            </td>
-                                          </tr>
                                       </tbody>
                                     </table>
                                   </div>
