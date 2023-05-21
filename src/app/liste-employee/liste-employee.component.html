@@ -16,22 +16,37 @@
                     </div>
                     <div *ngIf=" deleted==true"  class="alert alert-primary alert-dismissible" role="alert">
                       <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Operation Succed</h6>
-                      <p class="mb-0">Votre a été supprimé.</p>
+                      <p class="mb-0">Votre a employee été supprimé.</p>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      </button>
+                    </div>
+                    <div *ngIf=" errormessage==true"  class="alert alert-danger alert-dismissible" role="alert">
+                      <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Bad ;(</h6>
+                      <p class="mb-0">{{errormessage}}</p>
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                       </button>
                     </div>
                     <div class="row">
                           <div class="card p-5">
-                            <h2 class="card-header text-primary">Liste des Empoyé de  {{userInfo.compagny.name}}</h2>
-                            <div class="card-body">
+                            <h2 class="card-header text-primary">Liste des Empoyé de  {{compagnInfo.compagny.name}}</h2>
+                            <div *ngIf="loaderpage==true" class="text-center mb-5">
+                              <div  class="spinner-grow text-primary" role="status" style="width:100px; height:100px">
+                                <span class="visually-hidden">Loading...</span>
+                              </div>
+                            </div>
+                            <div class="card-body" *ngIf="loaderpage==false">
                                 voici la liste de vos employés 
                                 <div class="table-responsive text-nowrap mt-4">
+                                  <div class="input-group mb-4" style="width: 30%; display:flex; float: right;">
+                                    <span class="input-group-text" id="basic-addon-search31"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    <input type="text" [(ngModel)]="searchText" (ngModelChange)="updateFilteredData()" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" />
+                                  </div>
+
                                     <table bootstrap-table class="table"
-                                    data-data="dataa" 
-                                    data-toggle="table"
-                                    data-pagination="true"
-                                    data-search="true"
+                                    data-data="filteredData"
+                                    
                                    >
+
                                       <thead style="background-color: #F3F2F7;">
                                         <tr>
                                           <th>Numero</th>
@@ -41,9 +56,9 @@
                                         </tr>
                                       </thead>
                                       <tbody class="table-border-bottom-0" > 
-                                        <tr   *ngFor="let employee of employees; let i=index">
-                                          <td class="d-flex align-items-center">
-                                            <strong>{{i+1}}</strong>
+                                        <tr   *ngFor="let employee of filteredData| paginate: { itemsPerPage: 10, currentPage: currentPage },let i=index">
+                                          <td >
+                                            <span>{{i+1}}</span>
                                           </td>                    
                                           <td><span>{{employee.name}}</span></td>
                                           <td>
@@ -55,6 +70,15 @@
                                         </tr>                                       
                                       </tbody> 
                                     </table>
+                                    <div style="display: flex; float: right;">
+                                      <div class="pagination">
+                                        <pagination-controls 
+                                        previousLabel="Previous"
+                                        nextLabel="Next"
+                                        (pageChange)="currentPage = $event">
+                                      </pagination-controls>
+                                      </div>
+                                    </div>
                                 </div>
                             </div>
                           </div>
@@ -84,7 +108,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button"  class="btn btn-danger"   (click)="deletedEmployee(userInfo,employee.id)">
+        <button type="button"  class="btn btn-danger"   (click)="deletedEmployee(employee.id)">
           <div *ngIf="actionDelete==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
             <span class="visually-hidden">Loading...</span>
       </div> Delete</button>

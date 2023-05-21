@@ -40,10 +40,8 @@ export class HomeAdminComponent implements OnInit {
   errorPrint:any;
   ngOnInit(){
     this.storeData=localStorage.getItem("userInfo")
-    this.userInfo=JSON.parse(this.storeData);
     this.compagnInfo=JSON.parse(this.storeData);
-
-    console.log("userInfo",this.userInfo);
+    console.log("compagnInfo",this.compagnInfo);
 
   }
 

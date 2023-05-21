@@ -6,14 +6,16 @@ import axios from 'axios';
 import { URL } from '../classes/base-url';
 import * as $ from 'jquery';
 import 'bootstrap-table';
+import { NgxPaginationModule } from 'ngx-pagination';
 @Component({
   selector: 'app-liste-employee',
   templateUrl: './liste-employee.component.html',
   styleUrls: ['./liste-employee.component.css']
 })
+
+
 export class ListeEmployeeComponent implements OnInit{
   storeData:any;
-  userInfo:any;
   compagnInfo:any;
   employees:Array<any>=[];
   subscription!: Subscription; 
@@ -21,20 +23,35 @@ export class ListeEmployeeComponent implements OnInit{
   deleted=false;
   BearerToken!:string;
   actionDelete=false;
+  searchText!: string;
+  filteredData: any[] = [];
+  currentPage = 1;
+  loaderpage=true;
+  errormessage:any;
+  errorload=false;
+  docData:any;
+  docInfo:any;
+  modify:Boolean=false;
   constructor(private listeEmployeService: ListeEmployeeService){}
   
-  dataa:Array<any>=[];
+  //dataa:Array<any>=[];
   ngOnInit(){
 
     //this.dataa.push(this.employees);
     // this.data=this.employees;
     this.storeData=localStorage.getItem("userInfo")
-    this.userInfo=JSON.parse(this.storeData);
-    console.log(this.userInfo);
-    this.BearerToken= 'Bearer '+this.userInfo.authorization.token;
+    this.compagnInfo=JSON.parse(this.storeData);
 
-    this.getlisteEmploye(this.userInfo);
-   
+    this.docData=localStorage.getItem("Doc")
+    this.docInfo=JSON.parse(this.docData);
+    if(this.docInfo.rights=="Modifiable"){
+      this.modify=true;
+    }
+    console.log(this.compagnInfo);
+    this.BearerToken= 'Bearer '+this.compagnInfo.authorization.token;
+
+    this.getlisteEmploye(this.compagnInfo);
+    
 }
 
 
@@ -48,17 +65,22 @@ getlisteEmploye(compagnies:any){
   }).then((response)=>{
 
     console.log("reponse",response);
-
     this.employees=response.data.employees;
-
+    this.filteredData=response.data.employees;
+    localStorage.removeItem('employees');
+    localStorage.setItem('employees',JSON.stringify(this.employees));
+    this.loaderpage=false;
   }).catch((error)=>{
-    console.log(error)
+    console.log(error);
+    this.loaderpage=false;
+    this.errorload=true;
+    this.errormessage= error.response.data.message ?? error.response.data.error
   })
   
 }
-  deletedEmployee(compagnies:any,idEmployee:any){
+  deletedEmployee(idEmployee:any){
     this.actionDelete=true;
-      axios.delete(URL.COMPAGNY_URL+'/'+compagnies.compagny.id+'/employees/'+idEmployee,{
+      axios.delete(URL.COMPAGNY_URL+'/'+this.compagnInfo.compagny.id+'/employees/'+idEmployee,{
         withCredentials: true,
         headers: {
           'Authorization': this.BearerToken
@@ -69,5 +91,10 @@ getlisteEmploye(compagnies:any){
         this.deleted=true
       })
   }
-
+  updateFilteredData() {
+    // Appliquer le filtre sur les données en utilisant comme critere le name de l'employé
+    this.filteredData = this.employees.filter(item => item.name.toLowerCase().includes(this.searchText.toLowerCase()));
+   
+  }
+ 
 }

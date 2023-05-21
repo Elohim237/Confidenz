@@ -1,7 +1,10 @@
+.floater{
+    transition: all .2s;
+}
 .floater:hover{
     transform: translateY(-10px);
-    animation-timing-function:  ease-in;
+    animation-timing-function: ease-in-out;
     animation-delay:500ms;
     animation-iteration-count: 1;
-    animation-duration: 2000ms;
+    animation-duration: 200ms;
 }

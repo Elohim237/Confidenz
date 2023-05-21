@@ -24,6 +24,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { LoginEmployeeComponent } from './login-employee/login-employee.component';
 import { ListeEmployeeComponent } from './liste-employee/liste-employee.component';
 import { SettingComponent } from './setting/setting.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,6 @@ import { SettingComponent } from './setting/setting.component';
     ConfigDocComponent,
     NotificationComponent,
     DetailDocumentComponent,
-    ListeMembersComponent,
     ModalsComponent,
     ListeDocUserComponent,
     ViewDocComponent,
@@ -47,13 +47,15 @@ import { SettingComponent } from './setting/setting.component';
     LoginEmployeeComponent,
     ListeEmployeeComponent,
     SettingComponent,
+    ListeMembersComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

@@ -14,7 +14,7 @@ axios.defaults.withCredentials=true;
 
 
 export class AutServiceService {
-
+  message!:string;
   constructor(private http:HttpClient, private router: Router) { }
  
 // getCookie(name:string): string{
@@ -68,5 +68,11 @@ export class AutServiceService {
         console.log("userInfo : ", localStorage.getItem('userInfo'));
         // this.router.navigate(['homeadmin'])
       })
+    }
+    setMessageCreation(message:string){
+      this.message=message;
+    }
+    getMessageCreation(){
+      return this.message;
     }
 }
