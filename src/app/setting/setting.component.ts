@@ -60,7 +60,7 @@ export class SettingComponent {
         this.loader=false;
         this.errorPassword=true;
         if(error.response.status=401){
-          this.errorMessage=error.response.data.error.password+' et '+error.response.data.error.password_confirmation
+          this.errorMessage=error.response.data.message.password+' et '+error.response.data.message.password_confirmation
           console.log('Password error: ' + this.errorMessage)
         }
         console.log(error);
