@@ -16,6 +16,7 @@ export class DetailDocumentComponent  implements OnInit{
   exceldoc:any;
   id:any;
   employee= new Set();
+  loader:Boolean=true;
   constructor(private route: ActivatedRoute,private router:Router) {}
   ngOnInit(): void {
     this.storeData=localStorage.getItem("userInfo")
@@ -23,7 +24,7 @@ export class DetailDocumentComponent  implements OnInit{
     this.docData=localStorage.getItem("Doc");
     this.exceldoc=JSON.parse(this.docData);
     this.id = this.route.snapshot.paramMap.get('id');
-   this.listdoc(1);
+   this.listdoc(this.id);
     
   }
   listdoc(id:any){
@@ -33,9 +34,12 @@ export class DetailDocumentComponent  implements OnInit{
           'Authorization': BearerToken,
         }
       }).then((response)=>{
+        console.log("response",response)
+        this.loader=false;
         this.documents=response.data.content
         console.log(this.documents)
       }).catch((error)=>{
+        this.loader=false
         console.log(error)
       })
     
@@ -43,6 +47,7 @@ export class DetailDocumentComponent  implements OnInit{
   viewElement(docs:any){
     localStorage.removeItem('viewElement');
       localStorage.setItem('viewElement',JSON.stringify(docs));
+      // this.router.navigate(['/detail/',this.id,'liste'])
       this.router.navigate(['/detail/',this.id,'liste'])
   }
   

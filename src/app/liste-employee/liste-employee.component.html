@@ -16,14 +16,25 @@
                     </div>
                     <div *ngIf=" deleted==true"  class="alert alert-primary alert-dismissible" role="alert">
                       <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Operation Succed</h6>
-                      <p class="mb-0">Votre a été supprimé.</p>
+                      <p class="mb-0">Votre a employee été supprimé.</p>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      </button>
+                    </div>
+                    <div *ngIf=" errormessage==true"  class="alert alert-danger alert-dismissible" role="alert">
+                      <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Bad ;(</h6>
+                      <p class="mb-0">{{errormessage}}</p>
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                       </button>
                     </div>
                     <div class="row">
                           <div class="card p-5">
                             <h2 class="card-header text-primary">Liste des Empoyé de  {{compagnInfo.compagny.name}}</h2>
-                            <div class="card-body">
+                            <div *ngIf="loaderpage==true" class="text-center mb-5">
+                              <div  class="spinner-grow text-primary" role="status" style="width:100px; height:100px">
+                                <span class="visually-hidden">Loading...</span>
+                              </div>
+                            </div>
+                            <div class="card-body" *ngIf="loaderpage==false">
                                 voici la liste de vos employés 
                                 <div class="table-responsive text-nowrap mt-4">
                                   <div class="input-group mb-4" style="width: 30%; display:flex; float: right;">

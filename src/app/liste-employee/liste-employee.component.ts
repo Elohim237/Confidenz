@@ -26,7 +26,12 @@ export class ListeEmployeeComponent implements OnInit{
   searchText!: string;
   filteredData: any[] = [];
   currentPage = 1;
-  
+  loaderpage=true;
+  errormessage:any;
+  errorload=false;
+  docData:any;
+  docInfo:any;
+  modify:Boolean=false;
   constructor(private listeEmployeService: ListeEmployeeService){}
   
   //dataa:Array<any>=[];
@@ -36,6 +41,12 @@ export class ListeEmployeeComponent implements OnInit{
     // this.data=this.employees;
     this.storeData=localStorage.getItem("userInfo")
     this.compagnInfo=JSON.parse(this.storeData);
+
+    this.docData=localStorage.getItem("Doc")
+    this.docInfo=JSON.parse(this.docData);
+    if(this.docInfo.rights=="Modifiable"){
+      this.modify=true;
+    }
     console.log(this.compagnInfo);
     this.BearerToken= 'Bearer '+this.compagnInfo.authorization.token;
 
@@ -58,9 +69,12 @@ getlisteEmploye(compagnies:any){
     this.filteredData=response.data.employees;
     localStorage.removeItem('employees');
     localStorage.setItem('employees',JSON.stringify(this.employees));
-
+    this.loaderpage=false;
   }).catch((error)=>{
-    console.log(error)
+    console.log(error);
+    this.loaderpage=false;
+    this.errorload=true;
+    this.errormessage= error.response.data.message ?? error.response.data.error
   })
   
 }

@@ -19,7 +19,7 @@ export class DocumentsComponent {
     filteredData: any[] = [];
     searchText!: string;
     actionDelete=false;
-
+    loaderpage=true;
     constructor(private excelService:ExcelConfigurationService,private router:Router){}
     ngOnInit(){
       this.storeData=localStorage.getItem("userInfo")
@@ -42,6 +42,7 @@ export class DocumentsComponent {
       }).then((response)=>{
         this.docs=response.data.files;
         this.filteredData=response.data.files;
+        this.loaderpage=false;
         console.log(this.docs)
         console.log(response)
       }).catch((error)=>{
@@ -73,6 +74,6 @@ export class DocumentsComponent {
     toPage(doc:any){
       localStorage.removeItem('Doc');
       localStorage.setItem('Doc',JSON.stringify(doc));
-      this.router.navigate(['/documents/detail',doc.id])
+      this.router.navigate(['/documents/detail',doc.root_id])
     }
 }

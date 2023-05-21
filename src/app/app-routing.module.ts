@@ -22,6 +22,7 @@ const routes: Routes = [
   {path:'configdoc', component: ConfigDocComponent},
   {path:'documents/detail/:id', component: DetailDocumentComponent},
   {path:'detail/:id/liste', component: ListeMembersComponent},
+  // {path:'detail/:id/liste/:id', component: ListeMembersComponent},
   {path:'notification', component: NotificationComponent},
   {path:'list-DocUser',component:ListeDocUserComponent},
   {path:'view-doc',component:ViewDocComponent},
