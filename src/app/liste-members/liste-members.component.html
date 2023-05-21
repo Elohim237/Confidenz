@@ -15,6 +15,10 @@
                             <h2 class="card-header text-primary">Contenu Doc</h2>
                             <div class="card-body">
                                 voici la liste des documents uploadé sur la plateforme
+                                <!-- <div class="input-group mt-2" style="width: 30%; display:flex; float:right;">
+                                  <span class="input-group-text" id="basic-addon-search31"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                  <input type="text" [(ngModel)]="searchText" (ngModelChange)="updateFilteredData()" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" />
+                                </div> -->
                                 <div class="table-responsive text-nowrap mt-4">
                                     <table class="table"
                                     data-toggle="table"
@@ -22,13 +26,16 @@
                                     data-search="true"
                                    >
                                       <thead style="background-color: #F3F2F7;">
-                                        <tr class="p-5">
-                                          <th *ngFor="let item of elements ">{{item.value}}</th>
-                                        </tr>
+                                      <tr >
+                                        
+                                          <th *ngFor="let colonne of entetes ">{{colonne}}</th>
+                                      </tr>
                                       </thead>
                                       <tbody class="table-border-bottom-0">
-                                        <tr *ngFor="let item of elements;let i=index ">
-                                          <td><span>{{item.value}}</span></td>
+                                        <tr class="p-5" *ngFor="let colonne of colonnes ">
+                                          <td *ngFor="let valeur of colonne">
+                                             {{valeur}}
+                                          </td>
                                         </tr>
                                       </tbody>
                                     </table>
