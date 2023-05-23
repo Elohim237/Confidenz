@@ -16,7 +16,7 @@
       <li class="menu-item "  [ngClass]="{'active':currentUrl ==='/homeadmin'}">
         <a href="homeadmin" class="menu-link gap-2">
           <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-          <div data-i18n="Analytics">Upload Page</div>
+          <div data-i18n="Partager un fichier">Partager un fichier</div>
         </a>
       </li>
 
@@ -24,29 +24,34 @@
       <li class="menu-item " routerLinkActive="active" [ngClass]="{'active':currentUrl ==='/documents'}">
         <a href="documents" class="menu-link gap-2" >
             <i class="fa fa-folder-o" aria-hidden="true"></i>
-          <div data-i18n="Analytics">Documents</div>
+          <div data-i18n="Mes fichiers">Mes fichiers</div>
         </a>
       </li>
 
       <li class="menu-item " routerLinkActive="active" [ngClass]="{'active':currentUrl ==='/list-employee'}">
         <a href="list-employee" class="menu-link gap-2" >
           <i class="fa fa-user-o" aria-hidden="true"></i>
-          <div data-i18n="Analytics">List Users</div>
+          <div data-i18n="Liste des employés">Liste des employés</div>
         </a>
       </li>
       <li class="menu-item" routerLinkActive="active" [ngClass]="{'active':currentUrl ==='/notification'}">
         <a href="notification" class="menu-link gap-2" >
             <i class="fa fa-bell-o" aria-hidden="true"></i> 
-          <div data-i18n="Analytics">Notifications</div>
+          <div data-i18n="Notifications">Notifications</div>
         </a>
       </li>
       <li class="menu-item" routerLinkActive="active" [ngClass]="{'active':currentUrl ==='/settings'}">
         <a href="settings" class="menu-link gap-2" >
           <i class="fa fa-cogs" aria-hidden="true"></i>
-          <div data-i18n="Analytics">Settings</div>
+          <div data-i18n="Paramètres">Paramètres</div>
         </a>
       </li>
       <li class="menu-item">
+        <hr style=" padding-left: 1px ; width: 100%;">
+        <a style="cursor: pointer;" class="menu-link gap-2" (click)="logOut()" >
+          <i class="fa fa-power-off" aria-hidden="true"></i>
+          <div data-i18n="Déconnexion">Déconnexion</div>
+        </a>
         <hr style=" padding-left: 1px ; width: 100%;" >
         <div style="cursor: pointer;" class="menu-link gap-2" (click)="logOut()" >
           <i class="fa fa-power-off" aria-hidden="true"></i>

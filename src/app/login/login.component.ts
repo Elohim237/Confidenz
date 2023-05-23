@@ -46,7 +46,6 @@ export class LoginComponent {
       console.error("Champs du formulaire invalides.");
       return;
     }
-  
 
     let result={ email: this.loginForm.value.email, password: this.loginForm.value.password}
     console.log("valide");
@@ -60,7 +59,7 @@ export class LoginComponent {
       this.log=false;
       this.loader=false;
       this.error=true;
-      this.errormessage= error.response.data.message ?? error.response.data.error
+      this.errormessage= error.response.data.message
     });
     // this.router.navigate(['homeadmin'])
   
