@@ -84,7 +84,7 @@ export class HomeAdminComponent implements OnInit {
       console.log(erreur)
       if(erreur.response.status===400){
         this.contentErrorPrint=true
-        this.errorPrint=erreur.response.data.error
+        this.errorPrint=erreur.response.data.message ?? erreur.response.data.error
       }
       this.loader=false;
     })

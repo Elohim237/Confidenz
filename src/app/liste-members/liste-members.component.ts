@@ -31,6 +31,9 @@ export class ListeMembersComponent implements OnInit {
   succedcode:Boolean=false;
   documents:any;
   id!:any;
+  listemployee:any[]=[];
+  modify=false;
+  modification:any;
   celluleForm = new FormGroup({
     value: new FormControl(),
   });
@@ -38,40 +41,66 @@ export class ListeMembersComponent implements OnInit {
   ngOnInit(){
     this.storeData=localStorage.getItem("userInfo");
     this.compagnInfo=JSON.parse(this.storeData);
-
     this.docData=localStorage.getItem("viewElement");
     this.elements=JSON.parse(this.docData);
-    console.log(this.elements);
+    console.log("element",this.elements);
     console.log(this.employee);
     this.id = this.route.snapshot.paramMap.get('id');
+    let edit:any;
+    edit=localStorage.getItem('Doc');
+    this.modification=JSON.parse(edit);
+    console.log("modif",this.modification)
+    if (this.modification.rights === "Modifiable"){
+      this.modify=true;
+    }
     console.log("le id",this.id)
-    this.prepareDonnees()
-    
-    
+    this.prepareDonnees() 
   }
   
   prepareDonnees() {
-    this.entetes.push("employés")
-    for (let i = 0; i < this.elements.length; i++) {
-      const item = this.elements[i];
-      this.entetes.push(item.value);
-      console.log("entete",this.entetes)
-      for (let j = 0; j < item.children.length; j++) {
-        const child = item.children[j];
-        console.log('child',child)
+    console.log('prepare',this.elements)
+    this.entetes.push("employés") 
+      console.log("yo")
+       const item=this.elements;
+       this.entetes.push(item.value)
+       for (let j = 0; j < item.children.length; j++){
+        const child =item.children[j];
+        let result={'value':child.employee_id}
+        console.log("le result",result)
         if (!this.colonnes[j]) {
           this.colonnes[j] = [];
         }
-        if(i===0){
-          let result={'value':child.employee_id}
-          this.colonnes[j][0] = result;
-          console.log("colonne",this.colonnes[j][0])
-        }
-          this.colonnes[j][i+1] = child;  
-      }
-    }
+        this.colonnes[j][0]=result;
+        this.colonnes[j][1]=child;   
+        console.log("this.colonne",this.colonnes)
+    
+       }
+    
+    // else{
+    //   for (let i = 0; i < this.elements.length; i++) {
+    //     const item = this.elements[i];
+    //     console.log("leitem",item)
+    //     this.entetes.push(item.value);
+    //     console.log("entete",this.entetes)
+    //     for (let j = 0; j < item.children.length; j++) {
+    //       const child = item.children[j];
+    //       console.log('child',child)
+    //       if (!this.colonnes[j]) {
+    //         this.colonnes[j] = [];
+    //       }
+    //       if(i===0){
+    //         let result={'value':child.employee_id}
+    //         this.colonnes[j][0] = result;
+    //         console.log("colonne",this.colonnes[j][0])
+    //       }
+    //         this.colonnes[j][i+1] = child;  
+    //     }
+    //   }
+    // }
+  
 
   }
+ 
   updateFilteredData() {
     this.filteredData = this.colonnes.filter((item:any) => item.name.toLowerCase().includes(this.searchText.toLowerCase()));
   }
@@ -88,6 +117,7 @@ export class ListeMembersComponent implements OnInit {
       this.loader=false;
       this.succedmessage=response.data.message;
       this.succedcode=true;
+
       console.log(response);
     }).catch((error)=>{
       this.loader=false;
@@ -99,23 +129,4 @@ export class ListeMembersComponent implements OnInit {
   }
 }
 
-  // list(){
-  //   let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
-  //     axios.get(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files/'+this.id,{
-  //       headers:{
-  //         'Authorization': BearerToken,
-  //       }
-  //     }).then((response)=>{
-  //       console.log("response",response)
-  //       this.loader=false;
-  //       this.documents=response.data.content
-  //       console.log(this.documents)
-  //       localStorage.removeItem('viewElement');
-  //       localStorage.setItem('viewElement',JSON.stringify(this.documents));
-  //     }).catch((error)=>{
-  //       this.loader=false
-  //       console.log(error)
-  //     })
-  //   }
-  
 

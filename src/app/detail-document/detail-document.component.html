@@ -17,13 +17,13 @@
                         </div>
                     </div>
                     <div *ngIf="loader==true" class="text-center mb-5">
-                      <div  class="spinner-grow text-primary" role="status" style="width:200px; height:200px">
+                      <div  class="spinner-border text-primary" role="status" style="width:200px; height:200px">
                         <span class="visually-hidden">Loading...</span>
                       </div>
                     </div>
-                    <div  *ngIf="loader==false" class="row" style="width: 100%">
-                        <div  class="col col-lg-4" style="width: 300px;"  *ngFor="let doc of documents">
-                          <div class="card mb-4 floater" style="width: 250px;" routerLink="liste" (click)="viewElement(doc.children)">
+                    <div  *ngIf="loader==false && counter!=1" class="row" style="width: 100%">
+                        <div  class="col col-lg-4" style="width: 300px;"  *ngFor="let doc of documents" (click)="return(doc)">
+                          <div class="card mb-4 floater" style="width: 250px;"  >
                               <div class="card-body">
                                   <div class="image">
                                       <img src="../../assets/img/Document.png">
@@ -42,8 +42,32 @@
                               </div>
                             </div>
                        </div>
-                </div>
+                    </div>
+                    <div  *ngIf="loader==false && counter==1" class="row" style="width: 100%">
+                      <div  class="col col-lg-4" style="width: 300px;"  *ngFor="let doc of documents" (click)="viewElement(doc)">
+                        <div class="card mb-4 floater" style="width: 250px;"  >
+                            <div class="card-body">
+                                <div class="image">
+                                    <img src="../../assets/img/Document.png">
+                                </div>
+                              <p class="card-text text-primary mt-4" style="font-weight: 600;
+                              font-size: 20px;
+                              line-height: 21px;">
+                                {{doc.value}}
+                              </p>
+                              <div class="content-information d-flex justify-content-between">
+                                <span>{{exceldoc.name}}</span>
+                                <div>
+                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                     </div>
+                  </div>
+                </div> 
             </div>
         </div>
     </div>
 </div>                    
+

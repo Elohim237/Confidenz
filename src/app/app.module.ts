@@ -26,6 +26,7 @@ import { ListeEmployeeComponent } from './liste-employee/liste-employee.componen
 import { SettingComponent } from './setting/setting.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+
 @NgModule({
   declarations: [
     AppComponent,

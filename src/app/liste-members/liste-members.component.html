@@ -40,7 +40,7 @@
                                                 {{valeur.value}}
                                               </span>
                                                <div>
-                                                <button class="btn btn-icon"  data-bs-toggle="modal" [attr.data-bs-target]="'#modalModifier'+valeur.id"><i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-right: 8px;"></i></button>
+                                                <button class="btn btn-icon" data-bs-toggle="modal" [attr.data-bs-target]="'#modalModifier'+valeur.id" *ngIf="modify==true"><i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-right: 8px;"></i></button>
                                                 </div>
                                             </div>
                                            

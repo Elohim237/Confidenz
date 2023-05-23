@@ -73,7 +73,11 @@ export class DocumentsComponent {
     }
     toPage(doc:any){
       localStorage.removeItem('Doc');
+      localStorage.removeItem('count');
+      localStorage.removeItem('firstvisite');
+      localStorage.setItem('firstvisite','firstvisite')
       localStorage.setItem('Doc',JSON.stringify(doc));
+      localStorage.setItem('count',JSON.stringify(doc.heading_level))
       this.router.navigate(['/documents/detail',doc.root_id])
     }
 }

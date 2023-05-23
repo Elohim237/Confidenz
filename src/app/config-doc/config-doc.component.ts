@@ -58,7 +58,7 @@ export class ConfigDocComponent implements OnInit {
       console.log(response.data.message)
     }).catch((error:any)=>{
       console.log(error);
-      this.errorMessage=error.response.data.error
+      this.errorMessage=error.response.data.error ?? error.response.data.message
       this.loader=false;
       this.errorExcel=true
     })
