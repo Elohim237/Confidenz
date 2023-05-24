@@ -65,7 +65,7 @@ export class ListeMembersComponent implements OnInit {
        this.entetes.push(item.value)
        for (let j = 0; j < item.children.length; j++){
         const child =item.children[j];
-        let result={'value':child.employee_id}
+        let result={'value':child.employee_id,'name':true}
         console.log("le result",result)
         if (!this.colonnes[j]) {
           this.colonnes[j] = [];
