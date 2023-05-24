@@ -70,7 +70,12 @@ export class SettingComponent {
   }
     deletedAccount(){
       this.supprimeloader=true;
-      axios.delete(URL.COMPAGNY_URL+'/' + this.compagnInfo.compagny.id + '/delete').then((response)=>{
+      let BearerToken= 'Bearer '+this.compagnInfo.authorization.token;
+      axios.delete(URL.COMPAGNY_URL+'/' + this.compagnInfo.compagny.id + '/delete',{
+        withCredentials: true,
+        headers: {
+          'Authorization': BearerToken,
+        }}).then((response)=>{
         this.supprimeloader=false;
         this.deleteAccountMessage=response.data.message;
         this.changePasswordService.setMessage( this.deleteAccountMessage)
