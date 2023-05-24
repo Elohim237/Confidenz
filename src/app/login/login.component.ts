@@ -59,7 +59,7 @@ export class LoginComponent {
       this.log=false;
       this.loader=false;
       this.error=true;
-      this.errormessage= error.response.data.message
+      this.errormessage= error.response.data.message ?? error.response.data.error
     });
     // this.router.navigate(['homeadmin'])
   
