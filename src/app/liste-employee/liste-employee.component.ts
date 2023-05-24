@@ -44,9 +44,6 @@ export class ListeEmployeeComponent implements OnInit{
 
     this.docData=localStorage.getItem("Doc")
     this.docInfo=JSON.parse(this.docData);
-    if(this.docInfo.rights=="Modifiable"){
-      this.modify=true;
-    }
     console.log(this.compagnInfo);
     this.BearerToken= 'Bearer '+this.compagnInfo.authorization.token;
 

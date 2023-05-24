@@ -30,7 +30,7 @@ export class DetailDocumentComponent  implements OnInit{
       this.counter = params['heading'];
     });
     console.log("document constructor",this.documents);
-    console.log(this.counter)
+    console.log("le counter",this.counter)
   }
   
   ngOnInit(): void {
@@ -57,11 +57,10 @@ export class DetailDocumentComponent  implements OnInit{
           this.loader=false;
           doc=localStorage.getItem('Documents');
           this.documents=JSON.parse(doc);
-    if(this.counter==0){
-      this.counter==this.counter; 
+    if(this.counter<=0){
+      this.counter=this.counter; 
     }      
   }
-   
     if (storedCount) {
       this.count = parseInt(storedCount, 10);
       this.count--;
@@ -69,6 +68,9 @@ export class DetailDocumentComponent  implements OnInit{
     } else {
       this.count = this.exceldoc.heading_level; 
     }
+    if(this.count==0){
+      this.count=1; 
+    }  
     localStorage.setItem('count', this.count.toString()); 
 
   }
@@ -105,8 +107,10 @@ export class DetailDocumentComponent  implements OnInit{
   viewElement(docs:any){
     console.log('docs',docs);
     localStorage.removeItem('viewElement');
-      localStorage.setItem('viewElement',JSON.stringify(docs));
-      this.router.navigate(['/detail/',this.id,'liste'])
+    localStorage.setItem('viewElement',JSON.stringify(docs));
+    localStorage.removeItem('firstvisiteview');
+    localStorage.setItem('firstvisiteview','firstvisite')
+    this.router.navigate(['/detail/',this.id,'liste'])
   }
   return(documents:any){
     const currentUrl = this.router.url;
