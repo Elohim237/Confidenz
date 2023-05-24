@@ -199,8 +199,6 @@ prepareDonnees2(){
         console.log("prepre colonne",this.colonnes)
         this.colonnes= this.colonnes.map((sousTableau) => sousTableau.slice(1))
         this.colonnes= this.colonnes.flat();
-        localStorage.removeItem("Encour")
-        localStorage.setItem("Encour",this.elements.value)
         localStorage.removeItem("viewElement")
         localStorage.setItem("viewElement",JSON.stringify(this.colonnes))
         window.location.reload()
