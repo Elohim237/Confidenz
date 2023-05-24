@@ -30,19 +30,14 @@ export class AsideComponent implements OnInit{
 
   logOut(){
     console.log("aside user info: ", this.compagnyInfo)
-    // const BearerToken= 'Bearer ' + this.compagnyInfo.authorization.token
     console.log('Bearer Token: ', this.token)
-    axios.post(URL.COMPAGNY_URL+'/logout', {
+    axios.get(URL.COMPAGNY_URL + '/logout', {
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization, access-control-allow-origin",
         'Authorization': this.token,
       }
     }).then((response) => {
       console.log(response)
-      localStorage.removeItem("userInfo")
-      // window.location.reload()
+      localStorage.clear()
       this.router.navigate(['/'])
     }).catch((error) => {
       console.log(error)
