@@ -180,7 +180,7 @@ prepareDonnees2(){
       headers: {
         'Authorization': BearerToken
       }
-    }).then((response)=>{
+    }).then((response)=>{ 
       this.loader=false;
       this.succedmessage=response.data.message;
       this.succedcode=true;
