@@ -41,7 +41,7 @@ export class ConfigDocComponent implements OnInit {
     formdata.append('rights',this.excelForm.value.Droit)
     this.loader=true;
 
-    axios.post(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/upload/excel',formdata, {
+    axios.post(URL.COMPAGNY_URL + '/upload/excel',formdata, {
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,

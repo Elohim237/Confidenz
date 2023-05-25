@@ -69,7 +69,7 @@ export class HomeAdminComponent implements OnInit {
      this.loader=true;
      let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
       
-    await axios.post(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/upload/employees',formdata,{
+    await axios.post(URL.COMPAGNY_URL + '/upload/employees',formdata,{
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,
