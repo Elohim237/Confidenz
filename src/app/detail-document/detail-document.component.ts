@@ -77,7 +77,7 @@ export class DetailDocumentComponent  implements OnInit{
 
   listdoc(id:any){
     let BearerToken= 'Bearer'+ this.compagnInfo.authorization.token 
-      axios.get(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files/'+id,{
+      axios.get(URL.COMPAGNY_URL + '/files/' + id,{
         headers:{
           'Authorization': BearerToken,
         }

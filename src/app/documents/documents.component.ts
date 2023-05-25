@@ -35,7 +35,7 @@ export class DocumentsComponent {
 
     listDocCompagnies(){
       let BearerToken= 'Bearer'+ this.compagnInfo.authorization.token 
-      axios.get(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files',{
+      axios.get(URL.COMPAGNY_URL + '/files',{
         headers:{
           'Authorization': BearerToken,
         }
@@ -58,7 +58,7 @@ export class DocumentsComponent {
       let BearerToken= 'Bearer'+ this.compagnInfo.authorization.token;
       this.actionDelete=true;
       console.log('le idDoc',idDoc)
-      axios.delete(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files/'+idDoc+'/delete',{
+      axios.delete(URL.COMPAGNY_URL + '/files/'+idDoc+'/delete',{
         headers: {
           'Authorization': BearerToken
         }
