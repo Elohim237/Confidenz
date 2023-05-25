@@ -7,6 +7,8 @@ import { URL } from '../classes/base-url';
 import * as $ from 'jquery';
 import 'bootstrap-table';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {FormGroup , FormBuilder , Validators , FormControl} from '@angular/forms';
+
 @Component({
   selector: 'app-liste-employee',
   templateUrl: './liste-employee.component.html',
@@ -32,7 +34,21 @@ export class ListeEmployeeComponent implements OnInit{
   docData:any;
   docInfo:any;
   modify:Boolean=false;
-  constructor(private listeEmployeService: ListeEmployeeService){}
+  create=false;
+  loader=false;
+  createFile=false;
+  enregistreur="Enregistrer";
+  contentError=false;
+  contentErrorPrint=false;
+  CreateUser:FormGroup;
+  errorPrint:any;
+  selectedFile: File | undefined;
+  constructor(private listeEmployeService: ListeEmployeeService,private formBuilder : FormBuilder){
+    this.CreateUser = this.formBuilder.group({
+      name:['',Validators.required],
+      email: ['',Validators.compose( [Validators.required, Validators.email])],
+    });
+  }
   
   //dataa:Array<any>=[];
   ngOnInit(){
@@ -93,5 +109,73 @@ getlisteEmploye(compagnies:any){
     this.filteredData = this.employees.filter(item => item.name.toLowerCase().includes(this.searchText.toLowerCase()));
    
   }
- 
+  createEmployeFile(event:any){ 
+    this.selectedFile = event.target.files[0];
+  }
+  async uploadFile(event: any) {
+    event.preventDefault();
+    if (this.selectedFile) {
+      let formdata = new FormData()
+     formdata.append("employees",this.selectedFile);
+     console.log(formdata);
+     this.loader=true;
+     let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
+      
+    await axios.post(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/upload/employees',formdata,{
+      withCredentials: true,
+      headers: {
+        'Authorization': BearerToken,
+        'Content-Type': 'multipart/form-data'
+      } 
+    }).then(()=>{
+      console.log("reussi")
+      this.loader=false;
+      this.createFile=true;
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000);
+    })
+    .catch((erreur)=>{
+      console.log(erreur)
+    
+      this.contentErrorPrint=true
+      this.errorPrint=erreur.response.data.message ?? erreur.response.data.error
+      this.loader=false;
+    })
+  }
+    }
+  onSubmitUser(){
+    let result={ name: this.CreateUser.value.name, email: this.CreateUser.value.email}
+    console.log("valide");
+    console.log(result);
+    let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
+    this.loader=true;
+    axios.post(URL.COMPAGNY_URL +'/'+this.compagnInfo.compagny.id+'/employees/register',result,{
+      withCredentials: true,
+      headers: {
+        'Authorization': BearerToken,
+        'Content-Type': 'multipart/form-data'
+      }
+      
+    }).then((response)=>{
+      console.log(response)
+      if(response.status==201){
+         this.create=true;
+         console.log(this.create)
+         this.loader=false;
+         setTimeout(() => {
+          window.location.reload()
+        }, 1000);
+      }
+     
+    }).catch((error)=>{
+      if(error.response.status==401){
+        this.create=false;
+        this.loader=false;
+        this.contentError=true;
+        console.log(error);
+      }
+      
+    })
+  }
 }

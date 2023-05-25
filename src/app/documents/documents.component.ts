@@ -3,6 +3,7 @@ import axios from 'axios';
 import { URL } from '../classes/base-url';
 import { ExcelConfigurationService } from '../services/excel-configuration.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
@@ -20,7 +21,16 @@ export class DocumentsComponent {
     searchText!: string;
     actionDelete=false;
     loaderpage=true;
-    constructor(private excelService:ExcelConfigurationService,private router:Router){}
+    updateForm!:FormGroup;
+    loader:Boolean=false;
+    errorCode:Boolean=false;
+    errormessage:any;
+    constructor(private excelService:ExcelConfigurationService,private router:Router, private formBuilder:FormBuilder){
+      this.updateForm = this.formBuilder.group({
+        name:['',Validators.required],
+        droit: ['',Validators.required],
+      });
+    }
     ngOnInit(){
       this.storeData=localStorage.getItem("userInfo")
       this.compagnInfo=JSON.parse(this.storeData);
@@ -71,6 +81,32 @@ export class DocumentsComponent {
         console.log(error)
       })
     }
+    updateDoc(idDoc:any){
+      this.loader=true;
+      let BearerToken= 'Bearer'+ this.compagnInfo.authorization.token;
+      this.actionDelete=true;
+      console.log('le idDoc',idDoc);
+      
+      let formdata=new FormData();
+      formdata.append("name",this.updateForm.value.name);
+      formdata.append("rights",this.updateForm.value.droit);
+
+      axios.post(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files/'+idDoc+'/update', formdata,{
+        headers: {
+          'Authorization': BearerToken
+        }
+      }).then((response)=>{
+        this.loader=false;
+        console.log(response)
+        window.location.reload()
+      }).catch((error)=>{
+        this.loader=false;
+        this.errorCode=true;
+        this.errormessage=error.response.data.message.name ?? error.response.data.message.rights ?? error.response.data.error
+        console.log(error)
+      })
+    }
+
     toPage(doc:any){
       localStorage.removeItem('Doc');
       localStorage.removeItem('count');

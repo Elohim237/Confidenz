@@ -67,6 +67,8 @@
                                               <div class="dropdown-menu">
                                                 <a class="dropdown-item" (click)="toPage(doc)" style="cursor:pointer"><i class="fa fa-eye" aria-hidden="true" style="
                                                   margin-right: 8px;" ></i>  Details</a>
+                                                <a class="dropdown-item" href="#" style="cursor: pointer;" data-bs-toggle="modal" [attr.data-bs-target]="'#modifyFiles'+doc.id" ><i class="fa fa-pencil-square-o" aria-hidden="true"  style="
+                                                  margin-right: 8px;"></i>  Mise à jour des Droits</a>
                                                 <a class="dropdown-item" href="#" style="cursor: pointer;" data-bs-toggle="modal" [attr.data-bs-target]="'#modalSupprime'+doc.id" ><i class="fa fa-trash-o" aria-hidden="true" style="
                                                   margin-right: 8px;"></i>  Delete</a>
                                               </div>
@@ -120,5 +122,55 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" *ngFor="let doc of filteredData" id="modifyFiles{{doc.id}}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h5 class="modal-title" id="exampleModalLabel1">Mise à jour du fichier</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="errorCode==true"  class="alert alert-danger alert-dismissible mb-3" role="alert">
+          <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Error :(</h6>
+          <p class="mb-0">{{errormessage}}</p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+          </button>
+        </div>
+        <form [formGroup]="updateForm" (ngSubmit)="updateDoc(doc.id)">
+          <div class="row">
+            <div class="col mb-3">
+              <label for="nameBackdrop" class="form-label">Nom du fichier</label>
+              <input type="text" id="namefiles" name="namefiles" class="form-control" placeholder="Enter Name" formControlName="name">
+            </div>
+          </div>
+        <div class="row">
+          <div class="mb-1 ">
+            <div class="d-flex justify-content-between">
+              <label class="form-label" for="droits">Définir les droits du Fichier</label>
+            </div>
+            <select class="form-select" id="droits" aria-label="Default select example" formControlName="droit">
+              <option  selected="selected" value="Lecture seule">Lecture seule</option>
+              <option value="Modifiable">Modifiable</option> 
+            </select>
+          </div>
+          <div class="p-3">
+            <button type="submit"  class="btn btn-primary" style="width: 100%;">
+              <div *ngIf="loader==true" class="spinner-border spinner-border-sm " style="color: white;" role="status">
+                <span class="visually-hidden">Loading...</span>
+          </div> Modifier</button>
+          </div>
+         
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
  <app-js></app-js>                        
  <!-- <app-modals></app-modals> -->
