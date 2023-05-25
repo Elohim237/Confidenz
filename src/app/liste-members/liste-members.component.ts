@@ -129,7 +129,7 @@ prepareDonnees2(){
     let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
     let formdata=new FormData()
     formdata.append('value',this.celluleForm.value.value)
-    axios.post(URL.ALL_URL+'/cells/'+id+'/update', formdata,{
+    axios.post(URL.API_URL+'/cells/'+id+'/update', formdata,{
       headers: {
         'Authorization': BearerToken
       }
@@ -176,7 +176,7 @@ prepareDonnees2(){
     let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
     let formdata=new FormData()
     formdata.append('value',this.celluleForm.value.value)
-    axios.post(URL.ALL_URL+'/cells/'+id+'/update', formdata,{
+    axios.post(URL.API_URL+'/cells/'+id+'/update', formdata,{
       headers: {
         'Authorization': BearerToken
       }

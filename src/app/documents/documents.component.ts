@@ -91,7 +91,7 @@ export class DocumentsComponent {
       formdata.append("name",this.updateForm.value.name);
       formdata.append("rights",this.updateForm.value.droit);
 
-      axios.post(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/files/'+idDoc+'/update', formdata,{
+      axios.post(URL.COMPAGNY_URL + '/files/'+idDoc+'/update', formdata,{
         headers: {
           'Authorization': BearerToken
         }

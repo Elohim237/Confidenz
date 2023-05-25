@@ -70,7 +70,7 @@ export class ListeEmployeeComponent implements OnInit{
 
 getlisteEmploye(compagnies:any){
    console.log("yo",compagnies)
-    axios.get(URL.COMPAGNY_URL+ '/'+compagnies.compagny.id+'/employees',{
+    axios.get(URL.COMPAGNY_URL+ '/employees',{
             withCredentials: true,
             headers: {
               'Authorization': this.BearerToken
@@ -93,7 +93,7 @@ getlisteEmploye(compagnies:any){
 }
   deletedEmployee(idEmployee:any){
     this.actionDelete=true;
-      axios.delete(URL.COMPAGNY_URL+'/'+this.compagnInfo.compagny.id+'/employees/'+idEmployee,{
+      axios.delete(URL.COMPAGNY_URL+'/employees/'+idEmployee,{
         withCredentials: true,
         headers: {
           'Authorization': this.BearerToken
@@ -121,7 +121,7 @@ getlisteEmploye(compagnies:any){
      this.loader=true;
      let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
       
-    await axios.post(URL.COMPAGNY_URL + '/'+this.compagnInfo.compagny.id+'/upload/employees',formdata,{
+    await axios.post(URL.COMPAGNY_URL + '/upload/employees',formdata,{
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,
@@ -150,7 +150,7 @@ getlisteEmploye(compagnies:any){
     console.log(result);
     let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
     this.loader=true;
-    axios.post(URL.COMPAGNY_URL +'/'+this.compagnInfo.compagny.id+'/employees/register',result,{
+    axios.post(URL.COMPAGNY_URL +'/employees/register',result,{
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,

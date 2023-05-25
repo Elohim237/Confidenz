@@ -95,7 +95,7 @@ export class HomeAdminComponent implements OnInit {
     console.log(result);
     let BearerToken= 'Bearer '+this.compagnInfo.authorization.token
     this.loader=true;
-    axios.post(URL.COMPAGNY_URL +'/'+this.compagnInfo.compagny.id+'/employees/register',result,{
+    axios.post(URL.COMPAGNY_URL +'/employees/register',result,{
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,

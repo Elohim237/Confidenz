@@ -21,7 +21,7 @@
                         <span class="visually-hidden">Loading...</span>
                       </div>
                     </div>
-                    <div  *ngIf="loader==false && counter!=1" class="row" style="width: 100%">
+                    <div  *ngIf="loader==false && stop==false" class="row" style="width: 100%">
                         <div  class="col col-lg-4" style="width: 300px;"  *ngFor="let doc of documents" (click)="return(doc)">
                           <div class="card mb-4 floater" style="width: 250px;"  >
                               <div class="card-body">
@@ -43,7 +43,7 @@
                             </div>
                        </div>
                     </div>
-                    <div  *ngIf="loader==false && counter==1" class="row" style="width: 100%">
+                    <div  *ngIf="loader==false && stop==true" class="row" style="width: 100%">
                       <div  class="col col-lg-4" style="width: 300px;"  *ngFor="let doc of documents" (click)="viewElement(doc)">
                         <div class="card mb-4 floater" style="width: 250px;"  >
                             <div class="card-body">

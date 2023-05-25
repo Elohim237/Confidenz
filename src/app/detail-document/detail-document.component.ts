@@ -25,6 +25,7 @@ export class DetailDocumentComponent  implements OnInit{
   counter!:number;
   count!: number;
   firstvisited:any;
+  stop:Boolean=false;
   constructor(private route: ActivatedRoute,private router:Router) {
     this.route.queryParams.subscribe(params => {
       this.counter = params['heading'];
@@ -45,7 +46,7 @@ export class DetailDocumentComponent  implements OnInit{
     
   if (this.firstvisited == "firstvisite") {
     // Actions à effectuer lors de la première visite
-    this.listdoc(this.id);
+    this.listdoc(this.exceldoc.root_id);
     if(storedCount == "1"){
       this.counter=1;
     }
@@ -64,13 +65,15 @@ export class DetailDocumentComponent  implements OnInit{
     if (storedCount) {
       this.count = parseInt(storedCount, 10);
       this.count--;
+      if(this.count<=1){
+        this.count=1; 
+        this.stop=true;
+        console.log("le truer")
+      }  
  
     } else {
       this.count = this.exceldoc.heading_level; 
     }
-    if(this.count==0){
-      this.count=1; 
-    }  
     localStorage.setItem('count', this.count.toString()); 
 
   }
