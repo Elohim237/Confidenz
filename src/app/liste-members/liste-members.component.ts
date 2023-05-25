@@ -46,9 +46,10 @@ export class ListeMembersComponent implements OnInit {
     this.storeData=localStorage.getItem("userInfo");
     this.compagnInfo=JSON.parse(this.storeData);
     this.docData=localStorage.getItem("viewElement");
+    
     this.elements=JSON.parse(this.docData);
     console.log("element",this.elements)
-    console.log("element",this.elements);
+
     console.log(this.employee);
     this.id = this.route.snapshot.paramMap.get('id');
     let edit:any;
@@ -61,11 +62,12 @@ export class ListeMembersComponent implements OnInit {
     console.log("le id",this.id)
     let firstvisite;
     firstvisite=localStorage.getItem("firstvisiteview");
-    if(firstvisite=="firstvisite"){
+    if(firstvisite=="firstvisite" && this.visited==false){
       this.prepareDonnees() 
       localStorage.setItem('firstvisiteview', 'visited'); 
     }
     else{
+      console.log("second visite");
       this.prepareDonnees2() 
       this.visited=true;
     }

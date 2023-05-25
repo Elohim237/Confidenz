@@ -82,10 +82,8 @@ export class HomeAdminComponent implements OnInit {
     })
     .catch((erreur)=>{
       console.log(erreur)
-      if(erreur.response.status===400){
         this.contentErrorPrint=true
         this.errorPrint=erreur.response.data.message ?? erreur.response.data.error
-      }
       this.loader=false;
     })
   }
@@ -106,18 +104,14 @@ export class HomeAdminComponent implements OnInit {
       
     }).then((response)=>{
       console.log(response)
-      if(response.status==201){
          this.create=true;
          console.log(this.create)
          this.loader=false;
-      }
     }).catch((error)=>{
-      if(error.response.status==401){
         this.create=false;
         this.loader=false;
         this.contentError=true;
         console.log(error);
-      }
       
     })
   }
