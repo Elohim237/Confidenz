@@ -26,7 +26,7 @@
                       </div>
                           <div class="card p-5">
                             <div class="card-body">
-                              <div class="upload row" >
+                              <div class="upload row d-flex"  >
                                 <div class="col-6 d-flex flex-column justify-content-center ">
                                     <h1 class="text-primary">PARTAGER UN FICHIER</h1>
                                    <p class=" texter mb-4">Ici vous pouvez importer le fichier Excel à partager avec les employés présents dans la colonne Noms de votre fichier. Il est à noter que toutes les entêtes doivent avoir le même nombre de sous-entête pour que l'organisation de votre fichier se fasse avec cohérence.</p>
@@ -39,9 +39,56 @@
                                         <button type="button" class="btn btn-outline-secondary">Annuler</button>
                                     </div>
                                 </div>
-                               <div class="imager col-6 d-flex justify-content-center">
+                                <div class="col-6" >
+                                  <div id="carouselExample" class="carousel slide col-md-8 offset-md-2"  data-bs-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                      <li data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></li>
+                                      <li data-bs-target="#carouselExample" data-bs-slide-to="1"></li>
+                                      <li data-bs-target="#carouselExample" data-bs-slide-to="2"></li>
+                                    </ol>
+                                    <div class="carousel-inner" style="border-radius: 16px;">
+                                      <div class="carousel-item active">
+                                        <div class="imager d-flex justify-content-center" >
+                                        <img class="d-block w-100" src="../../assets/img/upload2.svg" alt="First slide" />
+
+                                        </div>
+                                        <div class="carousel-caption d-none d-md-block text-primary mt-4">
+                                          <h3 class="text-primary">Confidentialité au max</h3>
+                                        </div>
+                                      </div>
+                                      <div class="carousel-item">
+                                        <div class="imager d-flex justify-content-center">
+                                          <img class="d-block w-100" src="../../assets/img/upload3.svg" alt="Second slide" />
+                                        </div>  
+                                        <div class="carousel-caption d-none d-md-block text-primary">
+                                          <h3 class="text-primary">Rapide comme un super héros</h3>
+                                        </div>
+                                      </div>
+                                      <div class="carousel-item">
+                                        <div class="imager d-flex justify-content-center">
+                                          <img class="d-block w-100" src="../../assets/img/notification2.svg" alt="Thirt slide" />
+                                        </div>  
+                                        <div class="carousel-caption d-none d-md-block text-primary">
+                                          <h3 class="text-primary">Upload du fichier</h3>
+                                          <p>la notion du nombre d'entête</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!-- <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="visually-hidden">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="visually-hidden">Next</span>
+                                    </a> -->
+                                  </div>
+                                </div>
+                               <!-- <div class="imager col-6 d-flex justify-content-center">
+
+
                                     <img src="../../assets/upload.svg" alt="upload"/>
-                               </div>
+                               </div> -->
                               </div>
                             </div>
                           </div>

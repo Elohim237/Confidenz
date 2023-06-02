@@ -30,11 +30,11 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              
-               "src/assets/js/dropdown.js",
-               "src/assets/js/bootstrap.js",
+              "src/assets/js/dropdown.js",
+              "src/assets/js/bootstrap.js",
               "src/assets/js/jquery.js",
               "src/assets/js/popper.js",
+       
               "src/assets/js/main.js",
               "src/assets/js/bootstrap-min.js"
             ]

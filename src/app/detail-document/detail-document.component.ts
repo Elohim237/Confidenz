@@ -65,8 +65,8 @@ export class DetailDocumentComponent  implements OnInit{
     if (storedCount) {
       this.count = parseInt(storedCount, 10);
       this.count--;
-      if(this.count<=1){
-        this.count=1; 
+      if(this.count<=0){
+        this.count=0; 
         this.stop=true;
         console.log("le truer")
       }  
@@ -116,13 +116,18 @@ export class DetailDocumentComponent  implements OnInit{
     this.router.navigate(['/detail/',this.id,'liste'])
   }
   return(documents:any){
-    const currentUrl = this.router.url;
-    localStorage.removeItem('Documents');
-    localStorage.setItem('Documents',JSON.stringify(documents.children));
-    this.router.navigateByUrl('/').then(() => {
-      this.router.navigate([currentUrl], { queryParams: { 
-           heading:this.count} });
-    });
+    const currentUrl = this.router.url.split('?')[0];
+    this.route.queryParams.subscribe((param) => {
+      
+      localStorage.removeItem('Documents');
+      localStorage.setItem('Documents',JSON.stringify(documents.children));
+      this.router.navigateByUrl('/homeadmin').then(() => {
+        this.router.navigate([currentUrl], { queryParams: { 
+            ...param,
+            heading:this.count} });
+      });
+    })
+    
   }
  
 }

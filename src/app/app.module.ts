@@ -9,7 +9,6 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AsideComponent } from './aside/aside.component';
 import { DocumentsComponent } from './documents/documents.component';
-import { JsComponent } from './js/js.component';
 import { ConfigDocComponent } from './config-doc/config-doc.component';
 import { NotificationComponent } from './notification/notification.component';
 import { DetailDocumentComponent } from './detail-document/detail-document.component';
@@ -21,7 +20,6 @@ import { ListeDocUserComponent } from './liste-doc-user/liste-doc-user.component
 import { ViewDocComponent } from './view-doc/view-doc.component';
 import { BarProgressComponent } from './bar-progress/bar-progress.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
-import { LoginEmployeeComponent } from './login-employee/login-employee.component';
 import { ListeEmployeeComponent } from './liste-employee/liste-employee.component';
 import { SettingComponent } from './setting/setting.component';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -36,7 +34,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NavbarComponent,
     AsideComponent,
     DocumentsComponent,
-    JsComponent,
     ConfigDocComponent,
     NotificationComponent,
     DetailDocumentComponent,
@@ -45,7 +42,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ViewDocComponent,
     BarProgressComponent,
     ForgetPasswordComponent,
-    LoginEmployeeComponent,
     ListeEmployeeComponent,
     SettingComponent,
     ListeMembersComponent,

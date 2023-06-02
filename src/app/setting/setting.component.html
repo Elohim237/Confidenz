@@ -31,14 +31,15 @@
                                 width="100"
                                 id="uploadedAvatar"
                                 />
-                                <div class="button-wrapper">
+                                <div class="button-wrapper d-flex flex-column">
                                     <span style="font-size:20px; font-weight: 700;">{{userInfo.compagny.name}}</span>
+                                    <span>Administrateur</span>
                                 </div>
                             </div>
                             </div>
                             <hr class="my-0" />
                             <div class="card-body">
-                            <form id="formAccountSettings1" method="POST" onsubmit="return false">
+                            <!-- <form id="formAccountSettings1" method="POST" onsubmit="return false">
                                 <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label for="firstName" class="form-label">Nom</label>
@@ -71,7 +72,7 @@
                             </form>
                             </div>
 
-                           <hr>
+                           <hr> -->
                             <div class="p-4">
                                 <form id="formAccountSettings1"  [formGroup]="passwordForm" (ngSubmit)="submitPassword()"  method="POST" onsubmit="return false">
                                     <div class="row">
