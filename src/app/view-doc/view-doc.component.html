@@ -9,11 +9,11 @@
                         <div>
                              <div class="fw-bold ">
                                 <span class="text-primary">
-                                  <i class="fa fa-home" aria-hidden="true"></i> Accueil / 
+                                  <i class="fa fa-home" aria-hidden="true"></i> <a [routerLink]="['/']" routerLinkActive="true" class="text-primary">Accueil / </a> 
                                 </span>
-                                <a href="documents" class="text-primary">Document / </a>
+                                <a [routerLink]="['/documents']" routerLinkActive="true" class="text-primary">Documents / </a>
                                 <span *ngFor="let breadcumb of breadcumbs;  let last = last"  [ngClass]="{'not-last': !last, 'last': last}">
-                                   <a style="cursor:pointer" (click)="toPrevent(breadcumb.value)">{{breadcumb.value.value}}/</a> 
+                                   <a style="cursor:pointer" (click)="toPrevent(breadcumb.value)"> {{breadcumb.value.value}} /</a> 
                                 </span>
                               </div>
                         </div>

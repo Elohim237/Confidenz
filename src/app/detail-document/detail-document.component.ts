@@ -99,7 +99,7 @@ export class DetailDocumentComponent  implements OnInit{
        this.loader=false;
        this.documents=response.data.content;
        }
-        console.log("le document",this.documents)
+        console.log("le document ",this.documents)
       }).catch((error)=>{
         this.loader=false
         console.log(error)
