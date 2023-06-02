@@ -37,7 +37,7 @@ export class AutServiceService {
         localStorage.removeItem('userInfo');
         localStorage.setItem('userInfo', JSON.stringify(response.data));
         console.log("userInfo : ", localStorage.getItem('userInfo'));
-        // this.router.navigate(['homeadmin'])
+        // this.router.navigate(['/'])
       })
     }
     setMessageCreation(message:string){

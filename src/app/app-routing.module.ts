@@ -15,9 +15,9 @@ import { ListeEmployeeComponent } from './liste-employee/liste-employee.componen
 import { SettingComponent } from './setting/setting.component';
 
 const routes: Routes = [
-  {path:'',component:LoginComponent},
+  {path:'login',component:LoginComponent},
   {path:'register', component: RegistrationComponent},
-  {path:'homeadmin', component: HomeAdminComponent},
+  {path:'', component: HomeAdminComponent},
   {path:'documents', component: DocumentsComponent},
   {path:'configdoc', component: ConfigDocComponent},
   {path:'detail/:id/liste', component: ListeMembersComponent},

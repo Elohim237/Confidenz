@@ -39,10 +39,12 @@ export class HomeAdminComponent implements OnInit {
   errors: Array<string>=[];
   errorPrint:any;
   ngOnInit(){
+    if(!localStorage.getItem("userInfo")) {
+      this.router.navigate(['/login']);
+    }
     this.storeData=localStorage.getItem("userInfo")
     this.compagnInfo=JSON.parse(this.storeData);
     console.log("compagnInfo",this.compagnInfo);
-
   }
 
   onFileSelected(event: any) {

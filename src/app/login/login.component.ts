@@ -48,12 +48,10 @@ export class LoginComponent {
     }
 
     let result={ email: this.loginForm.value.email, password: this.loginForm.value.password}
-    console.log("valide");
-    console.log(result);
     this.log=true;
     this.loader=true;
     await this.autservice.login(result).then(()=>{
-        this.router.navigate(['homeadmin'])
+        this.router.navigate(['/'])
     }).catch((error :any) => {
       console.log(error)
       this.log=false;
@@ -61,7 +59,7 @@ export class LoginComponent {
       this.error=true;
       this.errormessage= error.response.data.message ?? error.response.data.error
     });
-    // this.router.navigate(['homeadmin'])
+    // this.router.navigate(['/'])
   
 
   }

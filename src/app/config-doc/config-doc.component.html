@@ -9,10 +9,10 @@
                         <div class="mb-3">
                           <div class="fw-bold ">
                             <i class="fa fa-home" aria-hidden="true"></i> 
-                            <a href="homeadmin" class="text-primary" >
-                              Home / 
+                            <a href="/" class="text-primary" >
+                              Accueil / 
                             </a>
-                            details
+                            Details
                           </div>
                         </div>
                         <div class="progress">
@@ -51,7 +51,8 @@
                                       <label class="form-label" for="droits">Définir les droits du Fichier</label>
                                     </div>
                                     <select class="form-select" id="droits" aria-label="Default select example" formControlName="Droit">
-                                      <option  selected="selected" value="Lecture seule">Lecture seule</option>
+                                      <option [selected]="true">Attribuer un droit</option>
+                                      <option value="Lecture seule">Lecture seule</option>
                                       <option value="Modifiable">Modifiable</option> 
                                     </select>
                                   </div>

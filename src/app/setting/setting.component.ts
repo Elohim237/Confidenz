@@ -47,7 +47,7 @@ export class SettingComponent {
     formdata.append('password_confirmation',this.passwordForm.value.RetapePassword)
     this.loader=true;
     let BearerToken= 'Bearer '+this.compagnInfo.authorization.token;
-    axios.post(URL.COMPAGNY_URL+'/'+this.compagnInfo.compagny.id+'/update-password', formdata,{
+    axios.post(URL.COMPAGNY_URL + '/update-password', formdata,{
       withCredentials: true,
       headers: {
         'Authorization': BearerToken,

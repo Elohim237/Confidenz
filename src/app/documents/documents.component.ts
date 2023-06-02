@@ -44,7 +44,7 @@ export class DocumentsComponent {
     }
 
     listDocCompagnies(){
-      let BearerToken= 'Bearer'+ this.compagnInfo.authorization.token 
+      let BearerToken= 'Bearer '+ this.compagnInfo.authorization.token 
       axios.get(URL.COMPAGNY_URL + '/files',{
         headers:{
           'Authorization': BearerToken,

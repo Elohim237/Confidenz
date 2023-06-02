@@ -68,7 +68,6 @@ export class DetailDocumentComponent  implements OnInit{
       if(this.count<=0){
         this.count=0; 
         this.stop=true;
-        console.log("le truer")
       }  
  
     } else {
@@ -121,7 +120,7 @@ export class DetailDocumentComponent  implements OnInit{
       
       localStorage.removeItem('Documents');
       localStorage.setItem('Documents',JSON.stringify(documents.children));
-      this.router.navigateByUrl('/homeadmin').then(() => {
+      this.router.navigateByUrl('/').then(() => {
         this.router.navigate([currentUrl], { queryParams: { 
             ...param,
             heading:this.count} });
