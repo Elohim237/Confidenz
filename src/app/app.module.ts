@@ -11,14 +11,11 @@ import { AsideComponent } from './aside/aside.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { ConfigDocComponent } from './config-doc/config-doc.component';
 import { NotificationComponent } from './notification/notification.component';
-import { DetailDocumentComponent } from './detail-document/detail-document.component';
 import { ListeMembersComponent } from './liste-members/liste-members.component';
 import { ModalsComponent } from './modals/modals.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { ListeDocUserComponent } from './liste-doc-user/liste-doc-user.component';
 import { ViewDocComponent } from './view-doc/view-doc.component';
-import { BarProgressComponent } from './bar-progress/bar-progress.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ListeEmployeeComponent } from './liste-employee/liste-employee.component';
 import { SettingComponent } from './setting/setting.component';
@@ -36,11 +33,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DocumentsComponent,
     ConfigDocComponent,
     NotificationComponent,
-    DetailDocumentComponent,
     ModalsComponent,
-    ListeDocUserComponent,
     ViewDocComponent,
-    BarProgressComponent,
     ForgetPasswordComponent,
     ListeEmployeeComponent,
     SettingComponent,

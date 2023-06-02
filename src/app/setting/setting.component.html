@@ -53,13 +53,13 @@
                                     />
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="email" class="form-label">E-mail</label>
+                                    <label for="OldPassword" class="form-label">E-mail</label>
                                     <input
                                     class="form-control"
                                     type="text"
-                                    value="{{userInfo.compagny.email}}"
-                                    id="email"
-                                    name="email"
+                                    value="{{userInfo.compagny.OldPassword}}"
+                                    id="OldPassword"
+                                    name="OldPassword"
                                     value="Elohim@example.com"
                                     placeholder="Elohim@example.com"
                                     />
@@ -83,10 +83,18 @@
                                         type="password"
                                         id="oldPassword"
                                         name="oldPassword"
-                                        autofocus
                                         formControlName="OldPassword"
-                                        />
+                                        required />
+                                        <div class="mb-3"  *ngIf="passwordForm.controls['OldPassword'].invalid && (passwordForm.controls['OldPassword'].dirty || passwordForm.controls['OldPassword'].touched)">
+                                            <div *ngIf="passwordForm.controls['OldPassword'].errors?.['required']">
+                                                L'Ancien mot de passe doit être renseigner.
+                                            </div>
+                                            <div *ngIf="passwordForm.controls['OldPassword'].errors?.['OldPassword']">
+                                                L'ancien mot de passe invalide.
+                                            </div>
+                                        </div>
                                     </div>
+                                    
                                     <div class="mb-3 col-md-6">
                                         <label for="newPassword" class="form-label">Nouveau Mot de Passe</label>
                                         <input
@@ -94,9 +102,16 @@
                                         type="password"
                                         id="newPassword"
                                         name="newPassword"
-                                        autofocus
                                         formControlName="NewPassword"
-                                        />
+                                        required/>
+                                        <div class="mb-3"  *ngIf="passwordForm.controls['NewPassword'].invalid && (passwordForm.controls['NewPassword'].dirty || passwordForm.controls['NewPassword'].touched)">
+                                            <div *ngIf="passwordForm.controls['NewPassword'].errors?.['required']">
+                                                Le nouveau mot de passe doit être renseigner.
+                                            </div>
+                                            <div *ngIf="passwordForm.controls['NewPassword'].errors?.['NewPassword']">
+                                                nouveau mot de passe invalide.
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label for="confirmPassword" class="form-label">Comfirmer le Mot de passe</label>
@@ -106,7 +121,15 @@
                                         id="confirmPassword"
                                         name="confirmpassword"
                                         formControlName="RetapePassword"
-                                        />
+                                        required/>
+                                        <div class="mb-3"  *ngIf="passwordForm.controls['RetapePassword'].invalid && (passwordForm.controls['RetapePassword'].dirty || passwordForm.controls['RetapePassword'].touched)">
+                                            <div *ngIf="passwordForm.controls['RetapePassword'].errors?.['required']">
+                                                confirmer le mot de passe.
+                                            </div>
+                                            <div *ngIf="passwordForm.controls['RetapePassword'].errors?.['RetapePassword']">
+                                                RetapePassword invalide.
+                                            </div>
+                                        </div>
                                     </div>
                                     </div>
                                     <div class="mt-2">

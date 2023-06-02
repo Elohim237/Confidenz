@@ -43,6 +43,10 @@ export class ListeMembersComponent implements OnInit {
   visited:Boolean=false;
   constructor(private route: ActivatedRoute,private router: Router) {}
   ngOnInit(){
+    history.pushState(null, '');
+    window.onpopstate = function(event) {
+      history.go(1);
+    };
     this.storeData=localStorage.getItem("userInfo");
     this.compagnInfo=JSON.parse(this.storeData);
     this.docData=localStorage.getItem("viewElement");
@@ -203,7 +207,7 @@ prepareDonnees2(){
         this.colonnes= this.colonnes.flat();
         localStorage.removeItem("viewElement")
         localStorage.setItem("viewElement",JSON.stringify(this.colonnes))
-        window.location.reload()
+        window.location.reload();
         console.log(response);
     }).catch((error)=>{
       console.log(error)

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ChangePasswordCompagnyService } from '../services/change-password-compagny.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl,Validators } from '@angular/forms';
 import axios from 'axios';
 import { URL } from '../classes/base-url';
 import { Router } from '@angular/router';
@@ -22,12 +22,19 @@ export class SettingComponent {
   messagePasswordGood!:string;
   errorMessage!:string;
   deleteAccountMessage!:string;
-  passwordForm = new FormGroup({
-    OldPassword: new FormControl(),
-    NewPassword:  new FormControl(),
-    RetapePassword:   new FormControl(),
-  });
-  constructor(private changePasswordService: ChangePasswordCompagnyService,private router: Router){}
+  passwordForm:FormGroup;
+  // passwordForm = new FormGroup({
+  //   OldPassword: new FormControl(),
+  //   NewPassword:  new FormControl(),
+  //   RetapePassword:   new FormControl(),
+  // });
+  constructor(private changePasswordService: ChangePasswordCompagnyService,private router: Router){
+    this.passwordForm = new FormGroup({
+      OldPassword: new FormControl('', Validators.required),
+      NewPassword: new FormControl('', [Validators.required,Validators.minLength(8)]),
+      RetapePassword: new FormControl('', [Validators.required,Validators.minLength(8)])
+    })
+  }
   ngOnInit(){
     this.storeData=localStorage.getItem("userInfo")
     this.userInfo=JSON.parse(this.storeData);
@@ -40,7 +47,10 @@ export class SettingComponent {
   }
 
   submitPassword(){
-
+    if (this.passwordForm.invalid) {
+      console.error("Champs du formulaire invalides.");
+      return;
+    }
     let formdata=new FormData();
     formdata.append('old_password',this.passwordForm.value.OldPassword)
     formdata.append('password',this.passwordForm.value.NewPassword)
@@ -59,11 +69,9 @@ export class SettingComponent {
       }).catch((error)=>{
         this.loader=false;
         this.errorPassword=true;
-        if(error.response.status=401){
-          this.errorMessage=error.response.data.message.password+' et '+error.response.data.message.password_confirmation
-          console.log('Password error: ' + this.errorMessage)
-        }
-        this.errorMessage=error.response.data.message ?? error.response.data.error.password+'&'+error.response.data.error.password_confirmation
+        let errorcombinate;
+        errorcombinate=error.response.data.message.password+' et '+error.response.data.message.password_confirmation
+        this.errorMessage=error.response.data.message ?? errorcombinate
         console.log(error);
         
       })
