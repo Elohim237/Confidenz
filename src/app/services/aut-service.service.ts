@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { URL } from '../classes/base-url';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import axios from 'axios';
-import { ɵparseCookieValue } from '@angular/common';
 import { Router } from '@angular/router';
-import { error } from 'jquery';
 
 axios.defaults.withCredentials=true;
 
@@ -34,7 +32,7 @@ export class AutServiceService {
       });
 
       await axios.post(URL.COMPAGNY_URL + '/login',loginform).then((response) => {
-        localStorage.removeItem('userInfo');
+        localStorage.clear();
         localStorage.setItem('userInfo', JSON.stringify(response.data));
         console.log("userInfo : ", localStorage.getItem('userInfo'));
         // this.router.navigate(['/'])
