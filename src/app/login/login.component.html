@@ -24,17 +24,17 @@
                 </div>
                
                 <div>
-                    <h1 style="font-size: 18px;margin-bottom: 0px;width: 336px;height: 35.7812px;padding-bottom: 0px;margin-top: 2px;border-color: #5e5873;"><br>Bienvenue sur Confidenz APP<br><br></h1>
+                    <h1 style="font-size: 18px;margin-bottom: 0px;width: 336px;height: 35.7812px;padding-bottom: 0px;margin-top: 2px;border-color: #5e5873;"><br>Bienvenue sur Confidenz App<br><br></h1>
                     <p style="font-size: 14px;padding-bottom: 0px;padding-top: 0px;"><br>Connectez-vous pour accéder à votre compte et profiter de toutes les fonctionnalités<br><br></p>
                 </div>
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       
                          <div class="mb-4">
                             <label class="form-label" style="font-size: 14PX;">Email</label>
-                            <input class="form-control" type="email" style="border-radius: 6px;height: 43px;margin-bottom: 15px;" placeholder="elohim@gmail.com" name="email" required=""  formControlName="email">
+                            <input class="form-control" type="email" style="border-radius: 6px;height: 43px;margin-bottom: 15px;" placeholder="confidenz.team@gmail.com" name="email" required=""  formControlName="email">
                             <div class="mb-3"  *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
                                 <div *ngIf="loginForm.controls['email'].errors?.['required']">
-                                    L'email doit être renseigner.
+                                    Ce champs est obligatoire
                                 </div>
                                 <div *ngIf="loginForm.controls['email'].errors?.['email']">
                                     Email invalide.
@@ -48,7 +48,7 @@
                         </div>
                         <div class="mb-3" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
                             <div *ngIf="loginForm.controls['password'].errors?.['required']">
-                                Le mot de passe doit être renseigner.
+                                Ce champs est obligatoire
                             </div>
                           </div>
                     <div class="mb-3">
@@ -61,7 +61,7 @@
                       </div>
                 </form>
                 <section class="d-flex justify-content-center" style="padding-top: 16px;">
-                    <span style="padding-right: 15px;">Vous n'avez pas de compte ?</span><a href="register">Créer un compte.</a>
+                    <span style="padding-right: 15px;">Vous n'avez pas de compte ?</span><a [routerLink]="['/register']">Créer un compte.</a>
                 </section>
             </div>
         </div>

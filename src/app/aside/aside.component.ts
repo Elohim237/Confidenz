@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NavigationEnd, Router} from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
 import axios from 'axios';
 import { URL } from '../classes/base-url';
 @Component({
@@ -8,16 +8,16 @@ import { URL } from '../classes/base-url';
   styleUrls: ['./aside.component.css']
 })
 
-export class AsideComponent implements OnInit{
+export class AsideComponent implements OnInit {
   currentUrl !: string;
   token !: string;
-  storeData:any;
-  compagnyInfo:any;
-  constructor(private router:Router){
+  storeData: any;
+  compagnyInfo: any;
+  constructor(private router: Router) {
     this.router.events.subscribe(event => {
-      if(event instanceof NavigationEnd){
+      if (event instanceof NavigationEnd) {
         console.log("Navigation End");
-        this.currentUrl=event.url;
+        this.currentUrl = event.url;
         console.log(this.currentUrl);
       }
     })
@@ -25,10 +25,10 @@ export class AsideComponent implements OnInit{
   ngOnInit() {
     this.storeData = localStorage.getItem("userInfo")
     this.compagnyInfo = JSON.parse(this.storeData);
-    this.token= 'Bearer ' + this.compagnyInfo.authorization.token
+    this.token = 'Bearer ' + this.compagnyInfo.authorization.token
   }
 
-  logOut(){
+  logOut() {
     console.log("aside user info: ", this.compagnyInfo)
     console.log('Bearer Token: ', this.token)
     axios.get(URL.COMPAGNY_URL + '/logout', {
