@@ -22,8 +22,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
-    console.log("aside user info: ", this.compagnyInfo)
-    console.log('Bearer Token: ', this.token)
     axios.get(URL.COMPAGNY_URL + '/logout', {
       headers: {
         'Authorization': this.token,
