@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { URL } from '../classes/base-url';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import axios from 'axios';
 import { Router } from '@angular/router';
 
-axios.defaults.withCredentials=true;
+axios.defaults.withCredentials = true;
 
 @Injectable({
   providedIn: 'root'
@@ -12,36 +12,36 @@ axios.defaults.withCredentials=true;
 
 
 export class AutServiceService {
-  message!:string;
-  constructor(private http:HttpClient, private router: Router) { }
- 
-  async register(registerform:any){
+  message!: string;
+  constructor(private http: HttpClient, private router: Router) { }
+
+  async register(registerform: any) {
     console.log(registerform);
     axios.post(URL.COMPAGNY_URL + '/register', registerform).then((response) => {
       console.log(response)
     })
   }
 
-    
-   async login(loginform: any){
 
-      console.log('Login Form: ' + loginform);
-      const headers = new HttpHeaders({ 
-        'Content-Type': 'application/json', 
-        'accept': 'application/json' 
-      });
+  async login(loginform: any) {
 
-      await axios.post(URL.COMPAGNY_URL + '/login',loginform).then((response) => {
-        localStorage.clear();
-        localStorage.setItem('userInfo', JSON.stringify(response.data));
-        console.log("userInfo : ", localStorage.getItem('userInfo'));
-        // this.router.navigate(['/'])
-      })
-    }
-    setMessageCreation(message:string){
-      this.message=message;
-    }
-    getMessageCreation(){
-      return this.message;
-    }
+    console.log('Login Form: ' + loginform);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'accept': 'application/json'
+    });
+
+    await axios.post(URL.COMPAGNY_URL + '/login', loginform).then((response) => {
+      localStorage.clear();
+      localStorage.setItem('userInfo', JSON.stringify(response.data));
+      console.log("userInfo : ", localStorage.getItem('userInfo'));
+      this.router.navigate(['/'])
+    })
+  }
+  setMessageCreation(message: string) {
+    this.message = message;
+  }
+  getMessageCreation() {
+    return this.message;
+  }
 }
