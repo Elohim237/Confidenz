@@ -38,7 +38,7 @@ export class AsideComponent implements OnInit{
     }).then((response) => {
       console.log(response)
       localStorage.clear()
-      this.router.navigate(['/'])
+      this.router.navigate(['/login'])
     }).catch((error) => {
       console.log(error)
     })
