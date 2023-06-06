@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import axios from 'axios';
 axios.defaults.withCredentials=true;
 import { URL } from '../classes/base-url';
-import { compileDeclareNgModuleFromMetadata } from '@angular/compiler';
 import { ExcelConfigurationService } from '../services/excel-configuration.service';
 axios.defaults.withCredentials=true;
 @Component({

@@ -59,9 +59,7 @@ export class LoginComponent {
       this.error=true;
       this.errormessage= error.response.data.message ?? error.response.data.error
     });
-    // this.router.navigate(['/'])
   
-
   }
 }
 
