@@ -26,6 +26,7 @@ export class ViewDocComponent {
   count!: number;
   firstvisited:any;
   stop:Boolean=false;
+  ShowNavbar=false;
   breadcumbs:any[]=[];
   constructor(private route: ActivatedRoute,private router:Router,private location: Location) {
     const currentUrl = this.router.url.split('?')[0];

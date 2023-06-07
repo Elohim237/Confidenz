@@ -77,6 +77,16 @@ body {
   -webkit-tap-highlight-color: rgba(67, 89, 113, 0);
 }
 
+body:has(.showNav){
+  overflow: hidden;
+}
+body:has(.showNav)::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #00000057;
+  z-index: 1090;
+}
 hr {
   margin: 1rem 0;
   color: #d9dee3;

@@ -1,8 +1,8 @@
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
-        <app-aside></app-aside>
-        <div class="layout-page">
-            <app-navbar></app-navbar>
+        <app-aside id="layout-menu" (hideAside)="ShowNavbar=$event" [state]="ShowNavbar"></app-aside>
+      <div class="layout-page">
+          <app-navbar (showAside)="ShowNavbar=$event"></app-navbar>
             <div class="content-wrapper">
                 <div class="container-xxl  container-p-y">
                     <div class=" py-3  d-flex flex-column ">

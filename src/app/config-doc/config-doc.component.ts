@@ -22,6 +22,7 @@ export class ConfigDocComponent implements OnInit {
   errorExcel=false;
   loader=false;
   errorMessage!:string;
+  ShowNavbar=false;
   stape="1/2"
   constructor(private excelDoc:ExcelConfigurationService,private router:Router, private excelService: ExcelConfigurationService ){}
 

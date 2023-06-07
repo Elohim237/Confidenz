@@ -1,8 +1,8 @@
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
-        <app-aside id="layout-menu"></app-aside>
+        <app-aside id="layout-menu" (hideAside)="ShowNavbar=$event" [state]="ShowNavbar"></app-aside>
         <div class="layout-page">
-            <app-navbar></app-navbar>
+            <app-navbar (showAside)="ShowNavbar=$event"></app-navbar>
             <div class="content-wrapper">
                 <div class="container-xxl  container-p-y">
                     <div class=" py-3 mb-4 d-flex flex-column ">
@@ -224,4 +224,4 @@
     
   
 
-<app-modals></app-modals>
+<!-- <app-modals></app-modals> -->

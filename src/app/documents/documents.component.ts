@@ -25,6 +25,7 @@ export class DocumentsComponent {
     loader:Boolean=false;
     errorCode:Boolean=false;
     errormessage:any;
+    ShowNavbar=false;
     constructor(private excelService:ExcelConfigurationService,private router:Router, private formBuilder:FormBuilder){
       this.updateForm = this.formBuilder.group({
         name:['',Validators.required],
