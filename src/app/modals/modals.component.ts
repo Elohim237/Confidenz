@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CreateEmployeeService } from '../services/create-employee.service';
-import {FormGroup , FormBuilder , Validators , FormControl} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ConnexionForm } from '../classes/connexion-form';
 import { AutServiceService } from '../services/aut-service.service';
 import { Router } from '@angular/router';
@@ -10,41 +10,41 @@ import { Router } from '@angular/router';
   styleUrls: ['./modals.component.css']
 })
 export class ModalsComponent {
-  CreateUser:FormGroup;
-  constructor(private createEmployservice: CreateEmployeeService,private formBuilder : FormBuilder,private router : Router){
+  CreateUser: FormGroup;
+  constructor(private createEmployservice: CreateEmployeeService, private formBuilder: FormBuilder, private router: Router) {
     this.CreateUser = this.formBuilder.group({
-      name:['',Validators.required],
-      email: ['',Validators.compose( [Validators.required, Validators.email])],
+      name: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
     });
   }
-  upload=false;
-  compagnInfo:any;
-  storeData:any;
+  upload = false;
+  compagnyInfo: any;
+  storeData: any;
   selectedFile: File | undefined;
-  nameFile:any;
-  create=false;
-  ngOnInit(){
-    this.storeData=localStorage.getItem("userInfo")
-    this.compagnInfo=JSON.parse(this.storeData);
-    console.log(this.compagnInfo);
+  nameFile: any;
+  create = false;
+  ngOnInit() {
+    this.storeData = localStorage.getItem("userInfo")
+    this.compagnyInfo = JSON.parse(this.storeData);
+    console.log(this.compagnyInfo);
   }
-  createEmployeFile(event:any){ 
+  createEmployeFile(event: any) {
     this.selectedFile = event.target.files[0];
   }
   uploadFile(event: any) {
     event.preventDefault();
     if (this.selectedFile) {
       let formdata = new FormData()
-     formdata.append("employees",this.selectedFile);
-     console.log(formdata);
-      this.createEmployservice.createEmployeFile(this.compagnInfo,formdata);
+      formdata.append("employees", this.selectedFile);
+      console.log(formdata);
+      this.createEmployservice.createEmployeFile(this.compagnyInfo, formdata);
     }
   }
-  onSubmitUser(){
-    let result={ name: this.CreateUser.value.name, email: this.CreateUser.value.email}
+  onSubmitUser() {
+    let result = { name: this.CreateUser.value.name, email: this.CreateUser.value.email }
     console.log("valide");
     console.log(result);
-     this.createEmployservice.CreateEmployeByForm(this.compagnInfo,result);
-     this.create=this.createEmployservice.getCreate();
+    this.createEmployservice.CreateEmployeByForm(this.compagnyInfo, result);
+    this.create = this.createEmployservice.getCreate();
   }
 }

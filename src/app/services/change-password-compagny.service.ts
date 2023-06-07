@@ -5,28 +5,25 @@ import { URL } from '../classes/base-url';
   providedIn: 'root'
 })
 export class ChangePasswordCompagnyService {
-  message!:string;
+  message!: string;
   constructor() { }
 
- changePassword(compagny:any,formdata:any){
-  console.log(compagny)
-    let BearerToken= 'Bearer '+compagny.authorization.token;
-      axios.post(URL.COMPAGNY_URL+'/'+compagny.compagny.id+'/update-password', formdata,{
-        withCredentials: true,
-        headers: {
-          'Authorization': BearerToken,
-        }
-      }).then((response)=>{
-        console.log(response)
-      }).catch((error)=>{
-        console.log(error);
-        
-      })
+  changePassword(compagny: any, formdata: any) {
+    axios.post(URL.COMPAGNY_URL + '/update-password', formdata, {
+      withCredentials: true,
+      headers: {
+        'Authorization': 'Bearer ' + compagny.authorization.token,
+      }
+    }).then((response) => {
+      console.log(response)
+    }).catch((error) => {
+      console.error(error);
+    })
   }
-  setMessage(message:string){
-    this.message=message;
+  setMessage(message: string) {
+    this.message = message;
   }
-  getMessage(){
+  getMessage() {
     return this.message;
   }
 }

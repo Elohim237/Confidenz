@@ -1,5 +1,6 @@
 <div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
+  <div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
       <app-aside id="layout-menu" (hideAside)="ShowNavbar=$event" [state]="ShowNavbar"></app-aside>
       <div class="layout-page">
           <app-navbar (showAside)="ShowNavbar=$event"></app-navbar>
@@ -28,7 +29,7 @@
                     </div>
                     <div class="p-3 row">
                           <div class="card p-5">
-                            <h2 class="card-header text-primary">Liste des employés de  {{compagnInfo.compagny.name}}</h2>
+                            <h2 class="card-header text-primary">Liste des employés de  {{compagnyInfo.compagny.name}}</h2>
                             <div *ngIf="loaderpage==true" class="text-center mb-5">
                               <div  class="spinner-border text-primary" role="status" style="width:100px; height:100px">
                                 <span class="visually-hidden">Chargement...</span>
@@ -41,59 +42,79 @@
                                     <button class="btn btn-primary"  data-bs-toggle="modal"
                                     data-bs-target="#modalCreateUser">Créer un employé</button>
                                 </div>
-                                  <div class="input-group mb-5 searchbar" style="width:30%; display:flex; float: right;">
+                                  <div class="input-group mb-4" style="width: 30%; display:flex; float: right;">
                                     <span class="input-group-text" id="basic-addon-search31"><i class="fa fa-search" aria-hidden="true"></i></span>
                                     <input type="text" [(ngModel)]="searchText" (ngModelChange)="updateFilteredData()" class="form-control" placeholder="Chercher..." aria-label="Chercher..." aria-describedby="basic-addon-search31" />
                                   </div>
 
-                                    <table bootstrap-table class="table"
-                                    data-data="filteredData"
-                                    
-                                   >
-
-                                      <thead style="background-color: #F3F2F7;">
-                                        <tr>
-                                          <th>#</th>
-                                          <th>Nom</th>
-                                          <th>Email</th>
-                                          <th>Actions</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody class="table-border-bottom-0" > 
-                                        <tr   *ngFor="let employee of filteredData| paginate: { itemsPerPage: 10, currentPage: currentPage },let i=index">
-                                          <td >
-                                            <span>{{i+1}}</span>
-                                          </td>                    
-                                          <td><span>{{employee.name}}</span></td>
-                                          <td>
-                                            <span>{{employee.email}}</span>
-                                          </td>
-                                          <td>
-                                            <button  class="btn btn-outline-danger btn-icon" data-bs-toggle="modal"  [attr.data-bs-target]="'#modalSupprime'+employee.id" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                          </td>
-                                        </tr>                                       
-                                      </tbody> 
-                                    </table>
-                                    <div style="display: flex; float: right;">
-                                      <div class="pagination">
-                                        <pagination-controls 
-                                        previousLabel="Previous"
-                                        nextLabel="Next"
-                                        (pageChange)="currentPage = $event">
-                                      </pagination-controls>
-                                      </div>
-                                    </div>
-                                </div>
-                            </div>
-                          </div>
-                     </div>
+                  <table bootstrap-table class="table" data-data="filteredData">
+                    <thead style="background-color: #f3f2f7">
+                      <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <tr
+                        *ngFor="
+                          let employee of filteredData
+                            | paginate
+                              : { itemsPerPage: 10, currentPage: currentPage };
+                          let i = index
+                        "
+                      >
+                        <td>
+                          <span>{{ i + 1 }}</span>
+                        </td>
+                        <td>
+                          <span>{{ employee.name }}</span>
+                        </td>
+                        <td>
+                          <span>{{ employee.email }}</span>
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-outline-danger btn-icon"
+                            data-bs-toggle="modal"
+                            [attr.data-bs-target]="
+                              '#modalSupprime' + employee.id
+                            "
+                          >
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div style="display: flex; float: right">
+                    <div class="pagination">
+                      <pagination-controls
+                        previousLabel="Previous"
+                        nextLabel="Next"
+                        (pageChange)="currentPage = $event"
+                      >
+                      </pagination-controls>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<div *ngFor="let employee of employees; let i=index" class="modal fade" id="modalSupprime{{employee.id}}" tabindex="-1" aria-hidden="true">
+<div
+  *ngFor="let employee of employees; let i = index"
+  class="modal fade"
+  id="modalSupprime{{ employee.id }}"
+  tabindex="-1"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -106,24 +127,38 @@
         ></button>
       </div>
       <div class="modal-body">
-        <p> Voulez vous vraiment supprimer ? Cette action est irreversible</p>
+        <p>Voulez vous vraiment supprimer ? Cette action est irreversible</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
           Annuler
         </button>
-        <button type="button"  class="btn btn-danger"   (click)="deletedEmployee(employee.id)">
-          <div *ngIf="actionDelete==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deletedEmployee(employee.id)"
+        >
+          <div
+            *ngIf="actionDelete == true"
+            class="spinner-border spinner-border-sm"
+            style="color: white"
+            role="status"
+          >
             <span class="visually-hidden">Chargement...</span>
-      </div> Supprimer</button>
+          </div>
+          Supprimer
+        </button>
       </div>
     </div>
   </div>
 </div>
-                                    
 
- <!-- Create User-->
- <div class="modal fade" id="modalCreateUser" tabindex="-1" aria-hidden="true">
+<!-- Create User-->
+<div class="modal fade" id="modalCreateUser" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -135,10 +170,9 @@
           aria-label="Close"
         ></button>
       </div>
-     
+
       <div class="modal-body">
-      
-       <div class="nav-align-top mb-4">
+        <div class="nav-align-top mb-4">
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
               <button
@@ -163,96 +197,183 @@
                 aria-controls="navs-top-profile"
                 aria-selected="false"
               >
-              Remplir le formulaire
+                Remplir le formulaire
               </button>
             </li>
-          
           </ul>
           <div class="tab-content">
-            <div class="tab-pane fade show active" id="navs-top-home" role="tabpanel">
-              <div *ngIf="contentErrorPrint==true"  class="alert alert-danger alert-dismissible" role="alert">
-                <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Oups :(</h6>
-                <p class="mb-0">{{errorPrint}}</p>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                </button>
+            <div
+              class="tab-pane fade show active"
+              id="navs-top-home"
+              role="tabpanel"
+            >
+              <div
+                *ngIf="contentErrorPrint == true"
+                class="alert alert-danger alert-dismissible"
+                role="alert"
+              >
+                <h6
+                  class="alert-heading d-flex align-items-center fw-bold mb-1"
+                >
+                  Oups :(
+                </h6>
+                <p class="mb-0">{{ errorPrint }}</p>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
               </div>
-              <div *ngIf="createFile==true"  class="alert alert-primary alert-dismissible" role="alert">
-                <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Parfait :)</h6>
+              <div
+                *ngIf="createFile == true"
+                class="alert alert-primary alert-dismissible"
+                role="alert"
+              >
+                <h6
+                  class="alert-heading d-flex align-items-center fw-bold mb-1"
+                >
+                  Parfait :)
+                </h6>
                 <p class="mb-0">Vos employés ont été crée.</p>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                </button>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
               </div>
-                <form (submit)="uploadFile($event)">
-                  <div class="mt-2 mb-3" >
-                    <div *ngIf="loader==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
-                      <span class="visually-hidden">Loading...</span>
+              <form (submit)="uploadFile($event)">
+                <div class="mt-2 mb-3">
+                  <div
+                    *ngIf="loader == true"
+                    class="spinner-border spinner-border-sm"
+                    style="color: white"
+                    role="status"
+                  >
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <span>
+                    Les valeurs des champs de l'entête doivent être: "Noms" et
+                    "Email"
+                  </span>
                 </div>
-                    <span>
-                      Les valeurs des champs de l'entête doivent être: "Noms" et "Email"
-                    </span>
-                 </div>
-                  <input type="file" class="form-control" (change)="createEmployeFile($event)"  />
-                  <div class="mt-3">
-                    <button  class="btn btn-primary" type="submit" style="width: 100%;"> 
-                      <div *ngIf="loader==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
-                          <span class="visually-hidden">Loading...</span>
-                    </div><span *ngIf="loader==false">{{enregistreur}}</span></button> 
-                  </div>
-                </form>
+                <input
+                  type="file"
+                  class="form-control"
+                  (change)="createEmployeFile($event)"
+                />
+                <div class="mt-3">
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                    style="width: 100%"
+                  >
+                    <div
+                      *ngIf="loader == true"
+                      class="spinner-border spinner-border-sm"
+                      style="color: white"
+                      role="status"
+                    >
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <span *ngIf="loader == false">{{ enregistreur }}</span>
+                  </button>
+                </div>
+              </form>
             </div>
-            <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">                      
-              <div *ngIf="contentError==true"  class="alert alert-danger alert-dismissible" role="alert">
-                <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Oups :(</h6>
+            <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
+              <div
+                *ngIf="contentError == true"
+                class="alert alert-danger alert-dismissible"
+                role="alert"
+              >
+                <h6
+                  class="alert-heading d-flex align-items-center fw-bold mb-1"
+                >
+                  Oups :(
+                </h6>
                 <p class="mb-0">Cet employé fait déjà parti de confidenz.</p>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                </button>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
               </div>
-              <div *ngIf="create==true"  class="alert alert-primary alert-dismissible" role="alert">
-                <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Parfait :)</h6>
+              <div
+                *ngIf="create == true"
+                class="alert alert-primary alert-dismissible"
+                role="alert"
+              >
+                <h6
+                  class="alert-heading d-flex align-items-center fw-bold mb-1"
+                >
+                  Parfait :)
+                </h6>
                 <p class="mb-0">Votre employé a été crée.</p>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                </button>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
               </div>
-                <form [formGroup]="CreateUser" (ngSubmit)="onSubmitUser()">
-                  <div class="mb-3">
-                      <label for="nameWithTitle" class="form-label" >Name</label>
-                        <input
-                          type="name"
-                          id="nameWithTitle"
-                          class="form-control"
-                          placeholder="Enter name"
-                          formControlName="name"
-                        />
+              <form [formGroup]="CreateUser" (ngSubmit)="onSubmitUser()">
+                <div class="mb-3">
+                  <label for="nameWithTitle" class="form-label">Name</label>
+                  <input
+                    type="name"
+                    id="nameWithTitle"
+                    class="form-control"
+                    placeholder="Enter name"
+                    formControlName="name"
+                  />
+                </div>
+                <div class="mb-3">
+                  <div>
+                    <label for="nameWithTitle" class="form-label">Email</label>
+                    <input
+                      type="email"
+                      id="nameWithTitle"
+                      class="form-control"
+                      placeholder="Enter email"
+                      formControlName="email"
+                    />
                   </div>
-                  <div class="mb-3 ">
-                      <div>
-                          <label for="nameWithTitle" class="form-label">Email</label>
-                            <input
-                              type="email"
-                              id="nameWithTitle"
-                              class="form-control"
-                              placeholder="Enter email"
-                              formControlName="email"
-                            />
-                        </div>
+                </div>
+                <div>
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                    style="width: 100%"
+                  >
+                    <div
+                      *ngIf="loader == true"
+                      class="spinner-border spinner-border-sm"
+                      style="color: white"
+                      role="status"
+                    >
+                      <span class="visually-hidden">Chargement...</span>
                     </div>
-                    <div >
-                      <button  class="btn btn-primary" type="submit" style="width: 100%;"> 
-                          <div *ngIf="loader==true"class="spinner-border spinner-border-sm " style="color: white;" role="status">
-                              <span class="visually-hidden">Chargement...</span>
-                        </div><span *ngIf="loader==false">{{enregistreur}}</span></button> 
-                    </div>
-                 </form> 
-            </div>
+                    <span *ngIf="loader == false">{{ enregistreur }}</span>
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
           Close
         </button>
       </div>
     </div>
   </div>
 </div>
-  
+</div>
