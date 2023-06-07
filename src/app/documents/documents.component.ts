@@ -11,39 +11,36 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 export class DocumentsComponent {
-    storeData:any;
-    compagnyInfo:any;
-    docs:any;
-    messageSucced!:string;
-    count=false;
-    currentPage = 1;
-    filteredData: any[] = [];
-    searchText!: string;
-    actionDelete=false;
-    loaderpage=true;
-    updateForm!:FormGroup;
-    loader:Boolean=false;
-    errorCode:Boolean=false;
-    errormessage:any;
-    ShowNavbar=false;
-    constructor(private excelService:ExcelConfigurationService,private router:Router, private formBuilder:FormBuilder){
-      this.updateForm = this.formBuilder.group({
-        name:['',Validators.required],
-        droit: ['',Validators.required],
-      });
-    }
+  storeData: any;
+  compagnyInfo: any;
+  docs: any;
+  messageSucced!: string;
+  count = false;
+  currentPage = 1;
+  filteredData: any[] = [];
+  searchText!: string;
+  actionDelete = false;
+  loaderpage = true;
+  updateForm!: FormGroup;
+  loader: Boolean = false;
+  errorCode: Boolean = false;
+  errormessage: any;
+  ShowNavbar = false;
+  constructor(private excelService: ExcelConfigurationService, private router: Router, private formBuilder: FormBuilder) {
 
-    ngOnInit(){
-      this.storeData=localStorage.getItem("userInfo")
-      this.compagnyInfo=JSON.parse(this.storeData);
-      console.log(this.compagnyInfo)
-      this.listDocCompagnies();
-      this.messageSucced=this.excelService.getmessageSuccedExcel();
-      if(this.messageSucced != undefined){
-        this.count=true;
-      }
-      console.log("message",this.excelService.getmessageSuccedExcel());
+  }
+
+  ngOnInit() {
+    this.storeData = localStorage.getItem("userInfo")
+    this.compagnyInfo = JSON.parse(this.storeData);
+    console.log(this.compagnyInfo)
+    this.listDocCompagnies();
+    this.messageSucced = this.excelService.getmessageSuccedExcel();
+    if (this.messageSucced != undefined) {
+      this.count = true;
     }
+    console.log("message", this.excelService.getmessageSuccedExcel());
+  }
   listDocCompagnies() {
     axios.get(URL.COMPAGNY_URL + '/files', {
       headers: {
@@ -79,6 +76,14 @@ export class DocumentsComponent {
       console.error(error)
     })
   }
+
+  setUpdateForm(idDoc: any) {
+    this.updateForm = this.formBuilder.group({
+      name: [this.getDocInfoById('name', idDoc), Validators.required],
+      droit: [this.getDocInfoById('rights', idDoc), Validators.required],
+    });
+  }
+
   updateDoc(idDoc: any) {
     this.loader = true;
     this.actionDelete = true;
@@ -112,5 +117,9 @@ export class DocumentsComponent {
     localStorage.setItem('Doc', JSON.stringify(doc));
     localStorage.setItem('count', JSON.stringify(doc.heading_level))
     this.router.navigate(['/documents/detail', doc.root_id])
+  }
+
+  getDocInfoById(info: 'name' | 'rights', id: number) {
+    return this.docs.find((item: any) => item.id == id)[info];
   }
 }
