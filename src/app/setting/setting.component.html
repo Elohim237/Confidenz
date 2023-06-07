@@ -87,11 +87,12 @@
                                         required />
                                         <div class="mb-3"  *ngIf="passwordForm.controls['OldPassword'].invalid && (passwordForm.controls['OldPassword'].dirty || passwordForm.controls['OldPassword'].touched)">
                                             <div *ngIf="passwordForm.controls['OldPassword'].errors?.['required']">
-                                                L'Ancien mot de passe doit être renseigner.
+                                                L'ancien mot de passe doit être renseigner.
                                             </div>
                                             <div *ngIf="passwordForm.controls['OldPassword'].errors?.['OldPassword']">
                                                 L'ancien mot de passe invalide.
                                             </div>
+
                                         </div>
                                     </div>
                                     
@@ -109,8 +110,9 @@
                                                 Le nouveau mot de passe doit être renseigner.
                                             </div>
                                             <div *ngIf="passwordForm.controls['NewPassword'].errors?.['NewPassword']">
-                                                nouveau mot de passe invalide.
+                                                Nouveau mot de passe invalide.
                                             </div>
+                                            <div class="error" *ngIf="passwordForm.get('NewPassword')?.errors?.['minlength']">Le nouveau mot de passe doit avoir 6 caractères</div>
                                         </div>
                                     </div>
                                     <div class="mb-3 col-md-6">
@@ -124,11 +126,15 @@
                                         required/>
                                         <div class="mb-3"  *ngIf="passwordForm.controls['RetapePassword'].invalid && (passwordForm.controls['RetapePassword'].dirty || passwordForm.controls['RetapePassword'].touched)">
                                             <div *ngIf="passwordForm.controls['RetapePassword'].errors?.['required']">
-                                                confirmer le mot de passe.
+                                                Confirmer le mot de passe.
                                             </div>
                                             <div *ngIf="passwordForm.controls['RetapePassword'].errors?.['RetapePassword']">
                                                 RetapePassword invalide.
                                             </div>
+                                            <div class="error" *ngIf="passwordForm.get('RetapePassword')?.errors?.['minlength']">
+                                                le nouveau mot de passe doit avoir 6 caractères
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                     </div>
