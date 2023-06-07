@@ -43,7 +43,7 @@ export class ListeEmployeeComponent implements OnInit {
   CreateUser: FormGroup;
   errorPrint: any;
   selectedFile: File | undefined;
-  ShowNavbar=false;
+  ShowNavbar = false;
   constructor(private listeEmployeService: ListeEmployeeService, private formBuilder: FormBuilder) {
     this.CreateUser = this.formBuilder.group({
       name: ['', Validators.required],
@@ -57,8 +57,6 @@ export class ListeEmployeeComponent implements OnInit {
 
     this.docData = localStorage.getItem("Doc")
     this.docInfo = JSON.parse(this.docData);
-
-    this.BearerToken = 'Bearer ' + this.compagnyInfo.authorization.token;
 
     this.getlisteEmploye(this.compagnyInfo);
   }

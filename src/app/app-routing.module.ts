@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DocumentsComponent } from './documents/documents.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
@@ -13,17 +13,17 @@ import { ListeEmployeeComponent } from './liste-employee/liste-employee.componen
 import { SettingComponent } from './setting/setting.component';
 
 const routes: Routes = [
-  {path:'login',component:LoginComponent},
-  {path:'register', component: RegistrationComponent},
-  {path:'', component: HomeAdminComponent},
-  {path:'documents', component: DocumentsComponent},
-  {path:'configdoc', component: ConfigDocComponent},
-  {path:'detail/:id/liste', component: ListeMembersComponent},
-  {path:'documents/detail/:id', component: ViewDocComponent},
-  {path:'notification', component: NotificationComponent},
-  {path:'forget-password',component:ForgetPasswordComponent},
-  {path:'list-employee',component:ListeEmployeeComponent},
-  {path:'settings',component:SettingComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegistrationComponent },
+  { path: '', component: HomeAdminComponent },
+  { path: 'documents', component: DocumentsComponent },
+  { path: 'configdoc', component: ConfigDocComponent },
+  { path: 'detail/:id/liste', component: ListeMembersComponent },
+  { path: 'documents/detail/:id', component: ViewDocComponent },
+  { path: 'notification', component: NotificationComponent },
+  { path: 'forget-password', component: ForgetPasswordComponent },
+  { path: 'list-employee', component: ListeEmployeeComponent },
+  { path: 'settings', component: SettingComponent },
 ];
 
 @NgModule({

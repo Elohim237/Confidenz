@@ -35,7 +35,7 @@ export class ListeMembersComponent implements OnInit {
   modify = false;
   modification: any;
   colonneafter: any[] = [];
-  ShowNavbar=false;
+  ShowNavbar = false;
   celluleForm = new FormGroup({
     value: new FormControl(),
   });
