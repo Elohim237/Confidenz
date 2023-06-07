@@ -80,7 +80,7 @@ export class DocumentsComponent {
     })
   }
 
-  setUpdateForm(idDoc: any) {
+  setUpdateForm(idDoc: number) {
     this.updateForm = this.formBuilder.group({
       name: [this.getDocInfoById('name', idDoc), Validators.required],
       droit: [this.getDocInfoById('rights', idDoc), Validators.required],
