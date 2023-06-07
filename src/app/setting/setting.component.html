@@ -6,6 +6,16 @@
             <div class="content-wrapper">
                 <div class="container-xxl  container-p-y">
                     <div class=" py-3  d-flex flex-column ">
+                        <div>
+                          <div class="fw-bold ">
+                             <span class="text-primary">
+                               <i class="fa fa-home" aria-hidden="true"></i>  <a [routerLink]="['/']" routerLinkActive="true">Accueil / </a>
+                             </span>
+                             Paramètres
+                           </div>
+                        </div>
+                      </div>
+                    <div class=" py-3  d-flex flex-column ">
                         <div *ngIf="updatePassword==true"  class="alert alert-primary alert-dismissible mb-3" role="alert">
                             <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Opération réussie 🎉</h6>
                             <p class="mb-0">{{messagePasswordGood}}</p>
