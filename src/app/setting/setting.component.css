@@ -2,6 +2,6 @@ input.ng-invalid.ng-touched {
     border: 1px solid red;
   }
   
-  .ng-invalid.ng-touched + div {
+  .ng-invalid.ng-touched + div ,.error{
     color:red
 }
