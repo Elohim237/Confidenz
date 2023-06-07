@@ -53,7 +53,7 @@
                                       <tbody class="table-border-bottom-0">
                                         <tr *ngFor="let doc of filteredData | paginate: { itemsPerPage: 10, currentPage: currentPage }">
                                           <td>
-                                            <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-center" (click)="toPage(doc)" style="cursor: pointer;">
                                               <div class="image-content">
                                                 <img src="../../assets/xls.png">
                                               </div>
