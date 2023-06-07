@@ -9,7 +9,7 @@ export class ChangePasswordCompagnyService {
   constructor() { }
 
   changePassword(compagny: any, formdata: any) {
-    axios.post(URL.COMPAGNY_URL + '/' + '/update-password', formdata, {
+    axios.post(URL.COMPAGNY_URL + '/update-password', formdata, {
       withCredentials: true,
       headers: {
         'Authorization': 'Bearer ' + compagny.authorization.token,
