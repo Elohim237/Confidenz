@@ -152,12 +152,12 @@
                             <!-- /Account -->
                         </div>
                         <div class="card">
-                            <h5 class="card-header">Supprimer Compte</h5>
+                            <h5 class="card-header">Supprimer mon compte</h5>
                             <div class="card-body">
                             <div class="mb-3 col-12 mb-0">
                                 <div class="alert alert-warning">
-                                <h6 class="alert-heading fw-bold mb-1">Etes vous sure de vouloir supprimer votre compte?</h6>
-                                <p class="mb-0">Une fois que vous avez supprimé votre compte, il n'y a pas de retour en arrière. S'il vous plaît soyez certain.</p>
+                                <h6 class="alert-heading fw-bold mb-1">Etes vous sûr de vouloir supprimer votre compte ?</h6>
+                                <p class="mb-0">Celà entrainera la suppression de vos employés et de vos fichiers. Cette action est irreversible.</p>
                                 </div>
                             </div>
                             <form id="formAccountDeactivation" onsubmit="return false">
@@ -171,7 +171,7 @@
                                     (change)="updateButtonState()"
                                 />
                                 <label class="form-check-label" for="accountActivation"
-                                    >Je confirme que je supprime mon compte</label
+                                    >Je confirme la suppression de mon compte.</label
                                 >
                                 </div>
                                 <button type="submit" class="btn btn-danger deactivate-account" [disabled]="!buttonEnabled" (click)="deletedAccount()">
