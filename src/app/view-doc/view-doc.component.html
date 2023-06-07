@@ -9,7 +9,7 @@
                         <div>
                              <div class="fw-bold ">
                                 <span class="text-primary">
-                                  <i class="fa fa-home" aria-hidden="true"></i> <a [routerLink]="['/']" routerLinkActive="true" class="text-primary">Accueil / </a> 
+                                  <i class="fa fa-home" aria-hidden="true"></i> <a [routerLink]="['/']" routerLinkActive="true" class="text-primary"> Accueil / </a> 
                                 </span>
                                 <a [routerLink]="['/documents']" routerLinkActive="true" class="text-primary">Documents / </a>
                                 <span *ngFor="let breadcumb of breadcumbs;  let last = last"  [ngClass]="{'not-last': !last, 'last': last}">

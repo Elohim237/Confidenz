@@ -9,12 +9,12 @@
                       <div>
                         <div class="fw-bold ">
                            <span class="text-primary">
-                             <i class="fa fa-home" aria-hidden="true"></i>  <a [routerLink]="['/']" routerLinkActive="true">Accueil / </a>
+                             <i class="fa fa-home" aria-hidden="true"></i>  <a [routerLink]="['/']" routerLinkActive="true"> Accueil / </a>
                            </span>
                            <a [routerLink]="['/documents']" routerLinkActive="true" class="text-primary">Documents / </a>
                            Details
                          </div>
-                   </div>
+                      </div>
                     </div>
                    
                     <div class="p-3 row">
@@ -76,13 +76,13 @@
         <div class="modal-body">
           <div class="row">
             <div *ngIf="succedcode==true"  class="alert alert-primary alert-dismissible mb-3" role="alert">
-              <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Bravo :)</h6>
+              <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Opération réussie 🎉</h6>
               <p class="mb-0">{{succedmessage}}</p>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
               </button>
             </div>
             <div *ngIf="errorcode==true"  class="alert alert-primary alert-dismissible mb-3" role="alert">
-              <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Erreur :(</h6>
+              <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Une erreur est survenue... 😶</h6>
               <p class="mb-0">{{errormessage}}</p>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
               </button>
@@ -134,13 +134,13 @@
         <div class="modal-body">
           <div class="row">
             <div *ngIf="succedcode==true"  class="alert alert-primary alert-dismissible mb-3" role="alert">
-              <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Bravo :)</h6>
+              <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Opération réussie 🎉</h6>
               <p class="mb-0">{{succedmessage}}</p>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
               </button>
             </div>
             <div *ngIf="errorcode==true"  class="alert alert-primary alert-dismissible mb-3" role="alert">
-              <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Erreur :(</h6>
+              <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Une erreur est survenue... 😶</h6>
               <p class="mb-0">{{errormessage}}</p>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
               </button>

@@ -1,51 +1,102 @@
 <div class="layout-wrapper layout-content-navbar">
   <div class="layout-wrapper layout-content-navbar">
   <div class="layout-container">
-      <app-aside id="layout-menu" (hideAside)="ShowNavbar=$event" [state]="ShowNavbar"></app-aside>
-      <div class="layout-page">
-          <app-navbar (showAside)="ShowNavbar=$event"></app-navbar>
-            <div class="content-wrapper">
-                <div class="container-xxl  container-p-y">
-                    <div class=" py-3  d-flex flex-column ">
-                        <div>
-                             <h6 class="fw-bold ">
-                                 <span class="text-primary">
-                                    <i class="fa fa-home" aria-hidden="true"></i>  <a [routerLink]="['/']" routerLinkActive="true" class="text-primary">Acceuil / </a>
-                                  </span>
-                                  Employés</h6>
-                        </div>
-                    </div>
-                    <div *ngIf=" deleted==true"  class="alert alert-primary alert-dismissible" role="alert">
-                      <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Suppression effectuée</h6>
-                      <p class="mb-0">Votre employé a été supprimé.</p>
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                      </button>
-                    </div>
-                    <div *ngIf=" errormessage==true"  class="alert alert-danger alert-dismissible" role="alert">
-                      <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Erreur ;(</h6>
-                      <p class="mb-0">{{errormessage}}</p>
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                      </button>
-                    </div>
-                    <div class="p-3 row">
-                          <div class="card p-5">
-                            <h2 class="card-header text-primary">Liste des employés de  {{compagnyInfo.compagny.name}}</h2>
-                            <div *ngIf="loaderpage==true" class="text-center mb-5">
-                              <div  class="spinner-border text-primary" role="status" style="width:100px; height:100px">
-                                <span class="visually-hidden">Chargement...</span>
-                              </div>
-                            </div>
-                            <div class="card-body" *ngIf="loaderpage==false">
-                                Voici la liste de vos employés 
-                                <div class="table-responsive text-nowrap mt-4">
-                                  <div class="d-flex justify-content-end mb-4">
-                                    <button class="btn btn-primary"  data-bs-toggle="modal"
-                                    data-bs-target="#modalCreateUser">Créer un employé</button>
-                                </div>
-                                  <div class="input-group mb-4" style="width: 30%; display:flex; float: right;">
-                                    <span class="input-group-text" id="basic-addon-search31"><i class="fa fa-search" aria-hidden="true"></i></span>
-                                    <input type="text" [(ngModel)]="searchText" (ngModelChange)="updateFilteredData()" class="form-control" placeholder="Chercher..." aria-label="Chercher..." aria-describedby="basic-addon-search31" />
-                                  </div>
+    <app-aside id="layout-menu" (hideAside)="ShowNavbar=$event" [state]="ShowNavbar"></app-aside>
+    <div class="layout-page">
+        <app-navbar (showAside)="ShowNavbar=$event"></app-navbar>
+      <div class="content-wrapper">
+        <div class="container-xxl container-p-y">
+          <div class="py-3 d-flex flex-column">
+            <div>
+              <h6 class="fw-bold">
+                <span class="text-primary">
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                  <a
+                    [routerLink]="['/']"
+                    routerLinkActive="true"
+                    class="text-primary"
+                    >Acceuil /
+                  </a>
+                </span>
+                Employés
+              </h6>
+            </div>
+          </div>
+          <div
+            *ngIf="deleted == true"
+            class="alert alert-primary alert-dismissible"
+            role="alert"
+          >
+            <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">
+              Suppression effectuée
+            </h6>
+            <p class="mb-0">Votre employé a été supprimé.</p>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div
+            *ngIf="errormessage == true"
+            class="alert alert-danger alert-dismissible"
+            role="alert"
+          >
+            <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">
+              Erreur ;(
+            </h6>
+            <p class="mb-0">{{ errormessage }}</p>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="p-3 row">
+            <div class="card p-5">
+              <h2 class="card-header text-primary">
+                Mes employés
+              </h2>
+              <div *ngIf="loaderpage == true" class="text-center mb-5">
+                <div
+                  class="spinner-border text-primary"
+                  role="status"
+                  style="width: 100px; height: 100px"
+                >
+                  <span class="visually-hidden">Chargement...</span>
+                </div>
+              </div>
+              <div class="card-body" *ngIf="loaderpage == false">
+                Ici vous avez la liste des personnes que vous pouvez mentionner dans les fichiers à partager
+                <div class="table-responsive text-nowrap mt-4">
+                  <div class="d-flex justify-content-end mb-4">
+                    <button
+                      class="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalCreateUser"
+                    >
+                      Créer un employé
+                    </button>
+                  </div>
+                  <div
+                    class="input-group mb-4"
+                    style="width: 30%; display: flex; float: right"
+                  >
+                    <span class="input-group-text" id="basic-addon-search31"
+                      ><i class="fa fa-search" aria-hidden="true"></i
+                    ></span>
+                    <input
+                      type="text"
+                      [(ngModel)]="searchText"
+                      (ngModelChange)="updateFilteredData()"
+                      class="form-control"
+                      placeholder="Chercher..."
+                      aria-label="Chercher..."
+                      aria-describedby="basic-addon-search31"
+                    />
+                  </div>
 
                   <table bootstrap-table class="table" data-data="filteredData">
                     <thead style="background-color: #f3f2f7">
