@@ -37,6 +37,7 @@ export class HomeAdminComponent implements OnInit {
   isButtonDisabled: boolean = false;
   errors: Array<string> = [];
   errorPrint: any;
+  ShowNavbar=false;
   ngOnInit() {
     if (!localStorage.getItem("userInfo")) {
       this.router.navigate(['/login']);

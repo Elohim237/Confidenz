@@ -23,6 +23,7 @@ export class SettingComponent {
   errorMessage!: string;
   deleteAccountMessage!: string;
   passwordForm: FormGroup;
+  ShowNavbar = false;
   // passwordForm = new FormGroup({
   //   OldPassword: new FormControl(),
   //   NewPassword:  new FormControl(),

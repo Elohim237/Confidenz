@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import axios from 'axios';
 import { URL } from '../classes/base-url';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   compagnyInfo: any;
   storeData: any;
   token!: string;
+  @Output('showAside')showAside= new EventEmitter<boolean>()
   constructor(private router: Router) {
   }
   ngOnInit() {
@@ -33,5 +34,8 @@ export class NavbarComponent implements OnInit {
     }).catch((error) => {
       console.error(error)
     })
+  }
+  showNavbar(){
+    this.showAside.emit(true)
   }
 }

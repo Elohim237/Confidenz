@@ -43,6 +43,7 @@ export class ListeEmployeeComponent implements OnInit {
   CreateUser: FormGroup;
   errorPrint: any;
   selectedFile: File | undefined;
+  ShowNavbar=false;
   constructor(private listeEmployeService: ListeEmployeeService, private formBuilder: FormBuilder) {
     this.CreateUser = this.formBuilder.group({
       name: ['', Validators.required],

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router } from "@angular/router";
 import axios from 'axios';
 import { URL } from '../classes/base-url';
@@ -12,6 +12,8 @@ export class AsideComponent implements OnInit {
   currentUrl !: string;
   storeData: any;
   compagnyInfo: any;
+  @Input("state") state= false;
+  @Output('hideAside')hideAside= new EventEmitter<boolean>()
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -25,7 +27,10 @@ export class AsideComponent implements OnInit {
     this.storeData = localStorage.getItem("userInfo")
     this.compagnyInfo = JSON.parse(this.storeData);
   }
-
+  hideNavbar(){
+    this.state = false
+    this.hideAside.emit(this.state)
+  }
   logOut() {
     axios.get(URL.COMPAGNY_URL + '/logout', {
       headers: {

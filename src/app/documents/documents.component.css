@@ -12,3 +12,8 @@
 .div>a>i{
  margin-right: 8px;
 }
+@media screen and (max-width:450px) {
+    .searchbar{
+        width: 100% !important;
+      }
+    }

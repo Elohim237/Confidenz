@@ -19,11 +19,12 @@ export class ConfigDocComponent implements OnInit {
     Droit: new FormControl(),
     Niveau: new FormControl(),
   });
-  errorExcel = false;
-  loader = false;
-  errorMessage!: string;
-  stape = "1/2"
-  constructor(private excelDoc: ExcelConfigurationService, private router: Router, private excelService: ExcelConfigurationService) { }
+  errorExcel=false;
+  loader=false;
+  errorMessage!:string;
+  ShowNavbar=false;
+  stape="1/2"
+  constructor(private excelDoc:ExcelConfigurationService,private router:Router, private excelService: ExcelConfigurationService ){}
 
   ngOnInit() {
     this.excelDoc.getExcel();

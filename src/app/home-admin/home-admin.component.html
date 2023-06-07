@@ -1,21 +1,16 @@
 <div class="layout-wrapper layout-content-navbar">
-  <div class="layout-container">
-    <app-aside id="layout-menu"></app-aside>
-    <div class="layout-page">
-      <app-navbar></app-navbar>
-      <div class="content-wrapper">
-        <div class="container-xxl container-p-y">
-          <div class="py-3 mb-4 d-flex flex-column">
-            <div>
-              <h4 class="fw-bold">
-                <span class="text-primary">Hello</span>,
-                {{ compagnyInfo.compagny.name }}
-              </h4>
-            </div>
-            <span class="text-muted fw-light"
-              >De nouvelles informations à partager aujourd'hui ?</span
-            >
-          </div>
+    <div class="layout-container">
+        <app-aside id="layout-menu" (hideAside)="ShowNavbar=$event" [state]="ShowNavbar"></app-aside>
+        <div class="layout-page">
+            <app-navbar (showAside)="ShowNavbar=$event"></app-navbar>
+            <div class="content-wrapper">
+                <div class="container-xxl  container-p-y">
+                    <div class=" py-3 mb-4 d-flex flex-column ">
+                        <div>
+                            <h4 class="fw-bold "><span class="text-primary">Hi</span>, {{compagnyInfo.compagny.name}}</h4>
+                        </div>
+                        <span class="text-muted fw-light">De nouvelles informations à partager aujourd'hui ?</span>
+                    </div>
 
           <div
             *ngIf="upload == true"

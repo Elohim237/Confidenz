@@ -11,38 +11,39 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 export class DocumentsComponent {
-  storeData: any;
-  compagnyInfo: any;
-  docs: any;
-  messageSucced!: string;
-  count = false;
-  currentPage = 1;
-  filteredData: any[] = [];
-  searchText!: string;
-  actionDelete = false;
-  loaderpage = true;
-  updateForm!: FormGroup;
-  loader: Boolean = false;
-  errorCode: Boolean = false;
-  errormessage: any;
-  constructor(private excelService: ExcelConfigurationService, private router: Router, private formBuilder: FormBuilder) {
-    this.updateForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      droit: ['', Validators.required],
-    });
-  }
-  ngOnInit() {
-    this.storeData = localStorage.getItem("userInfo")
-    this.compagnyInfo = JSON.parse(this.storeData);
-    console.log(this.compagnyInfo)
-    this.listDocCompagnies();
-    this.messageSucced = this.excelService.getmessageSuccedExcel();
-    if (this.messageSucced != undefined) {
-      this.count = true;
+    storeData:any;
+    compagnyInfo:any;
+    docs:any;
+    messageSucced!:string;
+    count=false;
+    currentPage = 1;
+    filteredData: any[] = [];
+    searchText!: string;
+    actionDelete=false;
+    loaderpage=true;
+    updateForm!:FormGroup;
+    loader:Boolean=false;
+    errorCode:Boolean=false;
+    errormessage:any;
+    ShowNavbar=false;
+    constructor(private excelService:ExcelConfigurationService,private router:Router, private formBuilder:FormBuilder){
+      this.updateForm = this.formBuilder.group({
+        name:['',Validators.required],
+        droit: ['',Validators.required],
+      });
     }
-    console.log("message", this.excelService.getmessageSuccedExcel());
-  }
 
+    ngOnInit(){
+      this.storeData=localStorage.getItem("userInfo")
+      this.compagnyInfo=JSON.parse(this.storeData);
+      console.log(this.compagnyInfo)
+      this.listDocCompagnies();
+      this.messageSucced=this.excelService.getmessageSuccedExcel();
+      if(this.messageSucced != undefined){
+        this.count=true;
+      }
+      console.log("message",this.excelService.getmessageSuccedExcel());
+    }
   listDocCompagnies() {
     axios.get(URL.COMPAGNY_URL + '/files', {
       headers: {

@@ -1,0 +1,5 @@
+@media screen and (max-width:450px) {
+    .searchbar{
+        width: 100% !important;
+      }
+    }
