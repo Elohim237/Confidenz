@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
       localStorage.clear()
       this.router.navigate(['/login'])
     }).catch((error) => {
-      console.log(error)
+      console.error(error)
     })
   }
 }
