@@ -142,7 +142,7 @@
           <div class="row">
             <div class="col mb-3">
               <label for="nameBackdrop" class="form-label">Nom du fichier</label>
-              <input type="text" id="namefiles" name="namefiles" class="form-control" [value]="doc.name" formControlName="name">
+              <input type="text" id="namefiles" name="namefiles" class="form-control" formControlName="name">
             </div>
           </div>
         <div class="row">
@@ -151,8 +151,7 @@
               <label class="form-label" for="droits">Définir les droits du fichier</label>
             </div>
             <select class="form-select" id="droits" aria-label="Default select example" formControlName="droit">
-              <option [selected]="true">Modifier le droit</option>
-              <option value="Lecture seule">Lecture seule</option>
+              <option value="Lecture Seule">Lecture seule</option>
               <option value="Modifiable">Modifiable</option>
             </select>
           </div>

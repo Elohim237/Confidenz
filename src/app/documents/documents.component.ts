@@ -27,7 +27,10 @@ export class DocumentsComponent {
   errormessage: any;
   ShowNavbar = false;
   constructor(private excelService: ExcelConfigurationService, private router: Router, private formBuilder: FormBuilder) {
-
+    this.updateForm = this.formBuilder.group({
+      name: [null, Validators.required],
+      droit: [null, Validators.required],
+    });
   }
 
   ngOnInit() {
