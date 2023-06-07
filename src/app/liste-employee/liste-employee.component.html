@@ -56,7 +56,7 @@
           <div class="p-3 row">
             <div class="card p-5">
               <h2 class="card-header text-primary">
-                Liste des employés de {{ compagnyInfo.compagny.name }}
+                Mes employés
               </h2>
               <div *ngIf="loaderpage == true" class="text-center mb-5">
                 <div
@@ -68,7 +68,7 @@
                 </div>
               </div>
               <div class="card-body" *ngIf="loaderpage == false">
-                Voici la liste de vos employés
+                Ici vous avez la liste des personnes que vous pouvez mentionner dans les fichiers à partager
                 <div class="table-responsive text-nowrap mt-4">
                   <div class="d-flex justify-content-end mb-4">
                     <button
