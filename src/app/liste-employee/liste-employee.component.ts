@@ -45,6 +45,7 @@ export class ListeEmployeeComponent implements OnInit {
   selectedFile: File | undefined;
   ShowNavbar = false;
   constructor(private listeEmployeService: ListeEmployeeService, private formBuilder: FormBuilder) {
+    this.BearerToken = 'Bearer ' + this.compagnyInfo.authorization.token
     this.CreateUser = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.email])],
@@ -143,7 +144,7 @@ export class ListeEmployeeComponent implements OnInit {
     axios.post(URL.COMPAGNY_URL + '/employees/register', result, {
       withCredentials: true,
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token,
+        'Authorization': this.BearerToken,
         'Content-Type': 'multipart/form-data'
       }
 
