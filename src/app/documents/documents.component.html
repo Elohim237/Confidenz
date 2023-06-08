@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div *ngIf="count==true"  class="alert alert-primary alert-dismissible mb-3" role="alert">
-                      <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Bravo :P</h6>
+                      <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">Opération réussie 🎉</h6>
                       <p class="mb-0">{{messageSucced}}</p>
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                       </button>
@@ -24,14 +24,14 @@
                     
                     <div class="p-3 row">
                           <div class="card p-5">
-                            <h2 class="card-header text-primary">Liste des documents</h2>
+                            <h2 class="card-header text-primary">Mes documents</h2>
                             <div *ngIf="loaderpage==true" class="text-center mb-5">
                               <div  class="spinner-border text-primary" role="status" style="width:100px; height:100px">
                                 <span class="visually-hidden">Loading...</span>
                               </div>
                             </div>
                             <div class="card-body"*ngIf="loaderpage==false">
-                                Voici la liste des documents partagés sur la plateforme
+                                Liste des documents partagés sur la plateforme, vous pouvez consulter leur contenu ou encore modifier leurs droits.
                                 <div class="input-group mt-2 searchbar" style="width: 30%; display:flex; float:right;">
                                   <span class="input-group-text" id="basic-addon-search31"><i class="fa fa-search" aria-hidden="true"></i></span>
                                   <input type="text" [(ngModel)]="searchText" (ngModelChange)="updateFilteredData()" class="form-control" placeholder="Chercher..." aria-label="Chercher..." aria-describedby="basic-addon-search31" />
@@ -53,7 +53,7 @@
                                       <tbody class="table-border-bottom-0">
                                         <tr *ngFor="let doc of filteredData | paginate: { itemsPerPage: 10, currentPage: currentPage }">
                                           <td>
-                                            <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-center" (click)="toPage(doc)" style="cursor: pointer;">
                                               <div class="image-content">
                                                 <img src="../../assets/xls.png">
                                               </div>
@@ -67,7 +67,7 @@
                                               <div class="dropdown-menu">
                                                 <a class="dropdown-item" (click)="toPage(doc)" style="cursor:pointer"><i class="fa fa-eye" aria-hidden="true" style="
                                                   margin-right: 8px;" ></i>  Details</a>
-                                                <a class="dropdown-item" href="#" style="cursor: pointer;" data-bs-toggle="modal" [attr.data-bs-target]="'#modifyFiles'+doc.id" ><i class="fa fa-pencil-square-o" aria-hidden="true"  style="
+                                                <a class="dropdown-item" href="#" style="cursor: pointer;" data-bs-toggle="modal" [attr.data-bs-target]="'#modifyFiles'+doc.id" (click)="setUpdateForm(doc.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"  style="
                                                   margin-right: 8px;"></i>Modifier les accès</a>
                                                 <a class="dropdown-item" href="#" style="cursor: pointer;" data-bs-toggle="modal" [attr.data-bs-target]="'#modalSupprime'+doc.id" ><i class="fa fa-trash-o" aria-hidden="true" style="
                                                   margin-right: 8px;"></i>  Supprimer</a>
@@ -143,7 +143,7 @@
           <div class="row">
             <div class="col mb-3">
               <label for="nameBackdrop" class="form-label">Nom du fichier</label>
-              <input type="text" id="namefiles" name="namefiles" class="form-control" [ngModel]="doc.name" formControlName="name">
+              <input type="text" id="namefiles" name="namefiles" class="form-control" formControlName="name">
             </div>
           </div>
         <div class="row">
@@ -152,8 +152,7 @@
               <label class="form-label" for="droits">Définir les droits du fichier</label>
             </div>
             <select class="form-select" id="droits" aria-label="Default select example" formControlName="droit">
-              <option [selected]="true">Modifier le droit</option>
-              <option value="Lecture seule">Lecture seule</option>
+              <option value="Lecture Seule">Lecture seule</option>
               <option value="Modifiable">Modifiable</option>
             </select>
           </div>
@@ -167,9 +166,9 @@
         </div>
       </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Annuler</button>
+      </div> -->
     </div>
   </div>
 </div>
