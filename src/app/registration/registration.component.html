@@ -44,7 +44,7 @@
                         </div>
                         <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
                             <div *ngIf="registrationForm.get('password')?.errors?.['required']">Ce champs est obligatoire</div>
-                            <div *ngIf="registrationForm.get('password')?.errors?.['minlength']">Le mot de passe doit avoir min 6 caractères</div>
+                            <div class="error" *ngIf="registrationForm.get('password')?.errors?.['minlength']">Le mot de passe doit avoir min 6 caractères</div>
                           </div>
                     </div>
                     <div  class="mb-2">

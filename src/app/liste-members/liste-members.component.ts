@@ -32,7 +32,7 @@ export class ListeMembersComponent implements OnInit {
   documents: any;
   id!: any;
   listemployee: any[] = [];
-  modify = false;
+  modify = true;
   modification: any;
   colonneafter: any[] = [];
   ShowNavbar=false;
@@ -61,9 +61,7 @@ export class ListeMembersComponent implements OnInit {
     edit = localStorage.getItem('Doc');
     this.modification = JSON.parse(edit);
     console.log("modif", this.modification)
-    if (this.modification.rights === "Modifiable") {
-      this.modify = true;
-    }
+    this.modify = true;
     console.log("le id", this.id)
     let firstvisite;
     firstvisite = localStorage.getItem("firstvisiteview");

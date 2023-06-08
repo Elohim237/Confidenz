@@ -123,7 +123,7 @@
                                             <div *ngIf="passwordForm.controls['NewPassword'].errors?.['NewPassword']">
                                                 Nouveau mot de passe invalide.
                                             </div>
-                                            <div class="error" *ngIf="passwordForm.get('NewPassword')?.errors?.['minlength']">Le nouveau mot de passe doit avoir 6 caractères</div>
+                                            <div class="error" *ngIf="passwordForm.get('NewPassword')?.errors?.['minlength']">Le nouveau mot de passe doit avoir 8 caractères</div>
                                         </div>
                                     </div>
                                     <div class="mb-3 col-md-6">
@@ -143,7 +143,7 @@
                                                 RetapePassword invalide.
                                             </div>
                                             <div class="error" *ngIf="passwordForm.get('RetapePassword')?.errors?.['minlength']">
-                                                le nouveau mot de passe doit avoir 6 caractères
+                                                le nouveau mot de passe doit avoir 8 caractères
                                             </div>
                                             
                                         </div>
