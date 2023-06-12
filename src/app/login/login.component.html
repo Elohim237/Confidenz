@@ -1,9 +1,9 @@
 <div class="container-fluid" style="margin-right: 0;margin-left: 0; background-color: white; ">
     <div class="row d-flex cotent-all">
-        <div class="content-img col-8  d-flex justify-content-center " style="background-color: #f8f8f8">
-            <img  src="../../assets/Illustrations.svg" style="height: 58.5rem; ">
+        <div class="content-img col-8 d-flex justify-content-center" style="background-color: #f8f8f8">
+            <img class="illustration" src="../../assets/Illustrations.svg">
         </div>
-        <div class="col-4  d-flex justify-content-center align-items-center content-form">
+        <div class="col-4 d-flex justify-content-center align-items-center content-form">
             <div>
                 <div *ngIf="succedCreationAccount==true" class="alert alert-primary mb-4" role="alert">
                     {{messageSuccedCreation}}
@@ -25,7 +25,7 @@
                
                 <div>
                     <h1 style="font-size: 18px;margin-bottom: 0px;width: 336px;height: 35.7812px;padding-bottom: 0px;margin-top: 2px;border-color: #5e5873;"><br>Se connecter<br><br></h1>
-                    <p style="font-size: 14px;padding-bottom: 0px;padding-top: 0px;"><br>Accéder à votre compte {{ admin ? "admin" : "utilisateur" }} et profiter de toutes les fonctionnalités<br><br></p>
+                    <p style="font-size: 14px;padding-bottom: 0px;padding-top: 0px;"><br>Accéder à votre compte {{ admin ? "admin" : "utilisateur" }} et profiter de toutes les fonctionnalités<br></p>
                 </div>
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       

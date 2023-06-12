@@ -19,7 +19,27 @@
         /* bottom:40%; */
     }
 
+    .illustration {
+      visibility: hidden;
+      display: none;
+    }
+
+    .container-fluid {
+      padding-top: 30%;
+      padding-bottom: 42%;
+    }
 }
+
+.container-fluid {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.illustration {
+  height: 58.5rem;
+}
+
 input.ng-invalid.ng-touched {
     border: 1px solid red;
   }
