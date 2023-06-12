@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class ViewDocComponent {
   storeData: any;
-  compagnyInfo: any;
+  userInfo: any;
   documents: any;
   docData: any;
   exceldoc: any;
@@ -27,7 +27,7 @@ export class ViewDocComponent {
   firstvisited: any;
   stop: Boolean = false;
   breadcumbs: any[] = [];
-  ShowNavbar=false;
+  ShowNavbar = false;
   constructor(private route: ActivatedRoute, private router: Router, private location: Location) {
     const currentUrl = this.router.url.split('?')[0];
 
@@ -40,7 +40,7 @@ export class ViewDocComponent {
       history.go(1);
     };
     this.storeData = localStorage.getItem("userInfo")
-    this.compagnyInfo = JSON.parse(this.storeData);
+    this.userInfo = JSON.parse(this.storeData);
     this.docData = localStorage.getItem("Doc");
     this.exceldoc = JSON.parse(this.docData);
     this.id = this.route.snapshot.paramMap.get('id');
@@ -69,10 +69,10 @@ export class ViewDocComponent {
   }
   // lsite des fichiers
   listdoc(id: any) {
-    let BearerToken = 'Bearer' + this.compagnyInfo.authorization.token
+    let BearerToken = 'Bearer' + this.userInfo.authorization.token
     axios.get(URL.COMPAGNY_URL + '/files/' + id, {
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token,
+        'Authorization': 'Bearer ' + this.userInfo.authorization.token,
       }
     }).then((response) => {
       console.log("response", response)

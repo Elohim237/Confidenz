@@ -18,15 +18,15 @@ export class ModalsComponent {
     });
   }
   upload = false;
-  compagnyInfo: any;
+  userInfo: any;
   storeData: any;
   selectedFile: File | undefined;
   nameFile: any;
   create = false;
   ngOnInit() {
     this.storeData = localStorage.getItem("userInfo")
-    this.compagnyInfo = JSON.parse(this.storeData);
-    console.log(this.compagnyInfo);
+    this.userInfo = JSON.parse(this.storeData);
+    console.log(this.userInfo);
   }
   createEmployeFile(event: any) {
     this.selectedFile = event.target.files[0];
@@ -37,14 +37,14 @@ export class ModalsComponent {
       let formdata = new FormData()
       formdata.append("employees", this.selectedFile);
       console.log(formdata);
-      this.createEmployservice.createEmployeFile(this.compagnyInfo, formdata);
+      this.createEmployservice.createEmployeFile(this.userInfo, formdata);
     }
   }
   onSubmitUser() {
     let result = { name: this.CreateUser.value.name, email: this.CreateUser.value.email }
     console.log("valide");
     console.log(result);
-    this.createEmployservice.CreateEmployeByForm(this.compagnyInfo, result);
+    this.createEmployservice.CreateEmployeByForm(this.userInfo, result);
     this.create = this.createEmployservice.getCreate();
   }
 }

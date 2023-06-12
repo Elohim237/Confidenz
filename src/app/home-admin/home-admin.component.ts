@@ -24,7 +24,6 @@ export class HomeAdminComponent implements OnInit {
   userInfo: any;
   storeData: any;
   CreateUser: FormGroup;
-  compagnyInfo: any;
   selectedFile: File | undefined;
   excelFile: File | undefined;
   nameFile: any;
@@ -37,14 +36,14 @@ export class HomeAdminComponent implements OnInit {
   isButtonDisabled: boolean = false;
   errors: Array<string> = [];
   errorPrint: any;
-  ShowNavbar=false;
+  ShowNavbar = false;
   ngOnInit() {
     if (!localStorage.getItem("userInfo")) {
       this.router.navigate(['/login']);
     }
     this.storeData = localStorage.getItem("userInfo")
-    this.compagnyInfo = JSON.parse(this.storeData);
-    console.log("compagnyInfo", this.compagnyInfo);
+    this.userInfo = JSON.parse(this.storeData);
+    console.log("userInfo", this.userInfo);
   }
 
   onFileSelected(event: any) {
@@ -73,7 +72,7 @@ export class HomeAdminComponent implements OnInit {
       await axios.post(URL.COMPAGNY_URL + '/upload/employees', formdata, {
         withCredentials: true,
         headers: {
-          'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token,
+          'Authorization': 'Bearer ' + this.userInfo.authorization.token,
           'Content-Type': 'multipart/form-data'
         }
       }).then(() => {
@@ -98,7 +97,7 @@ export class HomeAdminComponent implements OnInit {
     axios.post(URL.COMPAGNY_URL + '/employees/register', result, {
       withCredentials: true,
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token,
+        'Authorization': 'Bearer ' + this.userInfo.authorization.token,
         'Content-Type': 'multipart/form-data'
       }
 

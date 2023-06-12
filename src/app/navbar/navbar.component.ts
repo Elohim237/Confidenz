@@ -9,17 +9,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  admin!: boolean;
   upload = false;
-  compagnyInfo: any;
+  userInfo: any;
   storeData: any;
   token!: string;
-  @Output('showAside')showAside= new EventEmitter<boolean>()
+  @Output('showAside') showAside = new EventEmitter<boolean>()
   constructor(private router: Router) {
   }
   ngOnInit() {
     this.storeData = localStorage.getItem("userInfo")
-    this.compagnyInfo = JSON.parse(this.storeData);
-    this.token = 'Bearer ' + this.compagnyInfo.authorization.token
+    this.userInfo = JSON.parse(this.storeData);
+    this.token = 'Bearer ' + this.userInfo.authorization.token
+    this.admin = JSON.parse(localStorage.getItem("admin")!);
   }
 
   logOut() {
@@ -35,7 +37,7 @@ export class NavbarComponent implements OnInit {
       console.error(error)
     })
   }
-  showNavbar(){
+  showNavbar() {
     this.showAside.emit(true)
   }
 }

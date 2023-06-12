@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class DocumentsComponent {
   storeData: any;
-  compagnyInfo: any;
+  userInfo: any;
   docs: any;
   messageSucced!: string;
   count = false;
@@ -35,8 +35,8 @@ export class DocumentsComponent {
 
   ngOnInit() {
     this.storeData = localStorage.getItem("userInfo")
-    this.compagnyInfo = JSON.parse(this.storeData);
-    console.log(this.compagnyInfo)
+    this.userInfo = JSON.parse(this.storeData);
+    console.log(this.userInfo)
     this.listDocCompagnies();
     this.messageSucced = this.excelService.getmessageSuccedExcel();
     if (this.messageSucced != undefined) {
@@ -45,9 +45,9 @@ export class DocumentsComponent {
     console.log("message", this.excelService.getmessageSuccedExcel());
   }
   listDocCompagnies() {
-    axios.get(URL.COMPAGNY_URL + '/files', {
+    axios.get(localStorage.getItem("url") + '/files', {
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token,
+        'Authorization': 'Bearer ' + this.userInfo.authorization.token,
       }
     }).then((response) => {
       this.docs = response.data.files;
@@ -68,7 +68,7 @@ export class DocumentsComponent {
     this.actionDelete = true;
     axios.delete(URL.COMPAGNY_URL + '/files/' + idDoc + '/delete', {
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token
+        'Authorization': 'Bearer ' + this.userInfo.authorization.token
       }
     }).then((response) => {
       this.actionDelete = false;
@@ -96,9 +96,9 @@ export class DocumentsComponent {
     formdata.append("name", this.updateForm.value.name);
     formdata.append("rights", this.updateForm.value.droit);
 
-    axios.post(URL.COMPAGNY_URL + '/files/' + idDoc + '/update', formdata, {
+    axios.post(localStorage.getItem("url") + '/files/' + idDoc + '/update', formdata, {
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token
+        'Authorization': 'Bearer ' + this.userInfo.authorization.token
       }
     }).then((response) => {
       this.loader = false;

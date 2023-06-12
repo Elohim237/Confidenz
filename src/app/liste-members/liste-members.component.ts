@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ListeMembersComponent implements OnInit {
   storeData: any;
-  compagnyInfo: any;
+  userInfo: any;
   elements: any;
   docData: any;
   children: Array<any> = [];
@@ -49,7 +49,7 @@ export class ListeMembersComponent implements OnInit {
       history.go(1);
     };
     this.storeData = localStorage.getItem("userInfo");
-    this.compagnyInfo = JSON.parse(this.storeData);
+    this.userInfo = JSON.parse(this.storeData);
     this.docData = localStorage.getItem("viewElement");
 
     this.elements = JSON.parse(this.docData);
@@ -129,12 +129,12 @@ export class ListeMembersComponent implements OnInit {
     this.loader = true;
     console.log("le id", id)
     console.log("le position", position)
-    let BearerToken = 'Bearer ' + this.compagnyInfo.authorization.token
+    let BearerToken = 'Bearer ' + this.userInfo.authorization.token
     let formdata = new FormData()
     formdata.append('value', this.celluleForm.value.value)
     axios.post(URL.API_URL + '/cells/' + id + '/update', formdata, {
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token
+        'Authorization': 'Bearer ' + this.userInfo.authorization.token
       }
     }).then((response) => {
       this.loader = false;
@@ -176,12 +176,12 @@ export class ListeMembersComponent implements OnInit {
     this.loader = true;
     console.log("le id", id)
     console.log("le position", position)
-    let BearerToken = 'Bearer ' + this.compagnyInfo.authorization.token
+    let BearerToken = 'Bearer ' + this.userInfo.authorization.token
     let formdata = new FormData()
     formdata.append('value', this.celluleForm.value.value)
     axios.post(URL.API_URL + '/cells/' + id + '/update', formdata, {
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token
+        'Authorization': 'Bearer ' + this.userInfo.authorization.token
       }
     }).then((response) => {
       this.loader = false;

@@ -19,13 +19,13 @@
                         <img src="../../assets/img/logo2.svg"/>
                     </div>
                     <div>
-                        <h1 style="font-size: 24px;color: #005eff;font-weight: bold;text-align: center;">Confidenz APP</h1>
+                        <h1 style="font-size: 24px;color: #005eff;font-weight: bold;text-align: center;">Confidenz App</h1>
                     </div>
                 </div>
                
                 <div>
-                    <h1 style="font-size: 18px;margin-bottom: 0px;width: 336px;height: 35.7812px;padding-bottom: 0px;margin-top: 2px;border-color: #5e5873;"><br>Bienvenue sur Confidenz App<br><br></h1>
-                    <p style="font-size: 14px;padding-bottom: 0px;padding-top: 0px;"><br>Connectez-vous pour accéder à votre compte et profiter de toutes les fonctionnalités<br><br></p>
+                    <h1 style="font-size: 18px;margin-bottom: 0px;width: 336px;height: 35.7812px;padding-bottom: 0px;margin-top: 2px;border-color: #5e5873;"><br>Se connecter<br><br></h1>
+                    <p style="font-size: 14px;padding-bottom: 0px;padding-top: 0px;"><br>Accéder à votre compte {{ admin ? "admin" : "utilisateur" }} et profiter de toutes les fonctionnalités<br><br></p>
                 </div>
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       
@@ -60,9 +60,10 @@
                                 <span class="log" *ngIf="log==false" >Se connecter</span></button></div>
                       </div>
                 </form>
-                <section class="d-flex justify-content-center" style="padding-top: 16px;">
+                <section class="d-flex justify-content-center" style="padding-top: 16px;" *ngIf="admin">
                     <span style="padding-right: 15px;">Vous n'avez pas de compte ?</span><a [routerLink]="['/register']">Créer un compte.</a>
                 </section>
+                <span class="d-flex justify-content-center mt-2" style="cursor: pointer;" (click)="toggleAdmin()">Je suis un {{ admin ? "employé" : "admin" }}.</span>
             </div>
         </div>
     </div>

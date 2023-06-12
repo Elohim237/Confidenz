@@ -9,11 +9,12 @@ import { URL } from '../classes/base-url';
 })
 
 export class AsideComponent implements OnInit {
+  admin!: boolean;
   currentUrl !: string;
   storeData: any;
-  compagnyInfo: any;
-  @Input("state") state= false;
-  @Output('hideAside')hideAside= new EventEmitter<boolean>()
+  userInfo: any;
+  @Input("state") state = false;
+  @Output('hideAside') hideAside = new EventEmitter<boolean>()
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -25,16 +26,17 @@ export class AsideComponent implements OnInit {
   }
   ngOnInit() {
     this.storeData = localStorage.getItem("userInfo")
-    this.compagnyInfo = JSON.parse(this.storeData);
+    this.userInfo = JSON.parse(this.storeData);
+    this.admin = JSON.parse(localStorage.getItem("admin")!);
   }
-  hideNavbar(){
+  hideNavbar() {
     this.state = false
     this.hideAside.emit(this.state)
   }
   logOut() {
     axios.get(URL.COMPAGNY_URL + '/logout', {
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token,
+        'Authorization': 'Bearer ' + this.userInfo.authorization.token,
       }
     }).then((response) => {
       console.log(response)

@@ -13,6 +13,8 @@ axios.defaults.withCredentials = true;
 
 export class AutServiceService {
   message!: string;
+  admin = JSON.parse(localStorage.getItem("admin")!);
+
   constructor(private http: HttpClient, private router: Router) { }
 
   async register(registerform: any) {
@@ -23,21 +25,24 @@ export class AutServiceService {
   }
 
 
-  async login(loginform: any) {
-
+  async login(loginform: any, url: string) {
     console.log('Login Form: ' + loginform);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'accept': 'application/json'
     });
 
-    await axios.post(URL.COMPAGNY_URL + '/login', loginform).then((response) => {
+    await axios.post(url + '/login', loginform).then((response) => {
       localStorage.clear();
+      localStorage.setItem('admin', this.admin);
+      localStorage.setItem('url', url);
       localStorage.setItem('userInfo', JSON.stringify(response.data));
       console.log("userInfo : ", localStorage.getItem('userInfo'));
       this.router.navigate(['/'])
     })
   }
+
+
   setMessageCreation(message: string) {
     this.message = message;
   }

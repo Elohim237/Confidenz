@@ -6,6 +6,7 @@ import { AutServiceService } from '../services/aut-service.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordCompagnyService } from '../services/change-password-compagny.service';
 import axios from 'axios';
+import { URL } from '../classes/base-url';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import axios from 'axios';
 })
 export class LoginComponent {
   showPassword: boolean = false;
+  admin: boolean = true;
   loginForm: FormGroup;
   log = false;
   loader = false;
@@ -32,6 +34,7 @@ export class LoginComponent {
 
   }
   ngOnInit() {
+    localStorage.setItem('admin', JSON.stringify(this.admin));
     this.messageDeleteAccount = this.changePasswordservice.getMessage();
     this.messageSuccedCreation = this.autservice.getMessageCreation();
     if (this.messageDeleteAccount != undefined) {
@@ -50,7 +53,9 @@ export class LoginComponent {
     let result = { email: this.loginForm.value.email, password: this.loginForm.value.password }
     this.log = true;
     this.loader = true;
-    await this.autservice.login(result).then(() => {
+    const admin: boolean = JSON.parse(localStorage.getItem("admin")!);
+    const url = admin ? URL.COMPAGNY_URL : URL.EMPLOYEE_URL;
+    await this.autservice.login(result, url).then(() => {
       this.router.navigate(['/'])
     }).catch((error: any) => {
       console.error(error)
@@ -59,7 +64,11 @@ export class LoginComponent {
       this.error = true;
       this.errormessage = error.response.data.message ?? error.response.data.error
     });
+  }
 
+  toggleAdmin() {
+    this.admin = !this.admin;
+    localStorage.setItem('admin', JSON.stringify(this.admin));
   }
 }
 

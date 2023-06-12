@@ -12,25 +12,25 @@ import { Router } from '@angular/router';
 export class ConfigDocComponent implements OnInit {
   width = "50%"
   storeData: any
-  compagnyInfo: any
+  userInfo: any
   file: File | undefined
   excelForm = new FormGroup({
     NomFichier: new FormControl(),
     Droit: new FormControl(),
     Niveau: new FormControl(),
   });
-  errorExcel=false;
-  loader=false;
-  errorMessage!:string;
-  ShowNavbar=false;
-  stape="1/2"
-  constructor(private excelDoc:ExcelConfigurationService,private router:Router, private excelService: ExcelConfigurationService ){}
+  errorExcel = false;
+  loader = false;
+  errorMessage!: string;
+  ShowNavbar = false;
+  stape = "1/2"
+  constructor(private excelDoc: ExcelConfigurationService, private router: Router, private excelService: ExcelConfigurationService) { }
 
   ngOnInit() {
     this.excelDoc.getExcel();
     console.log(this.excelDoc.getExcel());
     this.storeData = localStorage.getItem("userInfo")
-    this.compagnyInfo = JSON.parse(this.storeData);
+    this.userInfo = JSON.parse(this.storeData);
 
   }
   submitExcel() {
@@ -44,7 +44,7 @@ export class ConfigDocComponent implements OnInit {
     axios.post(URL.COMPAGNY_URL + '/upload/excel', formdata, {
       withCredentials: true,
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token,
+        'Authorization': 'Bearer ' + this.userInfo.authorization.token,
         'Content-Type': 'multipart/form-data'
       }
     }).then((response: any) => {

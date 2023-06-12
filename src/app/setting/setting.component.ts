@@ -14,7 +14,6 @@ export class SettingComponent {
   buttonEnabled: boolean = false;
   storeData: any;
   userInfo: any;
-  compagnyInfo: any;
   loader: Boolean = false;
   updatePassword: Boolean = false;
   errorPassword: Boolean = false;
@@ -40,7 +39,7 @@ export class SettingComponent {
     this.storeData = localStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
     console.log('User Info' + this.userInfo)
-    this.compagnyInfo = JSON.parse(this.storeData);
+    this.userInfo = JSON.parse(this.storeData);
 
   }
   updateButtonState() {
@@ -57,11 +56,10 @@ export class SettingComponent {
     formdata.append('password', this.passwordForm.value.NewPassword)
     formdata.append('password_confirmation', this.passwordForm.value.RetapePassword)
     this.loader = true;
-    let BearerToken = 'Bearer ' + this.compagnyInfo.authorization.token;
     axios.post(URL.COMPAGNY_URL + '/update-password', formdata, {
       withCredentials: true,
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token,
+        'Authorization': 'Bearer ' + this.userInfo.authorization.token,
       }
     }).then((response) => {
       console.log(response)
@@ -80,11 +78,11 @@ export class SettingComponent {
   }
   deletedAccount() {
     this.supprimeloader = true;
-    let BearerToken = 'Bearer ' + this.compagnyInfo.authorization.token;
-    axios.delete(URL.COMPAGNY_URL + '/' + this.compagnyInfo.compagny.id + '/delete', {
+    let BearerToken = 'Bearer ' + this.userInfo.authorization.token;
+    axios.delete(URL.COMPAGNY_URL + '/' + this.userInfo.compagny.id + '/delete', {
       withCredentials: true,
       headers: {
-        'Authorization': 'Bearer ' + this.compagnyInfo.authorization.token,
+        'Authorization': 'Bearer ' + this.userInfo.authorization.token,
       }
     }).then((response) => {
       this.supprimeloader = false;

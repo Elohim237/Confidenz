@@ -19,7 +19,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 export class ListeEmployeeComponent implements OnInit {
   BearerToken = "";
   storeData: any;
-  compagnyInfo: any;
+  userInfo: any;
   employees: Array<any> = [];
   subscription!: Subscription;
   tableOptions: any;
@@ -53,12 +53,12 @@ export class ListeEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.storeData = localStorage.getItem("userInfo")
-    this.compagnyInfo = JSON.parse(this.storeData);
+    this.userInfo = JSON.parse(this.storeData);
 
     this.docData = localStorage.getItem("Doc")
     this.docInfo = JSON.parse(this.docData);
-    this.BearerToken = 'Bearer ' + this.compagnyInfo.authorization.token
-    this.getlisteEmploye(this.compagnyInfo);
+    this.BearerToken = 'Bearer ' + this.userInfo.authorization.token
+    this.getlisteEmploye(this.userInfo);
   }
 
 

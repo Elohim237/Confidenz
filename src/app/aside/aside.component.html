@@ -8,7 +8,7 @@
         <div class="logo">
           <img src="../../assets/img/logo2.svg"/>
         </div>
-        <span class="app-brand-text demo menu-text fw-bolder ms-2">Confidenz APP</span>
+        <span class="app-brand-text demo menu-text fw-bolder ms-2">Confidenz App</span>
       </a>
 
       <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -20,7 +20,7 @@
 
     <ul class="menu-inner py-1 gap-2">
       <!-- Dashboard -->
-      <li class="menu-item "  [ngClass]="{'active':currentUrl ==='/'}">
+      <li class="menu-item "  *ngIf="admin" [ngClass]="{'active':currentUrl ==='/'}">
         <a [routerLink]="['/']" routerLinkActive="true" class="menu-link gap-2">
           <i class="fa fa-file-excel-o" aria-hidden="true"></i>
           <div data-i18n="Partager un fichier">Partager un fichier</div>
@@ -35,7 +35,7 @@
         </a>
       </li>
 
-      <li class="menu-item " routerLinkActive="active" [ngClass]="{'active':currentUrl ==='/list-employee'}">
+      <li class="menu-item " routerLinkActive="active" *ngIf="admin" [ngClass]="{'active':currentUrl ==='/list-employee'}">
         <a [routerLink]="['/list-employee']" routerLinkActive="true" class="menu-link gap-2" >
           <i class="fa fa-user-o" aria-hidden="true"></i>
           <div data-i18n="Mes employés">Mes employés</div>
