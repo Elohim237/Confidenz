@@ -69,8 +69,7 @@ export class ViewDocComponent {
   }
   // lsite des fichiers
   listdoc(id: any) {
-    let BearerToken = 'Bearer' + this.userInfo.authorization.token
-    axios.get(URL.COMPAGNY_URL + '/files/' + id, {
+    axios.get(localStorage.getItem('url') + '/files/' + id, {
       headers: {
         'Authorization': 'Bearer ' + this.userInfo.authorization.token,
       }
@@ -157,6 +156,5 @@ export class ViewDocComponent {
     console.log(this.breadcumbs, i);
     this.breadcumbs = this.breadcumbs.filter((it, index) => index <= i);
     console.log(this.breadcumbs);
-
   }
 }

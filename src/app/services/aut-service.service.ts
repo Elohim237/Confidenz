@@ -32,6 +32,9 @@ export class AutServiceService {
     });
 
     await axios.post(url + '/login', loginform).then((response) => {
+      let admin = JSON.parse(localStorage.getItem('admin')!);
+      localStorage.clear();
+      localStorage.setItem('admin', JSON.parse(admin))
       localStorage.setItem('url', url);
       localStorage.setItem('userInfo', JSON.stringify(response.data));
       console.log("userInfo : ", localStorage.getItem('userInfo'));
