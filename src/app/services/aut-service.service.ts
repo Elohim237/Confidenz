@@ -13,7 +13,6 @@ axios.defaults.withCredentials = true;
 
 export class AutServiceService {
   message!: string;
-  admin = JSON.parse(localStorage.getItem("admin")!);
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -33,8 +32,6 @@ export class AutServiceService {
     });
 
     await axios.post(url + '/login', loginform).then((response) => {
-      localStorage.clear();
-      localStorage.setItem('admin', this.admin);
       localStorage.setItem('url', url);
       localStorage.setItem('userInfo', JSON.stringify(response.data));
       console.log("userInfo : ", localStorage.getItem('userInfo'));
