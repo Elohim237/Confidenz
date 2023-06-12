@@ -34,8 +34,8 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">{{userInfo.compagny.name}}</span>
-                            <small class="text-muted">{{ admin ? "Admin" : "Utilisateur" }}</small>
+                            <span class="fw-semibold d-block">{{ userInfo[admin ? 'compagny' : 'employee'].name }}</span>
+                            <small class="text-muted">{{ admin ? "Administrateur" : "Utilisateur" }}</small>
                           </div>
                         </div>
                       </a>
