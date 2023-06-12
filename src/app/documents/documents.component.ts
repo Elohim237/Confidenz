@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 export class DocumentsComponent {
+  admin: boolean = JSON.parse(localStorage.getItem('admin')!);
   storeData: any;
   userInfo: any;
   docs: any;
@@ -34,6 +35,10 @@ export class DocumentsComponent {
   }
 
   ngOnInit() {
+    if (!localStorage.getItem("userInfo")) {
+      this.router.navigate(['/login']);
+    }
+
     this.storeData = localStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
     console.log(this.userInfo)
@@ -44,6 +49,7 @@ export class DocumentsComponent {
     }
     console.log("message", this.excelService.getmessageSuccedExcel());
   }
+
   listDocCompagnies() {
     axios.get(localStorage.getItem("url") + '/files', {
       headers: {

@@ -42,8 +42,8 @@
                                 id="uploadedAvatar"
                                 />
                                 <div class="button-wrapper d-flex flex-column">
-                                    <span style="font-size:20px; font-weight: 700;">{{userInfo.compagny.name}}</span>
-                                    <span>Administrateur</span>
+                                    <span style="font-size:20px; font-weight: 700;">{{ userInfo[admin ? 'compagny' : 'employee'].name }}</span>
+                                    <span>{{ admin ? "Administrateur" : "Utilisateur" }}</span>
                                 </div>
                             </div>
                             </div>
@@ -162,8 +162,8 @@
                            
                             <!-- /Account -->
                         </div>
-                        <hr class="my-0" />
-                        <div class="card">
+                        <hr *ngIf="admin" class="my-0" />
+                        <div *ngIf="admin" class="card">
                             <div class="card-body">
                                 <h5 class="card-header">Supprimer mon compte</h5>
                                 <div class="p-4">

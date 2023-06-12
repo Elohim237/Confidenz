@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./view-doc.component.css']
 })
 export class ViewDocComponent {
+  admin: boolean = JSON.parse(localStorage.getItem('admin')!);
   storeData: any;
   userInfo: any;
   documents: any;
@@ -30,7 +31,6 @@ export class ViewDocComponent {
   ShowNavbar = false;
   constructor(private route: ActivatedRoute, private router: Router, private location: Location) {
     const currentUrl = this.router.url.split('?')[0];
-
   }
 
   ngOnInit(): void {

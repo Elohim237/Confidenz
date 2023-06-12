@@ -34,7 +34,7 @@ export class AsideComponent implements OnInit {
     this.hideAside.emit(this.state)
   }
   logOut() {
-    axios.get(URL.COMPAGNY_URL + '/logout', {
+    axios.get(localStorage.getItem("url") + '/logout', {
       headers: {
         'Authorization': 'Bearer ' + this.userInfo.authorization.token,
       }

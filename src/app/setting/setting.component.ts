@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ChangePasswordCompagnyService } from '../services/change-password-compagny.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import axios from 'axios';
-import { URL } from '../classes/base-url';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-setting',
@@ -10,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./setting.component.css']
 })
 export class SettingComponent {
+  admin: boolean = JSON.parse(localStorage.getItem('admin')!);
   isChecked: boolean = false;
   buttonEnabled: boolean = false;
   storeData: any;
@@ -56,7 +56,7 @@ export class SettingComponent {
     formdata.append('password', this.passwordForm.value.NewPassword)
     formdata.append('password_confirmation', this.passwordForm.value.RetapePassword)
     this.loader = true;
-    axios.post(URL.COMPAGNY_URL + '/update-password', formdata, {
+    axios.post(localStorage.getItem('url') + '/update-password', formdata, {
       withCredentials: true,
       headers: {
         'Authorization': 'Bearer ' + this.userInfo.authorization.token,
@@ -79,7 +79,7 @@ export class SettingComponent {
   deletedAccount() {
     this.supprimeloader = true;
     let BearerToken = 'Bearer ' + this.userInfo.authorization.token;
-    axios.delete(URL.COMPAGNY_URL + '/' + this.userInfo.compagny.id + '/delete', {
+    axios.delete(localStorage.getItem('url') + '/' + this.userInfo.compagny.id + '/delete', {
       withCredentials: true,
       headers: {
         'Authorization': 'Bearer ' + this.userInfo.authorization.token,

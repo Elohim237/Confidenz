@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  admin!: boolean;
+  admin: boolean = JSON.parse(localStorage.getItem('admin')!);
   upload = false;
   userInfo: any;
   storeData: any;
@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
-    axios.get(URL.COMPAGNY_URL + '/logout', {
+    axios.get(localStorage.getItem("url") + '/logout', {
       headers: {
         'Authorization': this.token,
       }

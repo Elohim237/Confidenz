@@ -13,7 +13,7 @@ axios.defaults.withCredentials = true;
   styleUrls: ['./home-admin.component.css']
 })
 export class HomeAdminComponent implements OnInit {
-
+  admin: boolean = JSON.parse(localStorage.getItem('admin')!);
   constructor(private createEmployservice: CreateEmployeeService, private formBuilder: FormBuilder, private router: Router, private excelService: ExcelConfigurationService) {
     this.CreateUser = this.formBuilder.group({
       name: ['', Validators.required],
@@ -37,10 +37,12 @@ export class HomeAdminComponent implements OnInit {
   errors: Array<string> = [];
   errorPrint: any;
   ShowNavbar = false;
+
   ngOnInit() {
     if (!localStorage.getItem("userInfo")) {
       this.router.navigate(['/login']);
     }
+
     this.storeData = localStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
     console.log("userInfo", this.userInfo);

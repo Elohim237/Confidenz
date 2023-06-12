@@ -14,7 +14,7 @@
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
                 <div class="info-user d-flex flex-column">
-                    <span style="font-weight: 600;">{{userInfo.compagny.name}}</span>
+                    <span style="font-weight: 600;">{{ userInfo[admin ? 'compagny' : 'employee'].name }}</span>
                     <span style="font-size: 12px; text-align: end;">{{ admin ? "Administrateur" : "Utilisateur" }}</span>
                 </div>
                 <!-- User -->
