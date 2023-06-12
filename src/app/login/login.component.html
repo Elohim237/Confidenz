@@ -63,7 +63,8 @@
                 <section class="d-flex justify-content-center" style="padding-top: 16px;" *ngIf="admin">
                     <span style="padding-right: 15px;">Vous n'avez pas de compte ?</span><a [routerLink]="['/register']">Créer un compte.</a>
                 </section>
-                <span class="d-flex justify-content-center mt-2" style="cursor: pointer;" (click)="toggleAdmin()">Je suis un {{ admin ? "employé" : "admin" }}.</span>
+                <span *ngIf="admin" class="d-flex justify-content-center mt-2" style="cursor: pointer; color: #005eff;" (click)="toggleAdmin()">J'appartient à une entreprise.</span>
+                <span *ngIf="!admin" class="d-flex justify-content-center mt-2" style="cursor: pointer; color: #005eff;" (click)="toggleAdmin()">Je suis une entreprise.</span>
             </div>
         </div>
     </div>
