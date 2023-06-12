@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./liste-members.component.css']
 })
 export class ListeMembersComponent implements OnInit {
+  admin = JSON.parse(localStorage.getItem('admin')!);
   storeData: any;
   userInfo: any;
   elements: any;
@@ -79,8 +80,7 @@ export class ListeMembersComponent implements OnInit {
 
   prepareDonnees() {
     console.log('prepare', this.elements)
-    this.entetes.push("employés")
-    console.log("yo");
+    this.entetes.push(this.admin ? "employés" : '#')
     const item = this.elements;
     this.entete = item.value;
     this.entetes.push(item.value)
@@ -102,7 +102,6 @@ export class ListeMembersComponent implements OnInit {
   prepareDonnees2() {
     console.log('prepare', this.elements)
     this.entetes.push("employés")
-    console.log("yo");
     const item = this.elements;
     console.log("item", item)
     let Encour: any;
@@ -169,7 +168,6 @@ export class ListeMembersComponent implements OnInit {
       this.errormessage = error.response.data.message ?? error.response.data.error
       this.errorcode = true;
     })
-
   }
 
   submitCellule2(id: number, position: number) {

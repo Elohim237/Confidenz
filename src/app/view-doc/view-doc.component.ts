@@ -156,5 +156,6 @@ export class ViewDocComponent {
     console.log(this.breadcumbs, i);
     this.breadcumbs = this.breadcumbs.filter((it, index) => index <= i);
     console.log(this.breadcumbs);
+
   }
 }
