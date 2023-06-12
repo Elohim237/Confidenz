@@ -43,7 +43,7 @@
                         </div>
                         <label class="form-label" for="password" style="font-size: 14PX;">Mot de passe</label>
                         <div class="password">
-                            <input id="password" class="form-control" type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" name="password">
+                            <input id="password" class="form-control" type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" name="password" />
                             <span (click)="showPassword =!showPassword" [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></span>
                         </div>
                         <div class="mb-3" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
