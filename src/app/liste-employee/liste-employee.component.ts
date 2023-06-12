@@ -72,8 +72,6 @@ export class ListeEmployeeComponent implements OnInit {
       console.log("reponse", response);
       this.employees = response.data.employees;
       this.filteredData = response.data.employees;
-      localStorage.removeItem('employees');
-      localStorage.setItem('employees', JSON.stringify(this.employees));
       this.loaderpage = false;
     }).catch((error) => {
       console.error(error);
