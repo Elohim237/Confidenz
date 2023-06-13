@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import axios from 'axios';
-import { URL } from '../classes/base-url';
 import { Router } from '@angular/router';
 
 @Component({

@@ -15,7 +15,7 @@ import { SettingComponent } from './setting/setting.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
-  { path: '', component: JSON.parse(sessionStorage.getItem('admin')!) ? HomeAdminComponent : DocumentsComponent },
+  { path: '', component: HomeAdminComponent },
   { path: 'documents', component: DocumentsComponent },
   { path: 'configdoc', component: ConfigDocComponent },
   { path: 'detail/:id/liste', component: ListeMembersComponent },

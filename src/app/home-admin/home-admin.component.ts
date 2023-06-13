@@ -43,6 +43,10 @@ export class HomeAdminComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
+    if (!JSON.parse(sessionStorage.getItem('admin')!)) {
+      this.router.navigate(['/documents']);
+    }
+
     this.storeData = sessionStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
     // console.log("userInfo", this.userInfo);
