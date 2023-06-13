@@ -3,7 +3,7 @@
         <div class="col-8 content-img" style="background-color: #f8f8f8;">
             <img class="illustration" src="../../assets/Registration.svg">
         </div>
-        <div class="col-4  d-flex justify-content-center align-items-center content-form">
+        <div class="col-4  d-flex justify-content-center align-items-center content-form" style="background-color: #ffffff">
             <div>
                 <div class="d-flex align-items-center gap-2" style="width: 85%; margin-left: auto;">
                     <div class="logo">
@@ -43,7 +43,7 @@
                             <span (click)="showPassword =!showPassword" [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></span>
                         </div>
                         <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
-                            <div *ngIf="registrationForm.get('password')?.errors?.['required']">Ce champs est obligatoire</div>
+                            <div class="error" *ngIf="registrationForm.get('password')?.errors?.['required']">Ce champs est obligatoire</div>
                             <div class="error" *ngIf="registrationForm.get('password')?.errors?.['minlength']">Le mot de passe doit avoir min 6 caractères</div>
                           </div>
                     </div>
@@ -56,8 +56,8 @@
                         
                         <!-- <div *ngIf="registrationForm.get('passwordConfirmation')?.errors?.['required']">Confirm Password is required</div> -->
                         <div *ngIf="registrationForm.get('passwordConfirmation')?.invalid && (registrationForm.get('passwordConfirmation')?.touched || registrationForm?.dirty)">
-                            <div *ngIf="registrationForm.get('passwordConfirmation')?.hasError('required')">Ce champs est obligatoire</div>
-                            <div *ngIf="registrationForm.hasError('passwordMismatch')">Les mots de passe ne correspondent pas</div>
+                            <div class="error" *ngIf="registrationForm.get('passwordConfirmation')?.hasError('required')">Ce champs est obligatoire</div>
+                            <div class="error" *ngIf="registrationForm.hasError('passwordMismatch')">Les mots de passe ne correspondent pas</div>
                           </div>
                     </div>
                     <div class="mb-3">
@@ -69,7 +69,7 @@
                       </div>
                 </form>
                 <div class="d-flex justify-content-center" style="padding-top: 16px;">
-                    <span style="padding-right: 15px;">Vous avez un compte ? </span><a [routerLink]="['/login']">Se connecter</a>
+                    <span style="padding-right: 15px; color: #566a7f !important;">Vous avez un compte ? </span><a [routerLink]="['/login']">Se connecter</a>
                 </div>
             </div>
         </div>

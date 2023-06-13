@@ -45,6 +45,7 @@ input.ng-invalid.ng-touched {
   
   .ng-invalid.ng-touched + div,.error {
     color: red;
+    font-size: 15px;
   }
   .logo{
     position: relative;

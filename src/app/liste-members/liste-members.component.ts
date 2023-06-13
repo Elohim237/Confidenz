@@ -33,7 +33,7 @@ export class ListeMembersComponent implements OnInit {
   documents: any;
   id!: any;
   listemployee: any[] = [];
-  modify = true;
+  modify = false;
   modification: any;
   colonneafter: any[] = [];
   ShowNavbar = false;
@@ -43,6 +43,7 @@ export class ListeMembersComponent implements OnInit {
   child: any;
   entete: any;
   visited: Boolean = false;
+  
   constructor(private route: ActivatedRoute, private router: Router) { }
   ngOnInit() {
     history.pushState(null, '');
@@ -61,8 +62,11 @@ export class ListeMembersComponent implements OnInit {
     let edit: any;
     edit = sessionStorage.getItem('Doc');
     this.modification = JSON.parse(edit);
-    // console.log("modif", this.modification)
-    this.modify = true;
+    this.admin = JSON.parse(sessionStorage.getItem("admin")!);
+    console.log("POUR LE USER", this.admin)
+    if (this.admin ==true || this.modification == "Modifiable"){
+      this.modify = true;
+    }
     // console.log("le id", this.id)
     let firstvisite;
     firstvisite = sessionStorage.getItem("firstvisiteview");

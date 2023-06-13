@@ -1,4 +1,5 @@
 @media screen and (max-width:450px) {
+    
     .content-all{
         width: 100%;
         height: 100%;
@@ -30,7 +31,7 @@
       position: absolute;
       top:12px;
       float: right;
-      left: 90% !important;
+      left: 85% !important;
     }
 
     .container-fluid {
