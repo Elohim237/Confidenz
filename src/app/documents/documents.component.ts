@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 export class DocumentsComponent {
-  admin: boolean = JSON.parse(localStorage.getItem('admin')!);
+  admin: boolean = JSON.parse(sessionStorage.getItem('admin')!);
   storeData: any;
   userInfo: any;
   docs: any;
@@ -35,23 +35,22 @@ export class DocumentsComponent {
   }
 
   ngOnInit() {
-    if (!localStorage.getItem("userInfo")) {
+    if (!sessionStorage.getItem("userInfo")) {
       this.router.navigate(['/login']);
     }
 
-    this.storeData = localStorage.getItem("userInfo")
+    this.storeData = sessionStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
-    console.log(this.userInfo)
     this.listDocCompagnies();
     this.messageSucced = this.excelService.getmessageSuccedExcel();
     if (this.messageSucced != undefined) {
       this.count = true;
     }
-    console.log("message", this.excelService.getmessageSuccedExcel());
+    // console.log("message", this.excelService.getmessageSuccedExcel());
   }
 
   listDocCompagnies() {
-    axios.get(localStorage.getItem("url") + '/files', {
+    axios.get(sessionStorage.getItem("url") + '/files', {
       headers: {
         'Authorization': 'Bearer ' + this.userInfo.authorization.token,
       }
@@ -59,8 +58,8 @@ export class DocumentsComponent {
       this.docs = response.data.files;
       this.filteredData = response.data.files;
       this.loaderpage = false;
-      console.log(this.docs)
-      console.log(response)
+      // console.log(this.docs)
+      // console.log(response)
     }).catch((error) => {
       console.error(error)
     })
@@ -78,7 +77,7 @@ export class DocumentsComponent {
       }
     }).then((response) => {
       this.actionDelete = false;
-      console.log(response)
+      // console.log(response)
       window.location.reload()
     }).catch((error) => {
       this.actionDelete = false;
@@ -96,19 +95,19 @@ export class DocumentsComponent {
   updateDoc(idDoc: any) {
     this.loader = true;
     this.actionDelete = true;
-    console.log('le idDoc', idDoc);
+    // console.log('le idDoc', idDoc);
 
     let formdata = new FormData();
     formdata.append("name", this.updateForm.value.name);
     formdata.append("rights", this.updateForm.value.droit);
 
-    axios.post(localStorage.getItem("url") + '/files/' + idDoc + '/update', formdata, {
+    axios.post(sessionStorage.getItem("url") + '/files/' + idDoc + '/update', formdata, {
       headers: {
         'Authorization': 'Bearer ' + this.userInfo.authorization.token
       }
     }).then((response) => {
       this.loader = false;
-      console.log(response)
+      // console.log(response)
       window.location.reload()
     }).catch((error) => {
       this.loader = false;
@@ -119,12 +118,12 @@ export class DocumentsComponent {
   }
 
   toPage(doc: any) {
-    localStorage.removeItem('Doc');
-    localStorage.removeItem('count');
-    localStorage.removeItem('firstvisite');
-    localStorage.setItem('firstvisite', 'firstvisite')
-    localStorage.setItem('Doc', JSON.stringify(doc));
-    localStorage.setItem('count', JSON.stringify(doc.heading_level))
+    sessionStorage.removeItem('Doc');
+    sessionStorage.removeItem('count');
+    sessionStorage.removeItem('firstvisite');
+    sessionStorage.setItem('firstvisite', 'firstvisite')
+    sessionStorage.setItem('Doc', JSON.stringify(doc));
+    sessionStorage.setItem('count', JSON.stringify(doc.heading_level))
     this.router.navigate(['/documents/detail', doc.root_id])
   }
 

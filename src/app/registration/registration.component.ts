@@ -39,7 +39,7 @@ export class RegistrationComponent {
     let result = { name: this.registrationForm.value.name, email: this.registrationForm.value.email, password: this.registrationForm.value.password, password_confirmation: this.registrationForm.value.passwordConfirmation }
     axios.post(URL.COMPAGNY_URL + '/register', result).then((response: any) => {
       this.loader = false;
-      console.log("response", response.data.message);
+      // console.log("response", response.data.message);
       this.succeedCreation = response.data.message;
       this.authservice.setMessageCreation(this.succeedCreation)
       this.router.navigate(['/'])

@@ -18,29 +18,29 @@ export class AsideComponent implements OnInit {
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        console.log("Navigation End");
+        // console.log("Navigation End");
         this.currentUrl = event.url;
-        console.log("Current url: " + this.currentUrl);
+        // console.log("Current url: " + this.currentUrl);
       }
     })
   }
   ngOnInit() {
-    this.storeData = localStorage.getItem("userInfo")
+    this.storeData = sessionStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
-    this.admin = JSON.parse(localStorage.getItem("admin")!);
+    this.admin = JSON.parse(sessionStorage.getItem("admin")!);
   }
   hideNavbar() {
     this.state = false
     this.hideAside.emit(this.state)
   }
   logOut() {
-    axios.get(localStorage.getItem("url") + '/logout', {
+    axios.get(sessionStorage.getItem("url") + '/logout', {
       headers: {
         'Authorization': 'Bearer ' + this.userInfo.authorization.token,
       }
     }).then((response) => {
-      console.log(response)
-      localStorage.clear()
+      // console.log(response)
+      sessionStorage.clear()
       this.router.navigate(['/login'])
     }).catch((error) => {
       console.error(error)

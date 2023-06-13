@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./liste-members.component.css']
 })
 export class ListeMembersComponent implements OnInit {
-  admin = JSON.parse(localStorage.getItem('admin')!);
+  admin = JSON.parse(sessionStorage.getItem('admin')!);
   storeData: any;
   userInfo: any;
   elements: any;
@@ -49,29 +49,29 @@ export class ListeMembersComponent implements OnInit {
     window.onpopstate = function (event) {
       history.go(1);
     };
-    this.storeData = localStorage.getItem("userInfo");
+    this.storeData = sessionStorage.getItem("userInfo");
     this.userInfo = JSON.parse(this.storeData);
-    this.docData = localStorage.getItem("viewElement");
+    this.docData = sessionStorage.getItem("viewElement");
 
     this.elements = JSON.parse(this.docData);
-    console.log("element", this.elements)
+    // console.log("element", this.elements)
 
-    console.log(this.employee);
+    // console.log(this.employee);
     this.id = this.route.snapshot.paramMap.get('id');
     let edit: any;
-    edit = localStorage.getItem('Doc');
+    edit = sessionStorage.getItem('Doc');
     this.modification = JSON.parse(edit);
-    console.log("modif", this.modification)
+    // console.log("modif", this.modification)
     this.modify = true;
-    console.log("le id", this.id)
+    // console.log("le id", this.id)
     let firstvisite;
-    firstvisite = localStorage.getItem("firstvisiteview");
+    firstvisite = sessionStorage.getItem("firstvisiteview");
     if (firstvisite == "firstvisite" && this.visited == false) {
       this.prepareDonnees()
-      localStorage.setItem('firstvisiteview', 'visited');
+      sessionStorage.setItem('firstvisiteview', 'visited');
     }
     else {
-      console.log("second visite");
+      // console.log("second visite");
       this.prepareDonnees2()
       this.visited = true;
     }
@@ -79,7 +79,7 @@ export class ListeMembersComponent implements OnInit {
   }
 
   prepareDonnees() {
-    console.log('prepare', this.elements)
+    // console.log('prepare', this.elements)
     this.entetes.push(this.admin ? "employés" : '#')
     const item = this.elements;
     this.entete = item.value;
@@ -87,31 +87,31 @@ export class ListeMembersComponent implements OnInit {
     for (let j = 0; j < item.children.length; j++) {
       this.child = item.children[j];
       let result = { 'value': this.child.employee_id, 'name': true, 'position': j }
-      console.log("le result", result)
+      // console.log("le result", result)
       if (!this.colonnes[j]) {
         this.colonnes[j] = [];
       }
 
       this.colonnes[j][0] = result;
       this.colonnes[j][1] = this.child;
-      console.log("this.colonne", this.colonnes)
+      // console.log("this.colonne", this.colonnes)
 
     }
   }
 
   prepareDonnees2() {
-    console.log('prepare', this.elements)
+    // console.log('prepare', this.elements)
     this.entetes.push("employés")
     const item = this.elements;
-    console.log("item", item)
+    // console.log("item", item)
     let Encour: any;
-    Encour = localStorage.getItem("Encour")
+    Encour = sessionStorage.getItem("Encour")
     this.entetes.push(Encour)
     for (let j = 0; j < item.length; j++) {
       this.child = item[j];
-      console.log("le childer", item[j].value)
+      // console.log("le childer", item[j].value)
       let result = { 'value': this.child.employee_id, 'name': true, 'position': j }
-      console.log("le result", result)
+      // console.log("le result", result)
       if (!this.colonnes[j]) {
         this.colonnes[j] = [];
       }
@@ -126,8 +126,8 @@ export class ListeMembersComponent implements OnInit {
 
   submitCellule(id: number, position: number) {
     this.loader = true;
-    console.log("le id", id)
-    console.log("le position", position)
+    // console.log("le id", id)
+    // console.log("le position", position)
     let BearerToken = 'Bearer ' + this.userInfo.authorization.token
     let formdata = new FormData()
     formdata.append('value', this.celluleForm.value.value)
@@ -144,24 +144,24 @@ export class ListeMembersComponent implements OnInit {
       for (let j = 0; j < item.children.length; j++) {
         const child = item.children[j];
         let result = { 'value': child.employee_id, 'name': true, 'position': j }
-        console.log("le result", result)
+        // console.log("le result", result)
         if (j == position) {
-          console.log("tu es dendans")
+          // console.log("tu es dedans")
           this.colonnes[j][1].value = formdata.get('value');
         }
         else {
           this.colonnes[j][1] = child
         }
       }
-      console.log("prepre colonne", this.colonnes)
+      // console.log("prepre colonne", this.colonnes)
       this.colonnes = this.colonnes.map((sousTableau) => sousTableau.slice(1))
       this.colonnes = this.colonnes.flat();
-      localStorage.removeItem("Encour")
-      localStorage.setItem("Encour", this.elements.value)
-      localStorage.removeItem("viewElement")
-      localStorage.setItem("viewElement", JSON.stringify(this.colonnes))
+      sessionStorage.removeItem("Encour")
+      sessionStorage.setItem("Encour", this.elements.value)
+      sessionStorage.removeItem("viewElement")
+      sessionStorage.setItem("viewElement", JSON.stringify(this.colonnes))
       window.location.reload()
-      console.log(response);
+      // console.log(response);
     }).catch((error) => {
       console.error(error)
       this.loader = false;
@@ -172,8 +172,8 @@ export class ListeMembersComponent implements OnInit {
 
   submitCellule2(id: number, position: number) {
     this.loader = true;
-    console.log("le id", id)
-    console.log("le position", position)
+    // console.log("le id", id)
+    // console.log("le position", position)
     let BearerToken = 'Bearer ' + this.userInfo.authorization.token
     let formdata = new FormData()
     formdata.append('value', this.celluleForm.value.value)
@@ -190,22 +190,22 @@ export class ListeMembersComponent implements OnInit {
       for (let j = 0; j < item.length; j++) {
         this.child = item[j];
         let result = { 'value': this.child.employee_id, 'name': true, 'position': j }
-        console.log("le result", result)
+        // console.log("le result", result)
         if (j == position) {
-          console.log("tu es dendans")
+          // console.log("tu es dedans")
           this.colonnes[j][1].value = formdata.get('value');
         }
         else {
           this.colonnes[j][1] = this.child
         }
       }
-      console.log("prepre colonne", this.colonnes)
+      // console.log("prepre colonne", this.colonnes)
       this.colonnes = this.colonnes.map((sousTableau) => sousTableau.slice(1))
       this.colonnes = this.colonnes.flat();
-      localStorage.removeItem("viewElement")
-      localStorage.setItem("viewElement", JSON.stringify(this.colonnes))
+      sessionStorage.removeItem("viewElement")
+      sessionStorage.setItem("viewElement", JSON.stringify(this.colonnes))
       window.location.reload();
-      console.log(response);
+      // console.log(response);
     }).catch((error) => {
       console.error(error)
       this.loader = false;

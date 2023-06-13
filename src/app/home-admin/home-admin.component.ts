@@ -13,7 +13,7 @@ axios.defaults.withCredentials = true;
   styleUrls: ['./home-admin.component.css']
 })
 export class HomeAdminComponent implements OnInit {
-  admin: boolean = JSON.parse(localStorage.getItem('admin')!);
+  admin: boolean = JSON.parse(sessionStorage.getItem('admin')!);
   constructor(private createEmployservice: CreateEmployeeService, private formBuilder: FormBuilder, private router: Router, private excelService: ExcelConfigurationService) {
     this.CreateUser = this.formBuilder.group({
       name: ['', Validators.required],
@@ -39,13 +39,13 @@ export class HomeAdminComponent implements OnInit {
   ShowNavbar = false;
 
   ngOnInit() {
-    if (!localStorage.getItem("userInfo")) {
+    if (!sessionStorage.getItem("userInfo")) {
       this.router.navigate(['/login']);
     }
 
-    this.storeData = localStorage.getItem("userInfo")
+    this.storeData = sessionStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
-    console.log("userInfo", this.userInfo);
+    // console.log("userInfo", this.userInfo);
   }
 
   onFileSelected(event: any) {
@@ -68,7 +68,7 @@ export class HomeAdminComponent implements OnInit {
     if (this.selectedFile) {
       let formdata = new FormData()
       formdata.append("employees", this.selectedFile);
-      console.log(formdata);
+      // console.log(formdata);
       this.loader = true;
 
       await axios.post(URL.COMPAGNY_URL + '/upload/employees', formdata, {
@@ -78,12 +78,12 @@ export class HomeAdminComponent implements OnInit {
           'Content-Type': 'multipart/form-data'
         }
       }).then(() => {
-        console.log("reussi")
+        // console.log("reussi")
         this.loader = false;
         this.createFile = true;
       })
         .catch((erreur) => {
-          console.log(erreur)
+          // console.log(erreur)
           this.contentErrorPrint = true
           this.errorPrint = erreur.response.data.message ?? erreur.response.data.error
           this.loader = false;
@@ -93,8 +93,8 @@ export class HomeAdminComponent implements OnInit {
 
   onSubmitUser() {
     let result = { name: this.CreateUser.value.name, email: this.CreateUser.value.email }
-    console.log("valide");
-    console.log(result);
+    // console.log("valide");
+    // console.log(result);
     this.loader = true;
     axios.post(URL.COMPAGNY_URL + '/employees/register', result, {
       withCredentials: true,
@@ -104,9 +104,9 @@ export class HomeAdminComponent implements OnInit {
       }
 
     }).then((response) => {
-      console.log(response)
+      // console.log(response)
       this.create = true;
-      console.log(this.create)
+      // console.log(this.create)
       this.loader = false;
     }).catch((error) => {
       this.create = false;

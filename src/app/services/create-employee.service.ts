@@ -11,8 +11,8 @@ export class CreateEmployeeService {
   create = false;
   constructor() { }
   async createEmployeFile(compagnies: any, file: any) {
-    console.log(compagnies);
-    console.log(file);
+    // console.log(compagnies);
+    // console.log(file);
     axios.post(URL.COMPAGNY_URL + '/upload/employees', file, {
       withCredentials: true,
       headers: {
@@ -31,9 +31,9 @@ export class CreateEmployeeService {
       }
 
     }).then((response) => {
-      console.log(response.data.message);
+      // console.log(response.data.message);
       this.create = true;
-      console.log(this.create)
+      // console.log(this.create)
     })
 
   }

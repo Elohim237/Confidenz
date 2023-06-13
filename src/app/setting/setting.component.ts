@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./setting.component.css']
 })
 export class SettingComponent {
-  admin: boolean = JSON.parse(localStorage.getItem('admin')!);
+  admin: boolean = JSON.parse(sessionStorage.getItem('admin')!);
   isChecked: boolean = false;
   buttonEnabled: boolean = false;
   storeData: any;
@@ -36,11 +36,8 @@ export class SettingComponent {
     })
   }
   ngOnInit() {
-    this.storeData = localStorage.getItem("userInfo")
+    this.storeData = sessionStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
-    console.log('User Info' + this.userInfo)
-    this.userInfo = JSON.parse(this.storeData);
-
   }
   updateButtonState() {
     this.buttonEnabled = this.isChecked;
@@ -56,13 +53,13 @@ export class SettingComponent {
     formdata.append('password', this.passwordForm.value.NewPassword)
     formdata.append('password_confirmation', this.passwordForm.value.RetapePassword)
     this.loader = true;
-    axios.post(localStorage.getItem('url') + '/update-password', formdata, {
+    axios.post(sessionStorage.getItem('url') + '/update-password', formdata, {
       withCredentials: true,
       headers: {
         'Authorization': 'Bearer ' + this.userInfo.authorization.token,
       }
     }).then((response) => {
-      console.log(response)
+      // console.log(response)
       this.loader = false
       this.updatePassword = true;
       this.messagePasswordGood = response.data.message;
@@ -79,7 +76,7 @@ export class SettingComponent {
   deletedAccount() {
     this.supprimeloader = true;
     let BearerToken = 'Bearer ' + this.userInfo.authorization.token;
-    axios.delete(localStorage.getItem('url') + '/' + this.userInfo.compagny.id + '/delete', {
+    axios.delete(sessionStorage.getItem('url') + '/' + this.userInfo.compagny.id + '/delete', {
       withCredentials: true,
       headers: {
         'Authorization': 'Bearer ' + this.userInfo.authorization.token,
@@ -91,7 +88,7 @@ export class SettingComponent {
       this.router.navigate(['/'])
     }).catch((error) => {
       this.supprimeloader = false
-      console.log('Delete error:', error)
+      // console.log('Delete error:', error)
     })
   }
 }

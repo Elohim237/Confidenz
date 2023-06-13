@@ -17,27 +17,23 @@ export class AutServiceService {
   constructor(private http: HttpClient, private router: Router) { }
 
   async register(registerform: any) {
-    console.log(registerform);
+    // console.log(registerform);
     axios.post(URL.COMPAGNY_URL + '/register', registerform).then((response) => {
-      console.log(response)
+      // console.log(response)
     })
   }
 
 
   async login(loginform: any, url: string) {
-    console.log('Login Form: ' + loginform);
+    // console.log('Login Form: ' + loginform);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'accept': 'application/json'
     });
 
     await axios.post(url + '/login', loginform).then((response) => {
-      let admin = JSON.parse(localStorage.getItem('admin')!);
-      localStorage.clear();
-      localStorage.setItem('admin', JSON.parse(admin))
-      localStorage.setItem('url', url);
-      localStorage.setItem('userInfo', JSON.stringify(response.data));
-      console.log("userInfo : ", localStorage.getItem('userInfo'));
+      sessionStorage.setItem('url', url);
+      sessionStorage.setItem('userInfo', JSON.stringify(response.data));
       this.router.navigate(['/'])
     })
   }

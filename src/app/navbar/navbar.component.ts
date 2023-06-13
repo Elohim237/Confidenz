@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  admin: boolean = JSON.parse(localStorage.getItem('admin')!);
+  admin: boolean = JSON.parse(sessionStorage.getItem('admin')!);
   upload = false;
   userInfo: any;
   storeData: any;
@@ -18,20 +18,20 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router) {
   }
   ngOnInit() {
-    this.storeData = localStorage.getItem("userInfo")
+    this.storeData = sessionStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
     this.token = 'Bearer ' + this.userInfo.authorization.token
-    this.admin = JSON.parse(localStorage.getItem("admin")!);
+    this.admin = JSON.parse(sessionStorage.getItem("admin")!);
   }
 
   logOut() {
-    axios.get(localStorage.getItem("url") + '/logout', {
+    axios.get(sessionStorage.getItem("url") + '/logout', {
       headers: {
         'Authorization': this.token,
       }
     }).then((response) => {
-      console.log(response)
-      localStorage.clear()
+      // console.log(response)
+      sessionStorage.clear()
       this.router.navigate(['/login'])
     }).catch((error) => {
       console.error(error)

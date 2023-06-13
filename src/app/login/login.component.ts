@@ -34,7 +34,7 @@ export class LoginComponent {
 
   }
   ngOnInit() {
-    localStorage.setItem('admin', JSON.stringify(this.admin));
+    sessionStorage.setItem('admin', JSON.stringify(this.admin));
     this.messageDeleteAccount = this.changePasswordservice.getMessage();
     this.messageSuccedCreation = this.autservice.getMessageCreation();
     if (this.messageDeleteAccount != undefined) {
@@ -53,7 +53,7 @@ export class LoginComponent {
     let result = { email: this.loginForm.value.email, password: this.loginForm.value.password }
     this.log = true;
     this.loader = true;
-    const admin: boolean = JSON.parse(localStorage.getItem("admin")!);
+    const admin: boolean = JSON.parse(sessionStorage.getItem("admin")!);
     const url = admin ? URL.COMPAGNY_URL : URL.EMPLOYEE_URL;
     await this.autservice.login(result, url).then(() => {
       this.router.navigate(['/'])
@@ -68,7 +68,7 @@ export class LoginComponent {
 
   toggleAdmin() {
     this.admin = !this.admin;
-    localStorage.setItem('admin', JSON.stringify(this.admin));
+    sessionStorage.setItem('admin', JSON.stringify(this.admin));
   }
 }
 

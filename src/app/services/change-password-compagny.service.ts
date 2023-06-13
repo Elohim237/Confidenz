@@ -15,7 +15,7 @@ export class ChangePasswordCompagnyService {
         'Authorization': 'Bearer ' + compagny.authorization.token,
       }
     }).then((response) => {
-      console.log(response)
+      // console.log(response)
     }).catch((error) => {
       console.error(error);
     })

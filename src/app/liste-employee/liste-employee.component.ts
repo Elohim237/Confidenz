@@ -52,10 +52,10 @@ export class ListeEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.storeData = localStorage.getItem("userInfo")
+    this.storeData = sessionStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
 
-    this.docData = localStorage.getItem("Doc")
+    this.docData = sessionStorage.getItem("Doc")
     this.docInfo = JSON.parse(this.docData);
     this.BearerToken = 'Bearer ' + this.userInfo.authorization.token
     this.getlisteEmploye(this.userInfo);
@@ -69,7 +69,7 @@ export class ListeEmployeeComponent implements OnInit {
         'Authorization': this.BearerToken
       }
     }).then((response) => {
-      console.log("reponse", response);
+      // console.log("reponse", response);
       this.employees = response.data.employees;
       this.filteredData = response.data.employees;
       this.loaderpage = false;
@@ -89,7 +89,7 @@ export class ListeEmployeeComponent implements OnInit {
         'Authorization': this.BearerToken
       }
     }).then((response) => {
-      console.log(response);
+      // console.log(response);
       window.location.reload()
       this.deleted = true
     })
@@ -107,7 +107,7 @@ export class ListeEmployeeComponent implements OnInit {
     if (this.selectedFile) {
       let formdata = new FormData()
       formdata.append("employees", this.selectedFile);
-      console.log(formdata);
+      // console.log(formdata);
       this.loader = true;
 
       await axios.post(URL.COMPAGNY_URL + '/upload/employees', formdata, {
@@ -117,7 +117,7 @@ export class ListeEmployeeComponent implements OnInit {
           'Content-Type': 'multipart/form-data'
         }
       }).then(() => {
-        console.log("reussi")
+        // console.log("reussi")
         this.loader = false;
         this.createFile = true;
         setTimeout(() => {
@@ -125,7 +125,7 @@ export class ListeEmployeeComponent implements OnInit {
         }, 1000);
       })
         .catch((erreur) => {
-          console.log(erreur)
+          // console.log(erreur)
 
           this.contentErrorPrint = true
           this.errorPrint = erreur.response.data.message ?? erreur.response.data.error
@@ -135,8 +135,8 @@ export class ListeEmployeeComponent implements OnInit {
   }
   onSubmitUser() {
     let result = { name: this.CreateUser.value.name, email: this.CreateUser.value.email }
-    console.log("valide");
-    console.log(result);
+    // console.log("valide");
+    // console.log(result);
     this.loader = true;
     axios.post(URL.COMPAGNY_URL + '/employees/register', result, {
       withCredentials: true,
@@ -146,9 +146,9 @@ export class ListeEmployeeComponent implements OnInit {
       }
 
     }).then((response) => {
-      console.log(response)
+      // console.log(response)
       this.create = true;
-      console.log(this.create)
+      // console.log(this.create)
       this.loader = false;
       setTimeout(() => {
         window.location.reload()

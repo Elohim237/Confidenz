@@ -28,8 +28,8 @@ export class ConfigDocComponent implements OnInit {
 
   ngOnInit() {
     this.excelDoc.getExcel();
-    console.log(this.excelDoc.getExcel());
-    this.storeData = localStorage.getItem("userInfo")
+    // console.log(this.excelDoc.getExcel());
+    this.storeData = sessionStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
 
   }
@@ -55,7 +55,7 @@ export class ConfigDocComponent implements OnInit {
       setTimeout(() => {
         this.router.navigate(['/documents'])
       }, 1000);
-      console.log(response.data.message)
+      // console.log(response.data.message)
     }).catch((error: any) => {
       console.error(error);
       this.errorMessage = error.response.data.error ?? error.response.data.message

@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./view-doc.component.css']
 })
 export class ViewDocComponent {
-  admin: boolean = JSON.parse(localStorage.getItem('admin')!);
+  admin: boolean = JSON.parse(sessionStorage.getItem('admin')!);
   storeData: any;
   userInfo: any;
   documents: any;
@@ -39,58 +39,58 @@ export class ViewDocComponent {
     window.onpopstate = function (event) {
       history.go(1);
     };
-    this.storeData = localStorage.getItem("userInfo")
+    this.storeData = sessionStorage.getItem("userInfo")
     this.userInfo = JSON.parse(this.storeData);
-    this.docData = localStorage.getItem("Doc");
+    this.docData = sessionStorage.getItem("Doc");
     this.exceldoc = JSON.parse(this.docData);
     this.id = this.route.snapshot.paramMap.get('id');
-    this.firstvisited = localStorage.getItem("firstvisite");
+    this.firstvisited = sessionStorage.getItem("firstvisite");
 
     //premiere visite du site 
     if (this.firstvisited == "firstvisite") {
       // Actions à effectuer lors de la première visite
       this.listdoc(this.exceldoc.root_id);
-      const storedCount = localStorage.getItem('count');
+      const storedCount = sessionStorage.getItem('count');
       if (storedCount == "1") {
         this.counter = 1;
         this.stop = true;
       }
-      localStorage.setItem('firstvisite', 'visited')
+      sessionStorage.setItem('firstvisite', 'visited')
 
     }
     // deuxieme visite du site
     else {
-      console.log("seconde fois");
+      // console.log("seconde fois");
       let doc: any;
       this.loader = false
-      doc = localStorage.getItem('Documents');
+      doc = sessionStorage.getItem('Documents');
       this.documents = JSON.parse(doc);
     }
   }
   // lsite des fichiers
   listdoc(id: any) {
-    axios.get(localStorage.getItem('url') + '/files/' + id, {
+    axios.get(sessionStorage.getItem('url') + '/files/' + id, {
       headers: {
         'Authorization': 'Bearer ' + this.userInfo.authorization.token,
       }
     }).then((response) => {
-      console.log("response", response)
+      // console.log("response", response)
       this.loader = false;
       let myArray = []
       myArray = response.data.content[0].children
       if (myArray.length === 0) {
         this.loader = false;
         this.oneDoc = true;
-        console.log("seul");
+        // console.log("seul");
         this.oneElement = response.data;
       }
       else {
         this.oneDoc = false;
         this.loader = false;
         this.documents = response.data.content;
-        console.log(this.breadcumbs)
+        // console.log(this.breadcumbs)
       }
-      console.log("le document", this.documents)
+      // console.log("le document", this.documents)
     }).catch((error) => {
       this.loader = false
       console.error(error)
@@ -99,46 +99,46 @@ export class ViewDocComponent {
   }
   // aller dans le contenu du fichier
   viewElement(docs: any) {
-    console.log('docs', docs);
-    localStorage.removeItem('viewElement');
-    localStorage.setItem('viewElement', JSON.stringify(docs));
-    localStorage.removeItem('firstvisiteview');
-    localStorage.setItem('firstvisiteview', 'firstvisite');
+    // console.log('docs', docs);
+    sessionStorage.removeItem('viewElement');
+    sessionStorage.setItem('viewElement', JSON.stringify(docs));
+    sessionStorage.removeItem('firstvisiteview');
+    sessionStorage.setItem('firstvisiteview', 'firstvisite');
 
     this.router.navigate(['/detail/', this.id, 'liste'])
   }
 
   // parcourir l'arbre
   return(documents: any) {
-    const storedCount = localStorage.getItem('count');
+    const storedCount = sessionStorage.getItem('count');
     if (storedCount) {
       this.count = parseInt(storedCount, 10);
       this.count--;
       if (this.count <= 1) {
         this.count = 1;
         this.stop = true;
-        console.log("le truer")
+        // // console.log("le truer")
       }
 
     } else {
       this.count = this.exceldoc.heading_level;
     }
-    localStorage.setItem('count', this.count.toString());
-    localStorage.removeItem('Documents');
-    localStorage.setItem('Documents', JSON.stringify(documents.children));
+    sessionStorage.setItem('count', this.count.toString());
+    sessionStorage.removeItem('Documents');
+    sessionStorage.setItem('Documents', JSON.stringify(documents.children));
     let doc: any;
-    doc = localStorage.getItem('Documents');
+    doc = sessionStorage.getItem('Documents');
     this.documents = JSON.parse(doc);
     this.breadcumbs.push({
       value: documents
     })
-    console.log(this.breadcumbs)
+    // // console.log(this.breadcumbs)
   }
 
   // gestion Breadcumbs
   toPrevent(documents: any) {
 
-    const storedCount = localStorage.getItem('count');
+    const storedCount = sessionStorage.getItem('count');
     if (storedCount) {
       this.count = parseInt(storedCount, 10);
       this.count = this.count + 1;
@@ -146,16 +146,16 @@ export class ViewDocComponent {
     } else {
       this.count = this.exceldoc.heading_level;
     }
-    localStorage.setItem('count', this.count.toString());
-    localStorage.removeItem('Documents');
-    localStorage.setItem('Documents', JSON.stringify(documents.children));
+    sessionStorage.setItem('count', this.count.toString());
+    sessionStorage.removeItem('Documents');
+    sessionStorage.setItem('Documents', JSON.stringify(documents.children));
     let doc: any;
-    doc = localStorage.getItem('Documents');
+    doc = sessionStorage.getItem('Documents');
     this.documents = JSON.parse(doc);
     const i = this.breadcumbs.findIndex((it) => it.value.value == documents.value);
-    console.log(this.breadcumbs, i);
+    // // console.log(this.breadcumbs, i);
     this.breadcumbs = this.breadcumbs.filter((it, index) => index <= i);
-    console.log(this.breadcumbs);
+    // console.log(this.breadcumbs);
 
   }
 }
