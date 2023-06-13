@@ -117,7 +117,7 @@ export class ViewDocComponent {
       if (this.count <= 1) {
         this.count = 1;
         this.stop = true;
-        // // console.log("le truer")
+        // console.log("le truer")
       }
 
     } else {
@@ -132,7 +132,7 @@ export class ViewDocComponent {
     this.breadcumbs.push({
       value: documents
     })
-    // // console.log(this.breadcumbs)
+    // console.log(this.breadcumbs)
   }
 
   // gestion Breadcumbs
@@ -153,9 +153,8 @@ export class ViewDocComponent {
     doc = sessionStorage.getItem('Documents');
     this.documents = JSON.parse(doc);
     const i = this.breadcumbs.findIndex((it) => it.value.value == documents.value);
-    // // console.log(this.breadcumbs, i);
+    // console.log(this.breadcumbs, i);
     this.breadcumbs = this.breadcumbs.filter((it, index) => index <= i);
     // console.log(this.breadcumbs);
-
   }
 }
