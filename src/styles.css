@@ -76,7 +76,9 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(67, 89, 113, 0);
 }
-
+body:has(.content-all){
+  background-color: white;
+}
 body:has(.showNav){
   overflow: hidden;
 }

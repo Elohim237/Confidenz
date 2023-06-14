@@ -16,4 +16,10 @@
     .searchbar{
         width: 100% !important;
       }
+    td,th{
+        padding: 20px;
+    }  
+    .card{
+        padding: 10px !important;
+    }
     }

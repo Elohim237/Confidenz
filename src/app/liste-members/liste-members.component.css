@@ -1,0 +1,8 @@
+@media screen and (max-width:450px) {
+    td,th{
+        padding: 20px;
+    }  
+    .card{
+        padding: 10px !important;
+    }
+}

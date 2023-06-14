@@ -31,17 +31,22 @@
                               </div>
                             </div>
                             <div class="card-body"*ngIf="loaderpage==false">
+                              <span>
                                 Liste des documents partagés sur la plateforme, vous pouvez consulter leur contenu ou encore les modifier.
-                                <div class="input-group mt-2 searchbar" style="width: 30%; display:flex; float:right;">
+                              </span>
+                              <div class="d-flex justify-content-end mt-3">
+                                <div class="input-group searchbar " style="width: 30%; display:flex;justify-content: end;">
                                   <span class="input-group-text" id="basic-addon-search31"><i class="fa fa-search" aria-hidden="true"></i></span>
                                   <input type="text" [(ngModel)]="searchText" (ngModelChange)="updateFilteredData()" class="form-control" placeholder="Chercher..." aria-label="Chercher..." aria-describedby="basic-addon-search31" />
                                 </div>
-                                <div class="table-responsive text-nowrap mt-5">
+                              </div>
+                                <div class="table-responsive text-nowrap mt-3">
                                     <table class="table"
                                     data-data="data"
                                     data-toggle="table"
                                     data-pagination="true"
                                     data-search="true"
+                                    
                                    >
                                       <thead style="background-color: #F3F2F7;">
                                         <tr>

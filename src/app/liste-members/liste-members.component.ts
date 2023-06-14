@@ -33,7 +33,7 @@ export class ListeMembersComponent implements OnInit {
   documents: any;
   id!: any;
   listemployee: any[] = [];
-  modify = false;
+  modify :any;
   modification: any;
   colonneafter: any[] = [];
   ShowNavbar = false;
@@ -63,13 +63,15 @@ export class ListeMembersComponent implements OnInit {
     edit = sessionStorage.getItem('Doc');
     this.modification = JSON.parse(edit);
     this.admin = JSON.parse(sessionStorage.getItem("admin")!);
-    console.log("POUR LE USER", this.admin)
-    if (this.admin ==true || this.modification == "Modifiable"){
+    console.log("POUR LE USER", this.admin);
+    this.modify=false;
+    if (this.admin == true || this.modification.rights == "Modifiable"){
       this.modify = true;
     }
     // console.log("le id", this.id)
     let firstvisite;
     firstvisite = sessionStorage.getItem("firstvisiteview");
+   
     if (firstvisite == "firstvisite" && this.visited == false) {
       this.prepareDonnees()
       sessionStorage.setItem('firstvisiteview', 'visited');
