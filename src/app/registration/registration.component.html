@@ -33,7 +33,7 @@
                         <input class="form-control" type="email" style="border-radius: 6px;height: 43px;margin-bottom: 15px;" placeholder="confidenz.team@gmail.com" name="email" required="" formControlName="email"  value="Elohim@gmail.com">
                         <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
                             <div *ngIf="registrationForm.get('email')?.errors?.['required']">Ce champs est obligatoire</div>
-                            <div *ngIf="registrationForm.get('email')?.errors?.['email']">Mauvaise adresse mail</div>
+                            <div class="error" *ngIf="registrationForm.get('email')?.errors?.['email']">Mauvaise adresse mail</div>
                           </div>
                     </div>
                     <div  class="mb-2">
