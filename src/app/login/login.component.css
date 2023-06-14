@@ -2,10 +2,6 @@
 
 @media screen and (max-width:450px) {
     
-    .content-all{
-        width: 100%;
-        height: 100%;
-      }
     .content-img{
         background-color: #ffffff !important;
      }
