@@ -9,9 +9,9 @@
               </a>
             </div>
 
-            <div *ngIf="!admin" class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+            <div  class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                <!-- Download -->
-               <div class="navbar-nav align-items-center">
+               <div *ngIf="!admin" class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center" style="width: 120px;">
                  <a href="assets/confidenz.apk"><img width="100%" src="assets/android.png" alt="Télécharger l'application mobile" ></a>
                 </div>

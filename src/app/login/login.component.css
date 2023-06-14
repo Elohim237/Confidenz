@@ -31,7 +31,7 @@
       position: absolute;
       top:12px;
       float: right;
-      left: 85% !important;
+      left: 90% !important;
     }
 
     .container-fluid {
@@ -74,5 +74,5 @@ input.ng-invalid.ng-touched {
     position: absolute;
     top:12px;
     float: right;
-    left: 95%;
+    left: 90%;
   }
